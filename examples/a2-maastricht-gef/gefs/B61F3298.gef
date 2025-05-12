@@ -1,0 +1,99 @@
+#GEFID = 1,1,0
+#COLUMNTEXT = 1, aan
+#COLUMNSEPARATOR = ;
+#RECORDSEPARATOR = !
+#FILEOWNER = DINO
+#COMPANYID = Onbekend
+#FILEDATE = 2025,4,30
+#PROJECTID = DINO-BOR
+#COLUMN = 9
+#COLUMNINFO = 1, m, Diepte bovenkant laag, 1
+#COLUMNINFO = 2, m, Diepte onderkant laag, 2
+#COLUMNINFO = 3, mm, Zandmediaan, 8
+#COLUMNINFO = 4, mm, Grindmediaan, 9
+#COLUMNINFO = 5, %, Lutum percentage, 3
+#COLUMNINFO = 6, %, Silt percentage, 4
+#COLUMNINFO = 7, %, Zand percentage, 5
+#COLUMNINFO = 8, %, Grind percentage, 6
+#COLUMNINFO = 9, %, Organische stof percentage, 7
+#COLUMNVOID = 1, -9999.99
+#COLUMNVOID = 2, -9999.99
+#COLUMNVOID = 3, -9999.99
+#COLUMNVOID = 4, -9999.99
+#COLUMNVOID = 5, -9999.99
+#COLUMNVOID = 6, -9999.99
+#COLUMNVOID = 7, -9999.99
+#COLUMNVOID = 8, -9999.99
+#COLUMNVOID = 9, -9999.99
+#LASTSCAN = 52
+#REPORTCODE = GEF-BORE-Report,1,0,0
+#MEASUREMENTCODE = Onbekend,-,-,-
+#TESTID = B61F3298
+#XYID = 31000,178162,317175
+#ZID = 31000,48.24
+#MEASUREMENTTEXT = 6, -, beschrijver lagen
+#MEASUREMENTTEXT = 13, St?lben GmbH  Zell/Mosel, boorbedrijf
+#MEASUREMENTTEXT = 16, 2010-01-01, datum boring
+#MEASUREMENTVAR = 31, 30.00, m, diepte onderkant boortraject
+#MEASUREMENTTEXT = 31, Kernboring, boormethode
+#MEASUREMENTTEXT = 7, Rijksdriehoeksmeting, locaal coördinatensysteem
+#MEASUREMENTTEXT = 8, Normaal Amsterdams Peil, locaal referentiesysteem
+#MEASUREMENTVAR = 16, 30.00, m, einddiepte
+#MEASUREMENTTEXT = 23, -, naam boormeester
+#MEASUREMENTTEXT = 1, Avenue2 projectbureau, opdrachtgever
+#MEASUREMENTTEXT = 14, Nee, openbaar
+#MEASUREMENTTEXT = 18, Nee, peilbuis afwezig
+#MEASUREMENTVAR = 18, 5.00, m, grondwaterstand direct na boring
+#EOH = 
+0.00;0.40;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'G';!
+0.40;1.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Zs2g3';'CA2';!
+1.00;1.40;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'BST';!
+1.40;1.90;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lz2';'Plaatselijk grind baksteenresten';!
+1.90;3.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lz2';'Gedeeltelijk zwak organisch verkleurd plaatselijk baksteenresten en as';!
+3.50;4.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lz2';'TGR BR';'LSTV';!
+4.00;4.80;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lz2';'TGR BR';'LMSL';!
+4.80;5.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Kz2s2h2';'DO TGR BR';'KSLA';!
+5.60;5.90;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Kh2';'DO BR';'Sterk gebrokkeld plaatselijk kiezelzandlagen';!
+5.90;7.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s1';'Gedeeltelijk stenen gedeeltelijk zwak organisch verkleurd';!
+7.00;9.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz3s1';'Gedeeltelijk sterk zandig gedeeltelijk stenen';!
+9.00;9.75;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz3s1';'CA2';'Gedeeltelijk sterk zandig gedeeltelijk stenen';!
+9.75;10.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz1s1';'CA2';!
+10.00;11.70;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s1';'CA2';!
+11.70;12.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'KAS';'sterk gespleten lagen van grijze vuursteen';!
+12.00;12.10;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'KAS';'sterk gespleten';!
+12.10;12.70;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'BR';'KAS';'Sterk verweerd sterk gespleten gedeeltelijk lichtbruin';!
+12.70;13.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI BR';'KAS';'Sterk verweerd sterk gespleten gedeeltelijk lichtgrijs';!
+13.20;13.25;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lz2';'DO BR';'ZFC';!
+13.25;13.40;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI BR';'KAS';'Sterk verweerd sterk gespleten gedeeltelijk lichtgrijs';!
+13.40;14.30;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI BR';'KAS';'Sterk verweerd sterk gespleten lagen van grijze vuursteen op 1385m';!
+14.30;14.45;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI BR';'KAS';'Sterk verweerd sterk gespleten lagen van grijze vuursteen';!
+14.45;14.65;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI BR';'KAS';'Sterk verweerd sterk gespleten';!
+14.65;15.15;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI BR';'KAS';'Sterk verweerd sterk gespleten lagen van grijze vuursteen';!
+15.15;15.45;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI BR';'KAS';'Sterk verweerd sterk gespleten';!
+15.45;15.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen';!
+15.50;16.45;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen op 1580m';!
+16.45;16.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen';!
+16.50;17.45;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones';!
+17.45;17.55;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen';!
+17.55;17.90;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen op 1765m';!
+17.90;17.95;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen';!
+17.95;18.40;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen op 1825m';!
+18.40;18.45;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen';!
+18.45;18.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones';!
+18.50;18.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen';!
+18.60;19.55;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen op 1945m';!
+19.55;19.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen';!
+19.60;19.90;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones';!
+19.90;20.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten plaatselijk verweerde zones lagen van grijze vuursteen';!
+20.00;24.55;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten lagen van grijze vuursteen op 2015m 2050m 2395m en 2420m met groene lagen';!
+24.55;24.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten lagen van grijze vuursteen  met groene lagen';!
+24.60;25.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten lagen van grijze vuursteen op 2470m met groene lagen';!
+25.60;25.70;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten lagen van grijze vuursteen met groene lagen';!
+25.70;27.80;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten lagen van grijze vuursteen op 2665m en 2720m met groene lagen';!
+27.80;28.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten lagen van grijze vuursteen met groene lagen';!
+28.50;28.55;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI GR';'KAS';'sterk gespleten';!
+28.55;28.85;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI GR';'KAS';'sterk gespleten lagen van grijze vuursteen';!
+28.85;29.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI GR';'KAS';'sterk gespleten';!
+29.00;29.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI GR';'KAS';'sterk gespleten lagen van grijze vuursteen';!
+29.20;29.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI GR';'KAS';'sterk gespleten lagen van grijze vuursteen op 2925';!
+29.50;30.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'KAS';'Resten van vuur- en kalksteen';!
