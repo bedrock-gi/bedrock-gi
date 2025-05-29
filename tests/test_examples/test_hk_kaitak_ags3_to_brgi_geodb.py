@@ -74,20 +74,25 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
         conn_original = sqlite3.connect(temp_original_gpkg_path)
         conn_output = sqlite3.connect(gpkg_output_path)
 
-        tables_original = conn_original.execute(
-            "SELECT name FROM sqlite_master WHERE type='table';"
-        ).fetchall()
+        tables_original = set(
+            table[0]
+            for table in conn_original.execute(
+                "SELECT name FROM sqlite_master WHERE type='table';"
+            ).fetchall()
+        )
         conn_original.close()
-        tables_output = conn_output.execute(
-            "SELECT name FROM sqlite_master WHERE type='table';"
-        ).fetchall()
+        tables_output = set(
+            table[0]
+            for table in conn_output.execute(
+                "SELECT name FROM sqlite_master WHERE type='table';"
+            ).fetchall()
+        )
         conn_output.close()
 
         assert tables_original == tables_output, (
             f"The original GeoPackage {temp_original_gpkg_path.name} and the output "
             f"GeoPackage {gpkg_output_path.name} have different tables:\n"
-            f"Original: {tables_original}\n"
-            f"Output: {tables_output}"
+            f"set(Original GPKG tables).difference(Output GPKG tables): {tables_original.difference(tables_output)}"
         )
 
         important_tables = [

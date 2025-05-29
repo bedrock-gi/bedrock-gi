@@ -8,7 +8,12 @@ from pandera.typing import DataFrame
 from pyproj import CRS
 
 from bedrock_ge.gi.ags.schemas import Ags3HOLE, Ags3SAMP, BaseSAMP
-from bedrock_ge.gi.schemas import BaseInSitu, BaseLocation, BaseSample, Project
+from bedrock_ge.gi.schemas import (
+    InSituTestSchema,
+    LocationSchema,
+    ProjectSchema,
+    SampleSchema,
+)
 from bedrock_ge.gi.validate import check_foreign_key
 
 
@@ -110,7 +115,9 @@ def ags3_db_to_no_gis_brgi_db(
 
 
 @pa.check_types(lazy=True)
-def ags_proj_to_brgi_project(ags_proj: pd.DataFrame, crs: CRS) -> DataFrame[Project]:
+def ags_proj_to_brgi_project(
+    ags_proj: pd.DataFrame, horizontal_crs: CRS, vertical_crs: CRS = CRS(3855)
+) -> DataFrame[ProjectSchema]:
     """Maps the AGS 3 'PROJ' group to a Bedrock GI 'Project' table.
 
     Args:
@@ -123,7 +130,10 @@ def ags_proj_to_brgi_project(ags_proj: pd.DataFrame, crs: CRS) -> DataFrame[Proj
     if "project_uid" not in ags_proj.columns:
         ags_proj["project_uid"] = ags_proj["PROJ_ID"]
 
-    ags_proj["crs_wkt"] = crs.to_wkt()
+    ags_proj["horizontal_crs"] = horizontal_crs.to_string()
+    ags_proj["horizontal_crs_wkt"] = horizontal_crs.to_wkt()
+    ags_proj["vertical_crs"] = vertical_crs.to_string()
+    ags_proj["vertical_crs_wkt"] = vertical_crs.to_wkt()
 
     return ags_proj  # type: ignore
 
@@ -131,7 +141,7 @@ def ags_proj_to_brgi_project(ags_proj: pd.DataFrame, crs: CRS) -> DataFrame[Proj
 @pa.check_types(lazy=True)
 def ags3_hole_to_brgi_location(
     ags3_hole: DataFrame[Ags3HOLE], project_uid: str
-) -> DataFrame[BaseLocation]:
+) -> DataFrame[LocationSchema]:
     brgi_location = ags3_hole
     brgi_location["project_uid"] = project_uid
     brgi_location["location_source_id"] = ags3_hole["HOLE_ID"]
@@ -151,7 +161,7 @@ def ags3_hole_to_brgi_location(
 def ags3_samp_to_brgi_sample(
     ags3_samp: DataFrame[Ags3SAMP],
     project_uid: str,
-) -> DataFrame[BaseSample]:
+) -> DataFrame[SampleSchema]:
     brgi_sample = ags3_samp
     brgi_sample["project_uid"] = project_uid
     brgi_sample["location_source_id"] = ags3_samp["HOLE_ID"]
@@ -167,7 +177,7 @@ def ags3_samp_to_brgi_sample(
 @pa.check_types(lazy=True)
 def ags3_in_situ_to_brgi_in_situ(
     group_name: str, ags3_in_situ: pd.DataFrame, project_uid: str
-) -> DataFrame[BaseInSitu]:
+) -> DataFrame[InSituTestSchema]:
     """Maps AGS 3 in-situ measurement data to Bedrock's in-situ data schema.
 
     Args:

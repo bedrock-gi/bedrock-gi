@@ -226,6 +226,63 @@ def _(mo):
 
 
 @app.cell
+def _():
+    none = None
+    boolean = not none
+    boolean
+    return
+
+
+@app.cell
+def _(CRS, zip, zipfile):
+    from bedrock_ge.gi.ags3 import ags3_to_brgi_db_mapping
+    from bedrock_ge.gi.ags_parser import ags_to_brgi_db_mapping
+    from bedrock_ge.gi.mapping_models import BedrockGIMapping
+    from bedrock_ge.gi.mapper import map_to_brgi_db
+    from bedrock_ge.gi.db_operations import merge_databases
+
+    projected_crs = CRS("EPSG:2326")
+    vertrical_crs = CRS("EPSG:5738")
+    brgi_db_from_1_ags3_file = None
+    brgi_db_obj = None
+
+    with zipfile.ZipFile(zip) as zip_ref:
+        # Iterate over files and directories in the .zip archive
+        for i, file_name in enumerate(zip_ref.namelist()):
+            # Only process files that have an .ags or .AGS extension
+            if file_name.lower().endswith(".ags"):
+                print(f"\n🖥️ Processing {file_name} ...")
+                with zip_ref.open(file_name) as ags3_file:
+                    # Convert content of a single AGS 3 file to a Dictionary of pandas dataframes (a database)
+                    ags3_mapping = ags_to_brgi_db_mapping(
+                        ags3_file, projected_crs, vertrical_crs
+                    )
+                    brgi_db_from_1_ags3_file = map_to_brgi_db(ags3_mapping)
+
+            # if not brgi_db_obj:
+            #     brgi_db_obj = brgi_db_from_1_ags3_file
+        
+            # if brgi_db_obj and brgi_db_from_1_ags3_file:
+            #     brgi_db_obj = merge_databases(brgi_db_obj, brgi_db_from_1_ags3_file)
+        
+            # print(f"i = {i}: brgi_db = {brgi_db_obj}")
+
+    # with zipfile.ZipFile(zip) as zip_ref:
+    #     file_name = "21659/9508008.AGS"
+    #     print(f"\n🖥️ Processing {file_name} ...")
+    #     with zip_ref.open(file_name) as ags3_file:
+    #         # Convert content of a single AGS 3 file to a Dictionary of pandas dataframes (a database)
+    #         ags3_mapping_obj = ags3_to_brgi_db_mapping(
+    #             ags3_file, projected_crs, vertrical_crs, "utf-8"
+    #         )
+
+    # brgi_db_obj = map_to_brgi_db(ags3_mapping_obj)
+
+    # brgi_db_obj
+    return
+
+
+@app.cell
 def _(CRS, pd, zip, zip_of_ags3s_to_bedrock_gi_database):
     brgi_db = zip_of_ags3s_to_bedrock_gi_database(zip, CRS("EPSG:2326"))
 

@@ -4,13 +4,10 @@ import geopandas as gpd  # type: ignore
 import pandas as pd
 
 from bedrock_ge.gi.schemas import (
-    BaseInSitu,
-    BaseLocation,
-    BaseSample,
-    InSitu,
-    Location,
-    Project,
-    Sample,
+    InSituTestSchema,
+    LocationSchema,
+    ProjectSchema,
+    SampleSchema,
 )
 
 
@@ -48,14 +45,14 @@ def check_brgi_database(brgi_db: Dict[str, Union[pd.DataFrame, gpd.GeoDataFrame]
     """
     for table_name, table in brgi_db.items():
         if table_name == "Project":
-            Project.validate(table)
+            ProjectSchema.validate(table)
             print("'Project' table aligns with Bedrock's 'Project' table schema.")
         elif table_name == "Location":
-            Location.validate(table)
+            LocationSchema.validate(table)
             check_foreign_key("project_uid", brgi_db["Project"], table)
             print("'Location' table aligns with Bedrock's 'Location' table schema.")
         elif table_name == "Sample":
-            Sample.validate(table)
+            SampleSchema.validate(table)
             check_foreign_key("project_uid", brgi_db["Project"], table)
             check_foreign_key("location_uid", brgi_db["Location"], table)
             print("'Sample' table aligns with Bedrock's 'Sample' table schema.")
@@ -63,7 +60,7 @@ def check_brgi_database(brgi_db: Dict[str, Union[pd.DataFrame, gpd.GeoDataFrame]
         # ! The line below should be:
         # ! elif table_name.startswith("InSitu_"):
         elif table_name == "InSitu":
-            InSitu.validate(table)
+            InSituTestSchema.validate(table)
             check_foreign_key("project_uid", brgi_db["Project"], table)
             check_foreign_key("location_uid", brgi_db["Location"], table)
             print(
@@ -112,23 +109,23 @@ def check_no_gis_brgi_database(
     """
     for table_name, table in brgi_db.items():
         if table_name == "Project":
-            Project.validate(table)
+            ProjectSchema.validate(table)
             print("'Project' table aligns with Bedrock's 'Project' table schema.")
         elif table_name == "Location":
-            BaseLocation.validate(table)
+            LocationSchema.validate(table)
             check_foreign_key("project_uid", brgi_db["Project"], table)
             print(
                 "'Location' table aligns with Bedrock's 'Location' table schema without GIS geometry."
             )
         elif table_name == "Sample":
-            BaseSample.validate(table)
+            SampleSchema.validate(table)
             check_foreign_key("project_uid", brgi_db["Project"], table)
             check_foreign_key("location_uid", brgi_db["Location"], table)
             print(
                 "'Sample' table aligns with Bedrock's 'Sample' table schema without GIS geometry."
             )
         elif table_name.startswith("InSitu_"):
-            BaseInSitu.validate(table)
+            InSituTestSchema.validate(table)
             check_foreign_key("project_uid", brgi_db["Project"], table)
             check_foreign_key("location_uid", brgi_db["Location"], table)
             print(
