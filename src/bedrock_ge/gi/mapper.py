@@ -42,7 +42,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
     project_uid = brgi_db_mapping.Project.project_id + "-" + project_data_b64_hash
 
     # Create the project table
-    brgi_project = pd.DataFrame(
+    project_df = pd.DataFrame(
         {
             "project_uid": project_uid,
             "project_source_id": brgi_db_mapping.Project.project_id,
@@ -54,7 +54,8 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         },
         index=[0],
     )
-    ProjectSchema.validate(brgi_project)
+    project_df = project_df.loc[:, ~project_df.columns.duplicated()]
+    ProjectSchema.validate(project_df)
 
     # Create the location table
     location_df = pd.DataFrame(
@@ -82,6 +83,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         }
     )
     location_df = pd.concat([location_df, brgi_db_mapping.Location.data], axis=1)
+    location_df = location_df.loc[:, ~location_df.columns.duplicated()]
     LocationSchema.validate(location_df)
 
     # Create the in-situ test tables
@@ -100,6 +102,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
                 insitu_mapping.depth_to_base_column
             ]
         insitu_df = pd.concat([insitu_df, insitu_mapping.data], axis=1)
+        insitu_df = insitu_df.loc[:, ~insitu_df.columns.duplicated()]
         InSituTestSchema.validate(insitu_df)
         insitu_tests[insitu_mapping.table_name] = insitu_df.copy()
 
@@ -129,10 +132,11 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
                 brgi_db_mapping.Sample.depth_to_top_column
             ]
         sample_df = pd.concat([sample_df, brgi_db_mapping.Sample.data], axis=1)
+        sample_df = sample_df.loc[:, ~sample_df.columns.duplicated()]
         SampleSchema.validate(sample_df)
 
     # Create the lab test tables
-    brgi_lab_tests = {}
+    lab_tests = {}
     if brgi_db_mapping.Lab:
         for lab_mapping in brgi_db_mapping.Lab:
             lab_df = pd.DataFrame(
@@ -146,26 +150,24 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
                 lab_df["location_uid"] = lab_mapping.data[
                     lab_mapping.location_id_column
                 ]
-            lab_df = pd.concat(
-                [lab_df, lab_mapping.data.copy()],
-                axis=1,
-            )
+            lab_df = pd.concat([lab_df, lab_mapping.data.copy()], axis=1)
             LabTestSchema.validate(lab_df)
-            brgi_lab_tests[lab_mapping.table_name] = lab_df.copy()
+            lab_tests[lab_mapping.table_name] = lab_df.copy()
+
+    # Create the other tables
+    other_tables = {}
+    if brgi_db_mapping.Other:
+        for other_table_mapping in brgi_db_mapping.Other:
+            other_table_df = other_table_mapping.data
+            other_table_df.insert(0, "project_uid", project_uid)
+            other_tables[other_table_mapping.table_name] = other_table_df
 
     # Create and return the Bedrock GI database
     return BedrockGIDatabase(
-        Project=brgi_project,
+        Project=project_df,
         Location=location_df,
         InSituTests=insitu_tests,
         Sample=sample_df if brgi_db_mapping.Sample else None,
-        LabTests=brgi_lab_tests,
-        Other=(
-            {
-                other_table.table_name: pd.DataFrame(other_table.data)
-                for other_table in brgi_db_mapping.Other
-            }
-            if brgi_db_mapping.Other
-            else {}
-        ),
+        LabTests=lab_tests,
+        Other=other_tables,
     )
