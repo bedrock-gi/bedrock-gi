@@ -1,3 +1,7 @@
+import base64
+import hashlib
+import json
+
 import pandas as pd
 
 from bedrock_ge.gi.mapping_models import BedrockGIMapping
@@ -28,16 +32,21 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         BedrockGIDatabase: The transformed Bedrock GI database containing validated
             DataFrames for each table type.
     """
-    project_uid = brgi_db_mapping.Project.project_uid
-    project_data = brgi_db_mapping.Project.data or {}
+    project_data_jsons = json.dumps(brgi_db_mapping.Project.data, sort_keys=True)
+    project_data_bytes_hash = hashlib.blake2b(
+        project_data_jsons.encode("utf-8"), digest_size=9
+    ).digest()
+    project_data_b64_hash = base64.b64encode(project_data_bytes_hash).decode()
+    project_uid = brgi_db_mapping.Project.project_id + "-" + project_data_b64_hash
     brgi_project = pd.DataFrame(
         {
             "project_uid": project_uid,
+            "project_source_id": brgi_db_mapping.Project.project_id,
             "horizontal_crs": brgi_db_mapping.Project.horizontal_crs.to_string(),
             "horizontal_crs_wkt": brgi_db_mapping.Project.horizontal_crs.to_wkt(),
             "vertical_crs": brgi_db_mapping.Project.vertical_crs.to_string(),
             "vertical_crs_wkt": brgi_db_mapping.Project.vertical_crs.to_wkt(),
-            **project_data,
+            **brgi_db_mapping.Project.data,
         },
         index=[0],
     )

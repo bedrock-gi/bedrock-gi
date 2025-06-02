@@ -63,7 +63,7 @@ def ags_to_brgi_db_mapping(
         raise ValueError("The file provided has only blank lines")
 
     # Log information about the mapped AGS 3 or AGS 4 data
-    project_uid = brgi_db_mapping.Project.project_uid
+    project_uid = brgi_db_mapping.Project.project_id
     n_gi_locations = len(brgi_db_mapping.Location.data)
     n_samples = len(brgi_db_mapping.Sample.data) if brgi_db_mapping.Sample else 0
     print_args = [

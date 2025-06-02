@@ -154,7 +154,7 @@ def ags3_to_brgi_db_mapping(
     check_ags_proj_group(ags3_dfs["PROJ"])
     ags3_project = ProjectTableMapping(
         data=ags3_dfs["PROJ"].to_dict(orient="records")[0],
-        project_uid=ags3_dfs["PROJ"]["PROJ_ID"].iloc[0],
+        project_id=ags3_dfs["PROJ"]["PROJ_ID"].iloc[0],
         horizontal_crs=projected_crs,
         vertical_crs=vertical_crs,
     )
