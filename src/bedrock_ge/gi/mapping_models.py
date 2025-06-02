@@ -6,8 +6,8 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class ProjectTableMapping(BaseModel):
-    data: Optional[dict] = None
-    project_uid: str
+    data: dict = {}
+    project_id: str
     horizontal_crs: pyproj.CRS
     vertical_crs: pyproj.CRS = Field(default=pyproj.CRS(3855))
     # "compound_crs": Optional[CRS] = None
@@ -28,8 +28,8 @@ class LocationTableMapping(BaseModel):
 
 class SampleTableMapping(BaseModel):
     data: pd.DataFrame
+    sample_id_column: str
     location_id_column: str
-    sample_id_column: Union[str, list[str]]
     depth_to_top_column: str
     depth_to_base_column: Optional[str] = None
 
@@ -50,14 +50,14 @@ class InSituTestTableMapping(OtherTable):
 
 
 class LabTestTableMapping(OtherTable):
-    location_id_column: Optional[str] = None
     sample_id_column: str
+    location_id_column: Optional[str] = None
 
 
 class BedrockGIMapping(BaseModel):
     Project: ProjectTableMapping
     Location: LocationTableMapping
     InSitu: list[InSituTestTableMapping]
-    Sample: Optional[SampleTableMapping] = None
-    Lab: Optional[list[LabTestTableMapping]] = []
-    Other: Optional[list[OtherTable]] = []
+    Sample: Union[SampleTableMapping, None] = None
+    Lab: list[LabTestTableMapping] = []
+    Other: list[OtherTable] = []

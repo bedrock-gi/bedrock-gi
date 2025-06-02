@@ -115,8 +115,8 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         sample_df = pd.concat([sample_df, brgi_db_mapping.Sample.data], axis=1)
         SampleSchema.validate(sample_df)
 
+    brgi_lab_tests = {}
     if brgi_db_mapping.Lab:
-        brgi_lab_tests = {}
         for lab_mapping in brgi_db_mapping.Lab:
             lab_df = pd.DataFrame(
                 {
@@ -141,14 +141,14 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         Location=pd.DataFrame(brgi_db_mapping.Location.data),
         InSituTests=insitu_tests,
         Sample=sample_df if brgi_db_mapping.Sample else None,
-        LabTests=brgi_lab_tests if brgi_db_mapping.Lab else None,
+        LabTests=brgi_lab_tests,
         Other=(
             {
                 other_table.table_name: pd.DataFrame(other_table.data)
                 for other_table in brgi_db_mapping.Other
             }
             if brgi_db_mapping.Other
-            else None
+            else {}
         ),
     )
     return brgi_db
