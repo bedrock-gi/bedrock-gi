@@ -177,7 +177,7 @@ def _(mo):
 @app.cell
 def _(io, requests):
     # Read ZIP from disk after downloading manually
-    # zip = Path(r"C:\Users\joost\ReposWindows\bedrock-ge\examples\hk_kaitak_ags3\public\kaitak_ags3.zip")
+    # zip = Path.home() / "Downloads" / "kaitak_ags3.zip"
 
     # Request ZIP from GitHub
     raw_githubusercontent_url = "https://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/main/examples/hk_kaitak_ags3/kaitak_ags3.zip"
@@ -226,13 +226,30 @@ def _(mo):
 
 
 @app.cell
-def _(CRS, zip, zipfile):
+def _():
+    import json
+    import hashlib
+    import base64
+
     from bedrock_ge.gi.ags3 import ags3_to_brgi_db_mapping
     from bedrock_ge.gi.ags_parser import ags_to_brgi_db_mapping
-    from bedrock_ge.gi.mapping_models import BedrockGIMapping
-    from bedrock_ge.gi.mapper import map_to_brgi_db
     from bedrock_ge.gi.db_operations import merge_databases
+    from bedrock_ge.gi.mapper import map_to_brgi_db
+    from bedrock_ge.gi.mapping_models import BedrockGIMapping
+    from bedrock_ge.gi.schemas import (
+        BedrockGIDatabase,
+        InSituTestSchema,
+        LabTestSchema,
+        LocationSchema,
+        ProjectSchema,
+        SampleSchema,
+    )
 
+    return ags_to_brgi_db_mapping, map_to_brgi_db, merge_databases
+
+
+@app.cell
+def _(CRS, ags_to_brgi_db_mapping, map_to_brgi_db, zip, zipfile):
     projected_crs = CRS("EPSG:2326")
     vertrical_crs = CRS("EPSG:5738")
     brgi_dbs = []
@@ -269,96 +286,12 @@ def _(CRS, zip, zipfile):
     # brgi_db_obj = map_to_brgi_db(ags3_mapping_obj)
 
     # brgi_db_obj
-    return ags3_mapping, brgi_dbs, merge_databases
-
-
-@app.cell
-def _(project_data_jsons):
-    hash(project_data_jsons)
-    return
-
-
-@app.cell
-def _(ags3_mapping, pd):
-    import base64
-    import hashlib
-    import json
-
-    brgi_db_mapping = ags3_mapping
-    project_data_jsons = json.dumps(brgi_db_mapping.Project.data, sort_keys=True)
-    project_data_hash = hashlib.blake2b(
-        project_data_jsons.encode("utf-8"), digest_size=9
-    ).digest()
-    url_safe_hash = base64.b64encode(project_data_hash).decode()
-    project_uid = brgi_db_mapping.Project.project_id + "-" + url_safe_hash
-    location_df = pd.DataFrame(
-        {
-            "location_uid": brgi_db_mapping.Location.data[
-                brgi_db_mapping.Location.location_id_column
-            ]
-            + f"_{project_uid}",
-            "location_source_id": brgi_db_mapping.Location.data[
-                brgi_db_mapping.Location.location_id_column
-            ],
-            "project_uid": project_uid,
-            "easting": brgi_db_mapping.Location.data[
-                brgi_db_mapping.Location.easting_column
-            ],
-            "northing": brgi_db_mapping.Location.data[
-                brgi_db_mapping.Location.northing_column
-            ],
-            "ground_level_elevation": brgi_db_mapping.Location.data[
-                brgi_db_mapping.Location.ground_level_elevation_column
-            ],
-            "depth_to_base": brgi_db_mapping.Location.data[
-                brgi_db_mapping.Location.depth_to_base_column
-            ],
-        }
-    )
-    return base64, hashlib, project_data_jsons, project_uid, url_safe_hash
-
-
-@app.cell
-def _(url_safe_hash):
-    b64_hash = url_safe_hash
-    print(b64_hash)
-    return
-
-
-@app.cell
-def _(base64):
-    b = b'\xff\x00\xfa'
-    encoded = base64.b64encode(b).decode()
-    print(encoded)
-    return
-
-
-@app.cell
-def _(base64, hashlib, project_data_jsons, project_uid):
-    print(project_uid)
-    bytes_hash = hashlib.blake2b(
-        project_data_jsons.encode("utf-8"), digest_size=8
-    ).digest()
-    safe_hash = base64.b85encode(bytes_hash).decode()
-    safe_hash
-    return
-
-
-@app.cell
-def _(ags3_mapping):
-    ags3_mapping.Project
-    return
-
-
-@app.cell
-def _(brgi_dbs):
-    brgi_dbs[7].Project
-    return
+    return (brgi_dbs,)
 
 
 @app.cell
 def _(brgi_dbs, merge_databases):
-    brgi_db_obj = merge_databases(brgi_dbs)
+    merged_brgi_db = merge_databases(brgi_dbs)
     return
 
 

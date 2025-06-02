@@ -32,12 +32,16 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         BedrockGIDatabase: The transformed Bedrock GI database containing validated
             DataFrames for each table type.
     """
+    # Create a base64 hash from the project data, such that project a project Unique ID
+    # can be created from the project_id and the hash of the project data.
     project_data_jsons = json.dumps(brgi_db_mapping.Project.data, sort_keys=True)
     project_data_bytes_hash = hashlib.blake2b(
         project_data_jsons.encode("utf-8"), digest_size=9
     ).digest()
     project_data_b64_hash = base64.b64encode(project_data_bytes_hash).decode()
     project_uid = brgi_db_mapping.Project.project_id + "-" + project_data_b64_hash
+
+    # Create the project table
     brgi_project = pd.DataFrame(
         {
             "project_uid": project_uid,
@@ -52,6 +56,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
     )
     ProjectSchema.validate(brgi_project)
 
+    # Create the location table
     location_df = pd.DataFrame(
         {
             "location_uid": brgi_db_mapping.Location.data[
@@ -79,6 +84,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
     location_df = pd.concat([location_df, brgi_db_mapping.Location.data], axis=1)
     LocationSchema.validate(location_df)
 
+    # Create the in-situ test tables
     insitu_tests = {}
     for insitu_mapping in brgi_db_mapping.InSitu:
         insitu_df = pd.DataFrame(
@@ -97,6 +103,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         InSituTestSchema.validate(insitu_df)
         insitu_tests[insitu_mapping.table_name] = insitu_df.copy()
 
+    # Create the sample table
     if brgi_db_mapping.Sample:
         sample_df = pd.DataFrame(
             {
@@ -124,6 +131,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         sample_df = pd.concat([sample_df, brgi_db_mapping.Sample.data], axis=1)
         SampleSchema.validate(sample_df)
 
+    # Create the lab test tables
     brgi_lab_tests = {}
     if brgi_db_mapping.Lab:
         for lab_mapping in brgi_db_mapping.Lab:
@@ -145,9 +153,10 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
             LabTestSchema.validate(lab_df)
             brgi_lab_tests[lab_mapping.table_name] = lab_df.copy()
 
-    brgi_db = BedrockGIDatabase(
+    # Create and return the Bedrock GI database
+    return BedrockGIDatabase(
         Project=brgi_project,
-        Location=pd.DataFrame(brgi_db_mapping.Location.data),
+        Location=location_df,
         InSituTests=insitu_tests,
         Sample=sample_df if brgi_db_mapping.Sample else None,
         LabTests=brgi_lab_tests,
@@ -160,4 +169,3 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
             else {}
         ),
     )
-    return brgi_db
