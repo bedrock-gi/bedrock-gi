@@ -116,9 +116,7 @@ def ags3_to_dfs(
                     group_data.append(cleaned_data_row)
 
     # Also add the last group's df to the dictionary of AGS dfs
-    ags3_dfs[group] = pd.DataFrame(group_data, columns=headers).dropna(
-        axis=1, how="all"
-    )
+    ags3_dfs[group] = pd.DataFrame(group_data, columns=headers)
 
     if not group:
         print(
