@@ -12,19 +12,19 @@ def location_gis_geometry(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
     #       1. Create WKT geometry for each location in original CRS
     #       2. Convert to WGS84 + EGM2008 orthometric height EPSG:9518
     #       3. Interpolate InSituTest and Sample geospatial vector geometry from active geometry column
-    hor_crs = brgi_db.Project["horizontal_crs_wkt"]
-    vert_crs = brgi_db.Project["vertical_crs_wkt"]
-    if hor_crs.nunique() > 1 or vert_crs.nunique() > 1:
+    hor_crs_series = brgi_db.Project["horizontal_crs_wkt"]
+    vert_crs_series = brgi_db.Project["vertical_crs_wkt"]
+    if hor_crs_series.nunique() > 1 or vert_crs_series.nunique() > 1:
         raise ValueError(
             "All projects must have the same horizontal and vertical CRS (Coordinate Reference System).\n"
             "Raise an issue on GitHub in case you need to be able to combine GI data that was acquired in multiple different CRSes."
         )
 
-    hor_crs = CRS.from_wkt(hor_crs.iat[0])
-    vert_crs = CRS.from_wkt(vert_crs.iat[0])
+    horizontal_crs = CRS.from_wkt(hor_crs_series.iat[0])
+    vertical_crs = CRS.from_wkt(vert_crs_series.iat[0])
     compound_crs = CompoundCRS(
-        name=f"{hor_crs.name} + {vert_crs.name}",
-        components=[hor_crs, vert_crs],
+        name=f"{horizontal_crs.name} + {vertical_crs.name}",
+        components=[horizontal_crs, vertical_crs],
     )
 
     # TODO: Implement logic such that inclined borholes are handled correctly.
