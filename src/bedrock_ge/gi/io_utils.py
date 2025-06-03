@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import IO, ContextManager
 
 import chardet
+import pandas as pd
 
 DEFAULT_ENCODING = "utf-8"
 
@@ -190,3 +191,9 @@ def coerce_string(string: str) -> None | bool | float | str:
                 return value
         except ValueError:
             return string
+
+
+def convert_dtypes_object_to_string(dataframe: pd.DataFrame) -> pd.DataFrame:
+    object_cols = dataframe.select_dtypes(include=["object"]).columns
+    dataframe[object_cols] = dataframe[object_cols].astype("string")
+    return dataframe

@@ -4,9 +4,11 @@ from collections.abc import Iterable
 
 import pandas as pd
 
+from bedrock_ge.gi.io_utils import convert_dtypes_object_to_string
 from bedrock_ge.gi.schemas import (
     BedrockGIDatabase,
     InSituTestSchema,
+    LabTestSchema,
     LocationSchema,
     ProjectSchema,
     SampleSchema,
@@ -40,11 +42,13 @@ def merge_databases(
     project_dataframes = _filter_dataframes([db.Project for db in dbs])
     merged_project = pd.concat(project_dataframes, ignore_index=True)
     merged_project = merged_project.drop_duplicates().reset_index(drop=True)
+    merged_project = convert_dtypes_object_to_string(merged_project.convert_dtypes())
     ProjectSchema.validate(merged_project)
 
     location_dataframes = _filter_dataframes([db.Location for db in dbs])
     merged_location = pd.concat(location_dataframes, ignore_index=True)
     merged_location = merged_location.drop_duplicates().reset_index(drop=True)
+    merged_location = convert_dtypes_object_to_string(merged_location.convert_dtypes())
     LocationSchema.validate(merged_location)
     check_foreign_key("project_uid", merged_project, merged_location)
 
@@ -65,6 +69,7 @@ def merge_databases(
         )
         insitu_df = pd.concat(insitu_dataframes, ignore_index=True)
         insitu_df = insitu_df.drop_duplicates().reset_index(drop=True)
+        insitu_df = convert_dtypes_object_to_string(insitu_df.convert_dtypes())
         InSituTestSchema.validate(insitu_df)
         check_foreign_key("project_uid", merged_project, insitu_df)
         check_foreign_key("location_uid", merged_location, insitu_df)
@@ -75,6 +80,7 @@ def merge_databases(
     if sample_dfs:
         merged_sample = pd.concat(sample_dfs, ignore_index=True)
         merged_sample = merged_sample.drop_duplicates().reset_index(drop=True)
+        merged_sample = convert_dtypes_object_to_string(merged_sample.convert_dtypes())
         SampleSchema.validate(merged_sample)
         check_foreign_key("project_uid", merged_project, merged_sample)
 
@@ -87,6 +93,8 @@ def merge_databases(
         ]
         lab_df = pd.concat(lab_dfs, ignore_index=True)
         lab_df = lab_df.drop_duplicates().reset_index(drop=True)
+        lab_df = convert_dtypes_object_to_string(lab_df.convert_dtypes())
+        LabTestSchema.validate(lab_df)
         check_foreign_key("project_uid", merged_project, lab_df)
         check_foreign_key("sample_uid", merged_sample, lab_df)
         merged_lab[lab_table] = lab_df
@@ -100,6 +108,7 @@ def merge_databases(
         ]
         other_df = pd.concat(other_dfs, ignore_index=True)
         other_df = other_df.drop_duplicates().reset_index(drop=True)
+        other_df = convert_dtypes_object_to_string(other_df.convert_dtypes())
         check_foreign_key("project_uid", merged_project, other_df)
         merged_other[other_table] = other_df
 

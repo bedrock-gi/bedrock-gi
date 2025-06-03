@@ -107,6 +107,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         insitu_tests[insitu_mapping.table_name] = insitu_df.copy()
 
     # Create the sample table
+    sample_df = None
     if brgi_db_mapping.Sample:
         sample_df = pd.DataFrame(
             {
@@ -167,7 +168,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         Project=project_df,
         Location=location_df,
         InSituTests=insitu_tests,
-        Sample=sample_df if brgi_db_mapping.Sample else None,
+        Sample=sample_df,
         LabTests=lab_tests,
         Other=other_tables,
     )

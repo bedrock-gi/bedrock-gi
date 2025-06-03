@@ -17,7 +17,7 @@
 
 import marimo
 
-__generated_with = "0.13.11"
+__generated_with = "0.13.15"
 app = marimo.App(
     app_title="Kai Tak, HK AGS 3 data to bedrock_ge.gi geodatabase",
 )
@@ -249,7 +249,14 @@ def _():
 
 
 @app.cell
-def _(CRS, ags_to_brgi_db_mapping, map_to_brgi_db, zip, zipfile):
+def _(
+    CRS,
+    ags_to_brgi_db_mapping,
+    map_to_brgi_db,
+    merge_databases,
+    zip,
+    zipfile,
+):
     projected_crs = CRS("EPSG:2326")
     vertrical_crs = CRS("EPSG:5738")
     brgi_dbs = []
@@ -266,32 +273,14 @@ def _(CRS, ags_to_brgi_db_mapping, map_to_brgi_db, zip, zipfile):
                     )
                     brgi_dbs.append(map_to_brgi_db(ags3_mapping))
 
-            # if not brgi_db_obj:
-            #     brgi_db_obj = brgi_db_from_1_ags3_file
+    merged_brgi_db = merge_databases(brgi_dbs)
 
-            # if brgi_db_obj and brgi_db_from_1_ags3_file:
-            #     brgi_db_obj = merge_databases(brgi_db_obj, brgi_db_from_1_ags3_file)
-
-            # print(f"i = {i}: brgi_db = {brgi_db_obj}")
-
-    # with zipfile.ZipFile(zip) as zip_ref:
-    #     file_name = "21659/9508008.AGS"
-    #     print(f"\n🖥️ Processing {file_name} ...")
-    #     with zip_ref.open(file_name) as ags3_file:
-    #         # Convert content of a single AGS 3 file to a Dictionary of pandas dataframes (a database)
-    #         ags3_mapping_obj = ags3_to_brgi_db_mapping(
-    #             ags3_file, projected_crs, vertrical_crs, "utf-8"
-    #         )
-
-    # brgi_db_obj = map_to_brgi_db(ags3_mapping_obj)
-
-    # brgi_db_obj
-    return (brgi_dbs,)
+    return (merged_brgi_db,)
 
 
 @app.cell
-def _(brgi_dbs, merge_databases):
-    merged_brgi_db = merge_databases(brgi_dbs)
+def _(merged_brgi_db):
+    merged_brgi_db.InSituTests["ISPT"]
     return
 
 
