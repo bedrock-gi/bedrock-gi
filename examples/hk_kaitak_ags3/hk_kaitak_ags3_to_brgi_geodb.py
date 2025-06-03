@@ -40,7 +40,8 @@ def _():
     import matplotlib
     import pandas as pd
     import requests
-    from pyproj import CRS
+    from pyproj import CRS, Transformer
+    from pyproj.crs import CompoundCRS
     from shapely import wkt
 
     from bedrock_ge.gi.ags.read import ags_to_dfs
@@ -259,7 +260,7 @@ def _(
 ):
     projected_crs = CRS("EPSG:2326")
     vertrical_crs = CRS("EPSG:5738")
-    brgi_dbs = []
+    ags3_file_brgi_dbs = []
     with zipfile.ZipFile(zip) as zip_ref:
         # Iterate over files and directories in the .zip archive
         for i, file_name in enumerate(zip_ref.namelist()):
@@ -267,38 +268,57 @@ def _(
             if file_name.lower().endswith(".ags"):
                 print(f"\n🖥️ Processing {file_name} ...")
                 with zip_ref.open(file_name) as ags3_file:
-                    # Convert content of a single AGS 3 file to a Dictionary of pandas dataframes (a database)
-                    ags3_mapping = ags_to_brgi_db_mapping(
-                        ags3_file, projected_crs, vertrical_crs
+                    # 1. Convert content of a single AGS 3 file to a Bedrock GI Mapping.
+                    # 2. Map the mapping object to a Bedrock GI Database.
+                    # 3. Append the Bedrock GI Database to the list of Bedrock GI
+                    #    Databases, that were created from single AGS 3 files.
+                    ags3_file_brgi_dbs.append(
+                        map_to_brgi_db(
+                            ags_to_brgi_db_mapping(
+                                ags3_file, projected_crs, vertrical_crs
+                            )
+                        )
                     )
-                    brgi_dbs.append(map_to_brgi_db(ags3_mapping))
 
-    merged_brgi_db = merge_databases(brgi_dbs)
-
-    return (merged_brgi_db,)
+    brgi_db = merge_databases(ags3_file_brgi_dbs)
+    return (brgi_db,)
 
 
 @app.cell
-def _(merged_brgi_db):
-    merged_brgi_db.InSituTests["ISPT"]
+def _():
+    return
+
+
+@app.cell
+def _(brgi_db):
+    from bedrock_ge.gi.geospatial import create_lon_lat_height_table
+
+    lon_lat_height_gdf = create_lon_lat_height_table(brgi_db)
+    lon_lat_height_gdf.explore()
+    return
+
+
+@app.cell
+def _(brgi_db):
+    brgi_db.InSituTests
     return
 
 
 @app.cell
 def _(CRS, pd, zip, zip_of_ags3s_to_bedrock_gi_database):
-    brgi_db = zip_of_ags3s_to_bedrock_gi_database(zip, CRS("EPSG:2326"))
+    brgi_db_old = zip_of_ags3s_to_bedrock_gi_database(zip, CRS("EPSG:2326"))
 
     # Some ISPT_NVAL (SPT count) are not numeric, e.g. "100/0.29"
     # When converting to numeric, these non-numeric values are converted to NaN
-    brgi_db["InSitu_ISPT"]["ISPT_NVAL"] = pd.to_numeric(
-        brgi_db["InSitu_ISPT"]["ISPT_NVAL"], errors="coerce"
+    brgi_db_old["InSitu_ISPT"]["ISPT_NVAL"] = pd.to_numeric(
+        brgi_db_old["InSitu_ISPT"]["ISPT_NVAL"], errors="coerce"
     )
-    return (brgi_db,)
+    return (brgi_db_old,)
 
 
 @app.cell(hide_code=True)
-def _(brgi_db, mo):
-    sel_brgi_table = mo.ui.dropdown(brgi_db, value="Project")
+def _(brgi_db_old, mo):
+    sel_brgi_table = mo.ui.dropdown(brgi_db_old, value="Project")
     mo.md(f"Select the Bedrock GI table you want to explore: {sel_brgi_table}")
     return (sel_brgi_table,)
 
@@ -347,10 +367,10 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_db, calculate_gis_geometry, check_brgi_database):
-    brgi_geodb = calculate_gis_geometry(brgi_db)
-    check_brgi_database(brgi_geodb)
-    return (brgi_geodb,)
+def _(brgi_db_old, calculate_gis_geometry, check_brgi_database):
+    brgi_geodb_old = calculate_gis_geometry(brgi_db_old)
+    check_brgi_database(brgi_geodb_old)
+    return (brgi_geodb_old,)
 
 
 @app.cell(hide_code=True)
@@ -368,8 +388,8 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_geodb):
-    brgi_geodb["LonLatHeight"].explore()
+def _(brgi_geodb_old):
+    brgi_geodb_old["LonLatHeight"].explore()
     return
 
 
@@ -386,8 +406,8 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(brgi_db, mo):
-    explore_brgi_table = mo.ui.dropdown(brgi_db, value="InSitu_ISPT")
+def _(brgi_db_old, mo):
+    explore_brgi_table = mo.ui.dropdown(brgi_db_old, value="InSitu_ISPT")
     mo.md(f"Select the GI table you want to explore: {explore_brgi_table}")
     return (explore_brgi_table,)
 
@@ -400,7 +420,7 @@ def _(explore_brgi_table, mo):
 
 
 @app.cell(hide_code=True)
-def _(brgi_geodb, filtered_table, gpd, mo):
+def _(brgi_geodb_old, filtered_table, gpd, mo):
     def gi_exploration_map(filtered_brgi_table):
         if "location_uid" not in filtered_brgi_table.value.columns:
             output = mo.md(
@@ -408,7 +428,7 @@ def _(brgi_geodb, filtered_table, gpd, mo):
             ).callout("warn")
         else:
             filtered_df = filtered_brgi_table.value.merge(
-                brgi_geodb["LonLatHeight"], on="location_uid", how="inner"
+                brgi_geodb_old["LonLatHeight"], on="location_uid", how="inner"
             )
             filtered_gdf = gpd.GeoDataFrame(
                 filtered_df,
@@ -442,8 +462,8 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(brgi_db, mo):
-    explore_brgi_df = mo.ui.dropdown(brgi_db, value="InSitu_WETH")
+def _(brgi_db_old, mo):
+    explore_brgi_df = mo.ui.dropdown(brgi_db_old, value="InSitu_WETH")
     mo.md(f"Select the GI table you want to explore: {explore_brgi_df}")
     return (explore_brgi_df,)
 
@@ -479,10 +499,10 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_geodb, mo, platform, write_gi_db_to_gpkg):
+def _(brgi_geodb_old, mo, platform, write_gi_db_to_gpkg):
     output = None
     if platform.system() != "Emscripten":
-        write_gi_db_to_gpkg(brgi_geodb, mo.notebook_dir() / "kaitak_gi.gpkg")
+        write_gi_db_to_gpkg(brgi_geodb_old, mo.notebook_dir() / "kaitak_gi.gpkg")
     else:
         output = mo.md(
             "Writing a GeoPackage from WebAssembly (marimo playground) causes geopandas to think that the GeoDataFrames in the `brgi_geodb` don't have a geometry column. You can [download the GeoPackage from GitHub](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/kaitak_gi.gpkg)"
@@ -519,7 +539,7 @@ def _(mo):
 
     Bluntly put, Shapefile is a bad format.
 
-    Among other problems, Shapefile isn't just a single file. One has to at least share three files [(*.shp, *.dbf, *.shx)](https://en.wikipedia.org/wiki/Shapefile#Mandatory_files), which doesn't include the definition of a CRS. In case that doesn't sound terrible enough to you yet, please have a look at the fantastic website [switchfromshapefile.org](http://switchfromshapefile.org/).
+    Among other problems, Shapefile isn't just a single file. One has to at least share three files [(\*.shp, \*.dbf, \*.shx)](https://en.wikipedia.org/wiki/Shapefile#Mandatory_files), which doesn't include the definition of a CRS. In case that doesn't sound terrible enough to you yet, please have a look at the fantastic website [switchfromshapefile.org](http://switchfromshapefile.org/).
 
     ### GeoJSON
 

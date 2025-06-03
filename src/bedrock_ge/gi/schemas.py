@@ -2,6 +2,7 @@
 
 from typing import Optional, Union
 
+import geopandas as gpd
 import pandas as pd
 import pandera.pandas as pa
 from pandera.typing import Series
@@ -103,7 +104,13 @@ class BedrockGIDatabase(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
-class BedrockGIGeospatialDatabase(BedrockGIDatabase):
-    LonLatHeight: pd.DataFrame
+class BedrockGIGeospatialDatabase(BaseModel):
+    Project: pd.DataFrame
+    Location: gpd.GeoDataFrame
+    LonLatHeight: gpd.GeoDataFrame
+    InSituTests: dict[str, gpd.GeoDataFrame]
+    Sample: Union[gpd.GeoDataFrame, None] = None
+    LabTests: dict[str, pd.DataFrame] = {}
+    Other: dict[str, pd.DataFrame] = {}
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
