@@ -18,11 +18,14 @@ def check_ags_proj_group(ags_proj: pd.DataFrame) -> bool:
     if len(ags_proj) != 1:
         raise ValueError("The PROJ group must contain exactly one row.")
 
-    project_id = ags_proj["PROJ_ID"].iloc[0]
-    if not project_id:
-        raise ValueError(
-            'The project ID ("PROJ_ID" in the "PROJ" group) is missing from the AGS data.'
-        )
+    msg = 'The project ID ("PROJ_ID" in the "PROJ" group) is missing from the AGS data.'
+    try:
+        project_id = ags_proj.at[ags_proj.index[0], "PROJ_ID"]
+    except KeyError:
+        raise ValueError(msg)
+
+    if pd.isna(project_id) or str(project_id).strip() == "":
+        raise ValueError(msg)
 
     return True
 
