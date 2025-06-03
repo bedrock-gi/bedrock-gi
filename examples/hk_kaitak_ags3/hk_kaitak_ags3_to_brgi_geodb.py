@@ -291,10 +291,17 @@ def _():
 
 @app.cell
 def _(brgi_db):
-    from bedrock_ge.gi.geospatial import create_lon_lat_height_table
+    from bedrock_ge.gi.geospatial import create_lon_lat_height_table, location_gis_geometry
 
     lon_lat_height_gdf = create_lon_lat_height_table(brgi_db)
     lon_lat_height_gdf.explore()
+    return (location_gis_geometry,)
+
+
+@app.cell
+def _(brgi_db, location_gis_geometry):
+    location_gdf = location_gis_geometry(brgi_db)
+    location_gdf.explore()
     return
 
 
