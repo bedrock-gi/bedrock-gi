@@ -7,7 +7,6 @@ from pandera.typing import DataFrame
 from pyproj import CRS, Transformer
 from pyproj.crs import CompoundCRS
 from shapely.geometry import LineString, Point
-from shapely.ops import substring
 
 from bedrock_ge.gi.schemas import (
     BedrockGIDatabase,
@@ -21,17 +20,25 @@ def create_brgi_geospatial_database(
 ) -> BedrockGIGeospatialDatabase:
     location_gdf = create_location_gdf(brgi_db)
     lon_lat_height_gdf = create_lon_lat_height_gdf(brgi_db)
-    # for insitu_test_name, insitu_test_data in brgi_db.InSituTest.items():
+    insitu_test_gdfs = {}
+    for insitu_test_name, insitu_test_data in brgi_db.InSituTests.items():
+        insitu_test_gdfs[insitu_test_name] = interpolate_gi_geometry(  # type: ignore
+            insitu_test_data,  # type: ignore
+            location_gdf,  # type: ignore
+        )  # type: ignore
+
+    if brgi_db.Sample is not None:
+        sample_gdf = interpolate_gi_geometry(brgi_db.Sample, location_gdf)  # type: ignore
+    else:
+        sample_gdf = None
 
     return BedrockGIGeospatialDatabase(
         Project=brgi_db.Project,
         Location=location_gdf,
         LonLatHeight=lon_lat_height_gdf,
-        # InSituTests=calculate_in_situ_gis_geometry(
-        #     brgi_db.InSituTest, brgi_db.Location
-        # ),
-        # Sample=calculate_sample_gis_geometry(brgi_db.Sample, brgi_db.Location),
-        LabTests=brgi_db.LabTest,
+        InSituTests=insitu_test_gdfs,
+        Sample=sample_gdf,
+        LabTests=brgi_db.LabTests,
         Other=brgi_db.Other,
     )
 
@@ -120,7 +127,7 @@ def create_lon_lat_height_gdf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
     )
 
 
-def interpolate_gi_geospatial_geometry(
+def interpolate_gi_geometry(
     insitu_test_df: DataFrame[InSituTestSchema], location_gdf: gpd.GeoDataFrame
 ) -> gpd.GeoDataFrame:
     # TODO: implement a warning when interpolating GI geospatial geometry when
@@ -131,37 +138,40 @@ def interpolate_gi_geospatial_geometry(
         how="right",
         on="location_uid",
     )
-    has_top_depth = "depth_to_top" in insitu_test_df.columns
-    has_base_depth = "depth_to_base" in insitu_test_df.columns
-    if has_top_depth and has_base_depth:
-        return gpd.GeoDataFrame(
-            insitu_test_df.copy(),
-            geometry=gdf.apply(
-                lambda row: substring_3d(
-                    row["geometry"],
-                    start_dist=row["depth_to_top"],
-                    end_dist=row["depth_to_base"],
-                ),
-                axis=1,
-            ),
-            crs=gdf.crs,
+    return gpd.GeoDataFrame(
+        insitu_test_df.copy(),
+        geometry=gdf.apply(
+            _interpolate_gi_geometry_row,
+            axis=1,
+        ),
+        crs=gdf.crs,
+    )
+
+
+def _interpolate_gi_geometry_row(row: pd.Series) -> LineString | Point:
+    """Process geometry based on available depth values for each row."""
+    has_top = pd.notna(row.get("depth_to_top"))
+    has_base = pd.notna(row.get("depth_to_base"))
+
+    if has_top and has_base:
+        return substring_3d(
+            row["geometry"],
+            start_dist=row["depth_to_top"],
+            end_dist=row["depth_to_base"],
         )
-    elif has_top_depth or has_base_depth:
-        depth_key = "depth_to_top" if has_top_depth else "depth_to_base"
-        return gpd.GeoDataFrame(
-            insitu_test_df.copy(),
-            geometry=gdf.apply(
-                lambda row: interpolate_3d(
-                    row["geometry"],
-                    distance=row[depth_key],
-                ),
-                axis=1,
-            ),
-            crs=gdf.crs,
+    elif has_top:
+        return interpolate_3d(
+            row["geometry"],
+            distance=row["depth_to_top"],
+        )
+    elif has_base:
+        return interpolate_3d(
+            row["geometry"],
+            distance=row["depth_to_base"],
         )
     else:
-        raise ValueError(
-            "An InSituTest dataframe must have either a 'depth_to_top' or a 'depth_to_base' column, or both."
+        raise KeyError(
+            "An In-Situ test must either have a 'depth_to_top' or a 'depth_to_base', or both."
         )
 
 
