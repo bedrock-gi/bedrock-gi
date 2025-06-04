@@ -63,9 +63,9 @@ def merge_databases(
             other_tables.update(db.Other.keys())
 
     merged_insitu: dict[str, pd.DataFrame] = {}
-    for insitu_table in insitu_tables:
+    for table_name in insitu_tables:
         insitu_dataframes = _filter_dataframes(
-            [db.InSituTests.get(insitu_table) for db in dbs]
+            [db.InSituTests.get(table_name) for db in dbs]
         )
         insitu_df = pd.concat(insitu_dataframes, ignore_index=True)
         insitu_df = insitu_df.drop_duplicates().reset_index(drop=True)
@@ -73,7 +73,7 @@ def merge_databases(
         InSituTestSchema.validate(insitu_df)
         check_foreign_key("project_uid", merged_project, insitu_df)
         check_foreign_key("location_uid", merged_location, insitu_df)
-        merged_insitu[insitu_table] = insitu_df
+        merged_insitu[table_name] = insitu_df
 
     sample_dfs = _filter_dataframes([db.Sample for db in dbs])
     merged_sample = None
@@ -85,24 +85,24 @@ def merge_databases(
         check_foreign_key("project_uid", merged_project, merged_sample)
 
     merged_lab: dict[str, pd.DataFrame] = {}
-    for lab_table in lab_tables:
-        lab_dataframes = _filter_dataframes([db.LabTests.get(lab_table) for db in dbs])
+    for table_name in lab_tables:
+        lab_dataframes = _filter_dataframes([db.LabTests.get(table_name) for db in dbs])
         lab_df = pd.concat(lab_dataframes, ignore_index=True)
         lab_df = lab_df.drop_duplicates().reset_index(drop=True)
         lab_df = convert_dtypes_object_to_string(lab_df.convert_dtypes())
         LabTestSchema.validate(lab_df)
         check_foreign_key("project_uid", merged_project, lab_df)
         check_foreign_key("sample_uid", merged_sample, lab_df)
-        merged_lab[lab_table] = lab_df
+        merged_lab[table_name] = lab_df
 
     merged_other: dict[str, pd.DataFrame] = {}
-    for other_table in other_tables:
-        other_dataframes = _filter_dataframes([db.Other.get(other_table) for db in dbs])
+    for table_name in other_tables:
+        other_dataframes = _filter_dataframes([db.Other.get(table_name) for db in dbs])
         other_df = pd.concat(other_dataframes, ignore_index=True)
         other_df = other_df.drop_duplicates().reset_index(drop=True)
         other_df = convert_dtypes_object_to_string(other_df.convert_dtypes())
         check_foreign_key("project_uid", merged_project, other_df)
-        merged_other[other_table] = other_df
+        merged_other[table_name] = other_df
 
     return BedrockGIDatabase(
         Project=merged_project,

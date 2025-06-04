@@ -73,9 +73,10 @@ class InSituTestSchema(pa.DataFrameModel):
     depth_to_base: Optional[Series[float]] = pa.Field(nullable=True, coerce=True, gt=0)
 
     # https://pandera.readthedocs.io/en/stable/dataframe_models.html#dataframe-checks
-    # Check that at least depth_to_top or depth_to_base is non-null
+    # Check depth column completeness such that either shapely.Point's or
+    # shapely.LineString's can be created.
     @pa.dataframe_check
-    def at_least_one_depth(cls, df: pd.DataFrame) -> pd.Series:
+    def depth_column_completeness(cls, df: pd.DataFrame) -> pd.Series:
         has_top = "depth_to_top" in df.columns
         has_base = "depth_to_base" in df.columns
 
@@ -83,18 +84,48 @@ class InSituTestSchema(pa.DataFrameModel):
         if not has_top and not has_base:
             return pd.Series([False] * len(df), index=df.index)
 
-        # If only one column exists, check that it's not all null
+        # If only one column exists, check that it's all non-null
         if has_top and not has_base:
             return df["depth_to_top"].notna()
         if has_base and not has_top:
             return df["depth_to_base"].notna()
 
+        # If both columns exist:
+        #   Either depth_to_top or depth_to_base must be non-null => Point
+        #   OR
+        #   Both depth_to_top and depth_to_base must be non-null => LineString
+        # ! Commented out, because some In-Situ tests have a mix of
+        # ! Point's and LineString's, such as IPRM
+        # top_has_value = df["depth_to_top"].notna()
+        # base_has_value = df["depth_to_base"].notna()
+        # either_has_value = top_has_value ^ base_has_value
+        # both_have_values = top_has_value & base_has_value
+
+        # if either_has_value.all():
+        #     return either_has_value
+        # elif both_have_values.all():
+        #     return both_have_values
+        # else:
+        #     if either_has_value.sum() < both_have_values.sum():
+        #         return either_has_value
+        #     else:
+        #         return both_have_values
+
+        # ! Incorrect check
         # If both columns exist, at least one must be non-null
         return ~(df["depth_to_top"].isna() & df["depth_to_base"].isna())
 
-    # Check that depth_to_top < depth_to_base when both are present
     @pa.dataframe_check
     def top_above_base(cls, df: pd.DataFrame) -> pd.Series:
+        """Check that depth_to_top <= depth_to_base when both columns are present.
+
+        If either column is missing, this check passes (nothing to compare).
+        If both columns are present, the check fails if any row has
+        depth_to_top > depth_to_base.
+
+        Returns:
+            pd.Series: pandas.Series of bools indicating successful checks.
+        """
         has_top = "depth_to_top" in df.columns
         has_base = "depth_to_base" in df.columns
 

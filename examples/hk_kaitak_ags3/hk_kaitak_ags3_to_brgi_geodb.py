@@ -229,20 +229,15 @@ def _(mo):
 
 @app.cell
 def _():
+    from bedrock_ge.gi.ags3 import ags3_to_brgi_db_mapping
     from bedrock_ge.gi.ags_parser import ags_to_brgi_db_mapping
     from bedrock_ge.gi.db_operations import merge_databases
     from bedrock_ge.gi.mapper import map_to_brgi_db
-    from bedrock_ge.gi.geospatial import (
-        create_lon_lat_height_gdf,
-        create_location_gdf,
-        interpolate_gi_geospatial_geometry,
-        create_brgi_geospatial_database,
-    )
+    from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
+    from bedrock_ge.gi.schemas import InSituTestSchema
     return (
         ags_to_brgi_db_mapping,
-        create_location_gdf,
-        create_lon_lat_height_gdf,
-        interpolate_gi_geospatial_geometry,
+        create_brgi_geospatial_database,
         map_to_brgi_db,
         merge_databases,
     )
@@ -284,31 +279,8 @@ def _(
 
 
 @app.cell
-def _(brgi_db, create_lon_lat_height_gdf):
-    lon_lat_height_gdf = create_lon_lat_height_gdf(brgi_db)
-    lon_lat_height_gdf.explore()
-    return
-
-
-@app.cell
-def _(brgi_db, create_location_gdf):
-    location_gdf = create_location_gdf(brgi_db)
-    location_gdf.explore()
-    return (location_gdf,)
-
-
-@app.cell
-def _(brgi_db, interpolate_gi_geospatial_geometry, location_gdf):
-    ispt_gdf = interpolate_gi_geospatial_geometry(brgi_db.InSituTests["ISPT"], location_gdf)
-    geol_gdf = interpolate_gi_geospatial_geometry(brgi_db.InSituTests["GEOL"], location_gdf)
-    sample_gdf = interpolate_gi_geospatial_geometry(brgi_db.Sample, location_gdf)
-    ispt_gdf
-    return
-
-
-@app.cell
 def _(brgi_db):
-    brgi_db.InSituTests
+    brgi_db.Project
     return
 
 
@@ -341,7 +313,7 @@ def _(sel_brgi_table):
 def _(mo):
     mo.md(
         r"""
-    ## Relational database to 3D  database
+    ## Relational database to 3D geospatial database
     A  database is a relational database that has been enhanced to store  data. There are two broad categories of  data:
 
     1. [Raster data](https://en.wikipedia.org/wiki/GIS_file_format#Raster_formats): geographic information as a grid of pixels (cells), where each pixel stores a value corresponding to a specific location and attribute, such as elevation, temperature, or land cover. So, a Digital Elevation Model (DEM) is an example of GIS raster data.
@@ -371,6 +343,18 @@ def _(mo):
     The reason for creating the `LonLatHeight` table is that vertical lines in projected Coordinate Reference Systems (CRS) are often not rendered nicely by default in all web-mapping software. Vertical lines are often not visible when looking at a map from above, and not all web-mapping software is capable of handling geometry in non-WGS84, i.e. (Lon, Lat) coordinates.
     """
     )
+    return
+
+
+@app.cell
+def _(brgi_db, create_brgi_geospatial_database):
+    brgi_geodb = create_brgi_geospatial_database(brgi_db)
+    return (brgi_geodb,)
+
+
+@app.cell
+def _(brgi_geodb):
+    brgi_geodb.LonLatHeight.explore()
     return
 
 
