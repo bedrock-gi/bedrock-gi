@@ -86,12 +86,8 @@ def merge_databases(
 
     merged_lab: dict[str, pd.DataFrame] = {}
     for lab_table in lab_tables:
-        lab_dfs = [
-            db.LabTests.get(lab_table)
-            for db in dbs
-            if db.LabTests.get(lab_table) is not None
-        ]
-        lab_df = pd.concat(lab_dfs, ignore_index=True)
+        lab_dataframes = _filter_dataframes([db.LabTests.get(lab_table) for db in dbs])
+        lab_df = pd.concat(lab_dataframes, ignore_index=True)
         lab_df = lab_df.drop_duplicates().reset_index(drop=True)
         lab_df = convert_dtypes_object_to_string(lab_df.convert_dtypes())
         LabTestSchema.validate(lab_df)
@@ -101,12 +97,8 @@ def merge_databases(
 
     merged_other: dict[str, pd.DataFrame] = {}
     for other_table in other_tables:
-        other_dfs = [
-            db.Other.get(other_table)
-            for db in dbs
-            if db.Other.get(other_table) is not None
-        ]
-        other_df = pd.concat(other_dfs, ignore_index=True)
+        other_dataframes = _filter_dataframes([db.Other.get(other_table) for db in dbs])
+        other_df = pd.concat(other_dataframes, ignore_index=True)
         other_df = other_df.drop_duplicates().reset_index(drop=True)
         other_df = convert_dtypes_object_to_string(other_df.convert_dtypes())
         check_foreign_key("project_uid", merged_project, other_df)

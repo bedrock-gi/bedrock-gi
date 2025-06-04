@@ -43,7 +43,7 @@ class LocationSchema(pa.DataFrameModel):
         coerce=True,
         description="Elevation w.r.t. a local datum. Usually the orthometric height from the geoid, i.e. mean sea level, to the ground level.",
     )
-    depth_to_base: Series[float]
+    depth_to_base: Series[float] = pa.Field(coerce=True, gt=0)
 
 
 class LonLatHeightSchema(pa.DataFrameModel):
@@ -69,8 +69,56 @@ class InSituTestSchema(pa.DataFrameModel):
     location_uid: Series[str] = pa.Field(
         # foreign_key="location.location_uid"
     )
-    depth_to_top: Series[float] = pa.Field(coerce=True)
-    depth_to_base: Optional[Series[float]] = pa.Field(coerce=True, nullable=True)
+    depth_to_top: Optional[Series[float]] = pa.Field(nullable=True, coerce=True, ge=0)
+    depth_to_base: Optional[Series[float]] = pa.Field(nullable=True, coerce=True, gt=0)
+
+    # https://pandera.readthedocs.io/en/stable/dataframe_models.html#dataframe-checks
+    # Check that at least depth_to_top or depth_to_base is non-null
+    @pa.dataframe_check
+    def at_least_one_depth(cls, df: pd.DataFrame) -> pd.Series:
+        has_top = "depth_to_top" in df.columns
+        has_base = "depth_to_base" in df.columns
+
+        # If neither column exists, this check should fail
+        if not has_top and not has_base:
+            return pd.Series([False] * len(df), index=df.index)
+
+        # If only one column exists, check that it's not all null
+        if has_top and not has_base:
+            return df["depth_to_top"].notna()
+        if has_base and not has_top:
+            return df["depth_to_base"].notna()
+
+        # If both columns exist, at least one must be non-null
+        return ~(df["depth_to_top"].isna() & df["depth_to_base"].isna())
+
+    # Check that depth_to_top < depth_to_base when both are present
+    @pa.dataframe_check
+    def top_above_base(cls, df: pd.DataFrame) -> pd.Series:
+        has_top = "depth_to_top" in df.columns
+        has_base = "depth_to_base" in df.columns
+
+        # If either column is missing, this check passes (nothing to compare)
+        if not has_top or not has_base:
+            return pd.Series([True] * len(df), index=df.index)
+
+        # Only compare when both values are non-null
+        mask = df["depth_to_top"].notna() & df["depth_to_base"].notna()
+        # Use where() to conditionally apply the comparison
+        result = (~mask) | (df["depth_to_top"] <= df["depth_to_base"])
+
+        # Debug: Show failing cases
+        failing_mask = mask & ~result
+        if failing_mask.any():
+            print("🚨 ERROR: depth_to_top > depth_to_base:")
+            print(
+                df.loc[
+                    failing_mask,
+                    ["location_uid", "depth_to_top", "depth_to_base", df.columns[5]],
+                ]
+            )
+
+        return result
 
 
 class SampleSchema(InSituTestSchema):

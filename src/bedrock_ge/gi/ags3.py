@@ -238,8 +238,8 @@ def _add_sample_source_id(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def _get_depth_columns(group: str, headers: list[str]) -> tuple[str, str | None]:
-    top_depth = f"{group}_TOP"
+def _get_depth_columns(group: str, headers: list[str]) -> tuple[str | None, str | None]:
+    top_depth: str | None = f"{group}_TOP"
     base_depth: str | None = f"{group}_BASE"
 
     if group == "CDIA":
@@ -263,23 +263,14 @@ def _get_depth_columns(group: str, headers: list[str]) -> tuple[str, str | None]
         top_depth = "DREM_DPTH"
     elif group == "PRTD" or group == "PRTG" or group == "PRTL":
         top_depth = "PRTD_DPTH"
-    elif group == "IPRM":
-        if top_depth not in headers:
-            print(
-                "\n🚨 CAUTION: The IPRM group in this AGS 3 file does not contain a 'IPRM_TOP' heading!",
-                "🚨 CAUTION: Making the 'IPRM_BASE' heading the 'depth_to_top'...",
-                sep="\n",
-                end="\n\n",
-            )
-            top_depth = "IPRM_BASE"
-            base_depth = None
 
     if top_depth not in headers:
-        raise KeyError(
-            f"The {group} group in this AGS 3 file does not contain a '{top_depth}' heading!"
-        )
-
+        top_depth = None
     if base_depth not in headers:
         base_depth = None
+    if not top_depth and not base_depth:
+        raise ValueError(
+            'The in-situ test group "{group}" group in this AGS 3 file does not contain a top or base depth heading!'
+        )
 
     return top_depth, base_depth

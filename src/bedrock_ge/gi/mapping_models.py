@@ -2,7 +2,7 @@ from typing import Optional, Union
 
 import pandas as pd
 import pyproj
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class ProjectTableMapping(BaseModel):
@@ -45,8 +45,14 @@ class OtherTable(BaseModel):
 
 class InSituTestTableMapping(OtherTable):
     location_id_column: str
-    depth_to_top_column: str
-    depth_to_base_column: Optional[str]
+    depth_to_top_column: Optional[str] = None
+    depth_to_base_column: Optional[str] = None
+
+    @model_validator(mode="after")
+    def validate_at_least_one_depth_column(self):
+        if not (self.depth_to_top_column or self.depth_to_base_column):
+            raise ValueError("At least one depth column must be specified.")
+        return self
 
 
 class LabTestTableMapping(OtherTable):
