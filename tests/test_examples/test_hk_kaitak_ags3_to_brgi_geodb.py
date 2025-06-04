@@ -110,7 +110,7 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
             },
             {
                 "table_name": "InSitu_GEOL",
-                "no_rows": 7_764,
+                "no_rows": 7_238,
             },
             {
                 "table_name": "InSitu_ISPT",

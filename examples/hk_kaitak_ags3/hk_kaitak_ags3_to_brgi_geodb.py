@@ -354,30 +354,27 @@ def _(brgi_db, brgi_db_old):
 
     from bedrock_ge.gi.io_utils import convert_dtypes_object_to_string
 
-    new_df = brgi_db.Sample
+    new_df = brgi_db.InSituTests["GEOL"]
     print(new_df.columns, end="\n\n")
     df = convert_dtypes_object_to_string(
-        brgi_db_old["Sample"].copy().convert_dtypes()
+        brgi_db_old["InSitu_GEOL"].copy().convert_dtypes()
     )
     print(df.columns, end="\n\n")
     df = df.drop(
-        ["project_uid", "location_uid", "sample_uid"],
+        ["project_uid", "location_uid"],
         axis=1,
     )
     df = df.drop_duplicates()
 
     compare_cols = [
         "depth_to_top",
+        "depth_to_base",
         "HOLE_ID",
-        "SAMP_TOP",
-        "SAMP_REF",
-        "SAMP_TYPE",
-        "SAMP_DIA",
-        "SAMP_BASE",
-        "SAMP_DESC",
-        "SAMP_UBLO",
-        "SAMP_REM",
-        "SAMP_DATE",
+        "GEOL_TOP",
+        "GEOL_BASE",
+        "GEOL_DESC",
+        "GEOL_LEG",
+        "GEOL_GEOL",
     ]
     if len(new_df) != len(df):
         raise ValueError(
