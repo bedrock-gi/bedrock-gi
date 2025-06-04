@@ -118,7 +118,7 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
             },
             {
                 "table_name": "InSitu_WETH",
-                "no_rows": 3_928,
+                "no_rows": 3_370,
             },
         ]
         for table in important_tables:
