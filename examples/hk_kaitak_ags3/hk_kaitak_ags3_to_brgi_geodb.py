@@ -38,6 +38,7 @@ def _():
     import mapclassify
     import marimo as mo
     import matplotlib
+    import numpy as np
     import pandas as pd
     import requests
     from pyproj import CRS, Transformer
@@ -228,25 +229,23 @@ def _(mo):
 
 @app.cell
 def _():
-    import json
-    import hashlib
-    import base64
-
-    from bedrock_ge.gi.ags3 import ags3_to_brgi_db_mapping
     from bedrock_ge.gi.ags_parser import ags_to_brgi_db_mapping
     from bedrock_ge.gi.db_operations import merge_databases
     from bedrock_ge.gi.mapper import map_to_brgi_db
-    from bedrock_ge.gi.mapping_models import BedrockGIMapping
-    from bedrock_ge.gi.schemas import (
-        BedrockGIDatabase,
-        InSituTestSchema,
-        LabTestSchema,
-        LocationSchema,
-        ProjectSchema,
-        SampleSchema,
+    from bedrock_ge.gi.geospatial import (
+        create_lon_lat_height_gdf,
+        create_location_gdf,
+        interpolate_gi_geospatial_geometry,
+        create_brgi_geospatial_database,
     )
-
-    return ags_to_brgi_db_mapping, map_to_brgi_db, merge_databases
+    return (
+        ags_to_brgi_db_mapping,
+        create_location_gdf,
+        create_lon_lat_height_gdf,
+        interpolate_gi_geospatial_geometry,
+        map_to_brgi_db,
+        merge_databases,
+    )
 
 
 @app.cell
@@ -285,23 +284,25 @@ def _(
 
 
 @app.cell
-def _():
+def _(brgi_db, create_lon_lat_height_gdf):
+    lon_lat_height_gdf = create_lon_lat_height_gdf(brgi_db)
+    lon_lat_height_gdf.explore()
     return
 
 
 @app.cell
-def _(brgi_db):
-    from bedrock_ge.gi.geospatial import create_lon_lat_height_table, location_gis_geometry
-
-    lon_lat_height_gdf = create_lon_lat_height_table(brgi_db)
-    lon_lat_height_gdf.explore()
-    return (location_gis_geometry,)
+def _(brgi_db, create_location_gdf):
+    location_gdf = create_location_gdf(brgi_db)
+    location_gdf.explore()
+    return (location_gdf,)
 
 
 @app.cell
-def _(brgi_db, location_gis_geometry):
-    location_gdf = location_gis_geometry(brgi_db)
-    location_gdf.explore()
+def _(brgi_db, interpolate_gi_geospatial_geometry, location_gdf):
+    ispt_gdf = interpolate_gi_geospatial_geometry(brgi_db.InSituTests["ISPT"], location_gdf)
+    geol_gdf = interpolate_gi_geospatial_geometry(brgi_db.InSituTests["GEOL"], location_gdf)
+    sample_gdf = interpolate_gi_geospatial_geometry(brgi_db.Sample, location_gdf)
+    ispt_gdf
     return
 
 
@@ -340,8 +341,8 @@ def _(sel_brgi_table):
 def _(mo):
     mo.md(
         r"""
-    ## Relational database to 3D geospatial database
-    A geospatial database is a relational database that has been enhanced to store geospatial data. There are two broad categories of geospatial data:
+    ## Relational database to 3D  database
+    A  database is a relational database that has been enhanced to store  data. There are two broad categories of  data:
 
     1. [Raster data](https://en.wikipedia.org/wiki/GIS_file_format#Raster_formats): geographic information as a grid of pixels (cells), where each pixel stores a value corresponding to a specific location and attribute, such as elevation, temperature, or land cover. So, a Digital Elevation Model (DEM) is an example of GIS raster data.
     2. [Vector data](https://en.wikipedia.org/wiki/GIS_file_format#Vector_formats): tables in which each row contains:
@@ -386,7 +387,7 @@ def _(mo):
         r"""
     ## Ground Investigation data exploration
 
-    After creating the Bedrock GI 3D Geospatial Database `brgi_geodb` - which is a dictionary of [`geopandas.GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame)s - you can explore the Kai Tak Ground Investigation data on an interactive map by applying the [`geopandas.GeoDataFrame.explore()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html#geopandas.GeoDataFrame.explore) method to the different tables in the `brgi_geodb`.
+    After creating the Bedrock GI 3D  Database `brgi_geodb` - which is a dictionary of [`geopandas.GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame)s - you can explore the Kai Tak Ground Investigation data on an interactive map by applying the [`geopandas.GeoDataFrame.explore()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html#geopandas.GeoDataFrame.explore) method to the different tables in the `brgi_geodb`.
 
     Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `InSitu_ISPT`. Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `InSitu_GEOL` or `InSitu_WETH`, display very small on the `gdf.explore()` `leaflet`-based interactive map, and don't show at all on the `matplotlib`-based `gdf.plot()`.
     """
@@ -492,9 +493,9 @@ def _(filtered_df, gi_exploration_map):
 def _(mo):
     mo.md(
         r"""
-    ## Saving the GI geospatial database as a GeoPackage (.gpkg)
+    ## Saving the GI  database as a GeoPackage (.gpkg)
 
-    Finally, lets write, i.e. persist `brgi_geodb` - a Python dictionary of `geopandas.GeoDataFrames` - to an actual geospatial database file, so we can share our GI data with others.
+    Finally, lets write, i.e. persist `brgi_geodb` - a Python dictionary of `geopandas.GeoDataFrames` - to an actual  database file, so we can share our GI data with others.
     For example, to reuse it in other notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
 
     A GeoPackage is an OGC-standardized extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, many (open-source) GIS software packages support GeoPackage!
