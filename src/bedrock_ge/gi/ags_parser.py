@@ -62,14 +62,36 @@ def ags_to_brgi_db_mapping(
     else:
         raise ValueError("The file provided has only blank lines")
 
+    # Put CPT data into brgi_db.Other table, because CPT data has too many rows
+    # that would generate geospatial geometry.
+    # "STCN" and "SCPT" are the group names for CPT data in AGS 3 and AGS 3 respectively.
+    # TODO: implement a warning when interpolating GI geospatial geometry when
+    # TODO: a single GI location has waaay too many rows in a certain In-Situ test,
+    # TODO: rather than removing specific groups here.
+    insitu_test_names = {
+        insitu_test.table_name: i
+        for i, insitu_test in enumerate(brgi_db_mapping.InSitu)
+    }
+    cpt_key = (
+        "STCN"
+        if "STCN" in insitu_test_names
+        else "SCPT"
+        if "SCPT" in insitu_test_names
+        else None
+    )
+    if cpt_key is not None:
+        cpt_data_mapping = brgi_db_mapping.InSitu.pop(insitu_test_names[cpt_key])
+        del insitu_test_names[cpt_key]
+        brgi_db_mapping.Other.append(cpt_data_mapping)
+
     # Log information about the mapped AGS 3 or AGS 4 data
-    project_uid = brgi_db_mapping.Project.project_id
+    project_id = brgi_db_mapping.Project.project_id
     n_gi_locations = len(brgi_db_mapping.Location.data)
     n_samples = len(brgi_db_mapping.Sample.data) if brgi_db_mapping.Sample else 0
     print_args = [
-        f"AGS {ags_version} data was read for Project {project_uid}",
+        f"AGS {ags_version} data was read for Project {project_id}",
         f"This GI data contains {n_gi_locations} GI locations, {n_samples} samples and:",
-        f"  - In-Situ Tests: {[insitu_test.table_name for insitu_test in brgi_db_mapping.InSitu]}",
+        f"  - In-Situ Tests: {list(insitu_test_names.keys())}",
     ]
     if brgi_db_mapping.Lab:
         print_args.append(

@@ -123,6 +123,9 @@ def create_lon_lat_height_gdf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
 def interpolate_gi_geospatial_geometry(
     insitu_test_df: DataFrame[InSituTestSchema], location_gdf: gpd.GeoDataFrame
 ) -> gpd.GeoDataFrame:
+    # TODO: implement a warning when interpolating GI geospatial geometry when
+    # TODO: a single GI location has waaay too many rows in a certain In-Situ test.
+
     gdf = location_gdf[["location_uid", "geometry"]].merge(
         insitu_test_df,
         how="right",
