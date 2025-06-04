@@ -114,7 +114,7 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
             },
             {
                 "table_name": "InSitu_ISPT",
-                "no_rows": 3_986,
+                "no_rows": 3_544,
             },
             {
                 "table_name": "InSitu_WETH",

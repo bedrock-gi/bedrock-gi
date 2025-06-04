@@ -354,10 +354,10 @@ def _(brgi_db, brgi_db_old):
 
     from bedrock_ge.gi.io_utils import convert_dtypes_object_to_string
 
-    new_df = brgi_db.InSituTests["GEOL"]
+    new_df = brgi_db.InSituTests["ISPT"]
     print(new_df.columns, end="\n\n")
     df = convert_dtypes_object_to_string(
-        brgi_db_old["InSitu_GEOL"].copy().convert_dtypes()
+        brgi_db_old["InSitu_ISPT"].copy().convert_dtypes()
     )
     print(df.columns, end="\n\n")
     df = df.drop(
@@ -368,13 +368,30 @@ def _(brgi_db, brgi_db_old):
 
     compare_cols = [
         "depth_to_top",
-        "depth_to_base",
         "HOLE_ID",
-        "GEOL_TOP",
-        "GEOL_BASE",
-        "GEOL_DESC",
-        "GEOL_LEG",
-        "GEOL_GEOL",
+        "ISPT_TOP",
+        "ISPT_SEAT",
+        "ISPT_MAIN",
+        "ISPT_NPEN",
+        "ISPT_NVAL",
+        "ISPT_REP",
+        "ISPT_CAS",
+        "ISPT_WAT",
+        "ISPT_TYPE",
+        "ISPT_REM",
+        "ISPT_INC1",
+        "ISPT_INC2",
+        "ISPT_INC3",
+        "ISPT_INC4",
+        "ISPT_INC5",
+        "ISPT_INC6",
+        "ISPT_PEN1",
+        "ISPT_PEN2",
+        "ISPT_PEN3",
+        "ISPT_PEN4",
+        "ISPT_PEN5",
+        "ISPT_PEN6",
+        "ISPT_LAST",
     ]
     if len(new_df) != len(df):
         raise ValueError(
