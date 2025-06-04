@@ -98,7 +98,7 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
         important_tables = [
             {
                 "table_name": "Project",
-                "no_rows": 88,
+                "no_rows": 17,
             },
             {
                 "table_name": "Location",

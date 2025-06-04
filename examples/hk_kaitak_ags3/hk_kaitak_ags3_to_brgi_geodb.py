@@ -347,6 +347,62 @@ def _(mo):
 
 
 @app.cell
+def _(brgi_db, brgi_db_old):
+    # Check whether the correct number of rows was removed when de-duplicating rows
+
+    from collections import Counter
+
+    from bedrock_ge.gi.io_utils import convert_dtypes_object_to_string
+
+    new_df = brgi_db.Project
+    df = convert_dtypes_object_to_string(
+        brgi_db_old["Project"].copy().convert_dtypes()
+    )
+    print(df.columns, end="\n\n")
+    df = df.drop(
+        [
+            "project_uid",
+            "horizontal_crs",
+            "horizontal_crs_wkt",
+            "vertical_crs",
+            "vertical_crs_wkt",
+            "REPORT_NO",
+        ],
+        axis=1,
+    )
+    df = df.drop_duplicates()
+
+    compare_cols = [
+        "PROJ_ID",
+        "PROJ_NAME",
+        "PROJ_LOC",
+        "PROJ_CLNT",
+        "PROJ_CONT",
+        "PROJ_ENG",
+        "PROJ_DATE",
+        "PROJ_AGS",
+    ]
+    if len(new_df) != len(df):
+        raise ValueError("The new and old Bedrock GI database tables don't have the same length.")
+
+    for col in compare_cols:
+        has_same_vals = Counter(new_df[col]) == Counter(df[col])
+        if has_same_vals:
+            print(
+                f"✅ {col} is the same in the new and old Bedrock GI databases."
+            )
+        else:
+            print(f"❌ {col} is NOT the same after de-duplication.")
+            print("New:")
+            print(new_df[col])
+            print("Old:")
+            print(df[col])
+
+    new_df
+    return
+
+
+@app.cell
 def _(brgi_db, create_brgi_geospatial_database):
     brgi_geodb = create_brgi_geospatial_database(brgi_db)
     return (brgi_geodb,)
