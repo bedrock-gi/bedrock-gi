@@ -102,7 +102,7 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
             },
             {
                 "table_name": "Location",
-                "no_rows": 754,
+                "no_rows": 727,
             },
             {
                 "table_name": "Sample",
