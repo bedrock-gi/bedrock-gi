@@ -210,7 +210,7 @@ def brgi_db_to_dfs(
     if brgi_db.Sample is not None:
         dict_of_dfs["Sample"] = brgi_db.Sample
 
-    insitu_dfs = {f"InSitu_{k}": v for k, v in brgi_db.InSituTests.items()}
+    insitu_dfs = {k: v for k, v in brgi_db.InSituTests.items()}
     lab_dfs = {k: v for k, v in brgi_db.LabTests.items()}
     other_dfs = {k: v for k, v in brgi_db.Other.items()}
 

@@ -512,14 +512,9 @@ def _(mo):
 def _(brgi_geodb, mo, platform, write_brgi_db_to_file):
     output = None
     if platform.system() != "Emscripten":
-        del brgi_geodb.InSituTests["LEGD"]
-        del brgi_geodb.Other["STCN"]
         write_brgi_db_to_file(
             brgi_geodb, mo.notebook_dir() / "kaitak_gi.gpkg", driver="GPKG"
         )
-        # write_gi_db_to_gpkg(
-        #     brgi_geodb_old, mo.notebook_dir() / "kaitak_gi.gpkg"
-        # )
     else:
         output = mo.md(
             "Writing a GeoPackage from WebAssembly (marimo playground) causes geopandas to think that the GeoDataFrames in the `brgi_geodb` don't have a geometry column. You can [download the GeoPackage from GitHub](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/kaitak_gi.gpkg)"
