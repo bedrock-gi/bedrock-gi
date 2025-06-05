@@ -43,17 +43,16 @@ def _():
     import requests
     from pyproj import CRS, Transformer
     from pyproj.crs import CompoundCRS
-    from shapely import wkt, Point
+    from shapely import Point, wkt
+
+    from bedrock_ge.gi.ags import ags_to_brgi_db_mapping
+    from bedrock_ge.gi.db_operations import merge_databases
+    from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
+    from bedrock_ge.gi.io_utils import geodf_to_df
+    from bedrock_ge.gi.mapper import map_to_brgi_db
 
     # Old functions that need to be removed from the Bedrock codebase
     from bedrock_ge.gi.validate import check_brgi_database, check_no_gis_brgi_database
-
-    from bedrock_ge.gi.ags_parser import ags_to_brgi_db_mapping
-    from bedrock_ge.gi.db_operations import merge_databases
-    from bedrock_ge.gi.mapper import map_to_brgi_db
-    from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
-    from bedrock_ge.gi.schemas import InSituTestSchema
-    from bedrock_ge.gi.io_utils import geodf_to_df
     from bedrock_ge.gi.write import write_brgi_db_to_file
 
     print(platform.system())
@@ -342,7 +341,6 @@ def _(Point, filtered_table, gpd, mo):
             )
             output = fltrd_gdf.explore()
         return output
-
 
     gi_exploration_map(filtered_table)
     return (gi_exploration_map,)

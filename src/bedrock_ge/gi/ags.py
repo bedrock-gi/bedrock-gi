@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 from typing import IO
 
-import pandas as pd
 from pyproj import CRS
 
 from bedrock_ge.gi.ags3 import ags3_to_brgi_db_mapping
