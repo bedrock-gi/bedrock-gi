@@ -9,7 +9,10 @@ from pathlib import Path
 from typing import IO, ContextManager
 
 import chardet
+import geopandas as gpd
 import pandas as pd
+
+from bedrock_ge.gi.schemas import BedrockGIDatabase, BedrockGIGeospatialDatabase
 
 DEFAULT_ENCODING = "utf-8"
 
@@ -193,7 +196,33 @@ def coerce_string(string: str) -> None | bool | float | str:
             return string
 
 
+def brgi_db_to_dfs(
+    brgi_db: BedrockGIDatabase | BedrockGIGeospatialDatabase,
+) -> dict[str, pd.DataFrame | gpd.GeoDataFrame]:
+    dict_of_dfs = {
+        "Project": brgi_db.Project,
+        "Location": brgi_db.Location,
+    }
+
+    if hasattr(brgi_db, "LonLatHeight"):
+        dict_of_dfs["LonLatHeight"] = brgi_db.LonLatHeight
+
+    if brgi_db.Sample is not None:
+        dict_of_dfs["Sample"] = brgi_db.Sample
+
+    insitu_dfs = {f"InSitu_{k}": v for k, v in brgi_db.InSituTests.items()}
+    lab_dfs = {k: v for k, v in brgi_db.LabTests.items()}
+    other_dfs = {k: v for k, v in brgi_db.Other.items()}
+
+    return dict_of_dfs | insitu_dfs | lab_dfs | other_dfs
+
+
 def convert_dtypes_object_to_string(dataframe: pd.DataFrame) -> pd.DataFrame:
     object_cols = dataframe.select_dtypes(include=["object"]).columns
     dataframe[object_cols] = dataframe[object_cols].astype("string")
     return dataframe
+
+
+def geodf_to_df(geodf: gpd.GeoDataFrame) -> pd.DataFrame:
+    df = pd.DataFrame(geodf.copy())
+    return df.assign(geometry=df.geometry.astype("string"))

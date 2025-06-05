@@ -43,7 +43,7 @@ def _():
     import requests
     from pyproj import CRS, Transformer
     from pyproj.crs import CompoundCRS
-    from shapely import wkt
+    from shapely import wkt, Point
 
     from bedrock_ge.gi.ags.read import ags_to_dfs
     from bedrock_ge.gi.ags.transform import ags3_db_to_no_gis_brgi_db
@@ -57,6 +57,7 @@ def _():
     # print(sys.executable)
     return (
         CRS,
+        Point,
         ags3_db_to_no_gis_brgi_db,
         ags_to_dfs,
         calculate_gis_geometry,
@@ -69,7 +70,6 @@ def _():
         pd,
         platform,
         requests,
-        write_gi_db_to_gpkg,
         zipfile,
     )
 
@@ -235,11 +235,15 @@ def _():
     from bedrock_ge.gi.mapper import map_to_brgi_db
     from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
     from bedrock_ge.gi.schemas import InSituTestSchema
+    from bedrock_ge.gi.io_utils import geodf_to_df
+    from bedrock_ge.gi.write import write_brgi_db_to_file
     return (
         ags_to_brgi_db_mapping,
         create_brgi_geospatial_database,
+        geodf_to_df,
         map_to_brgi_db,
         merge_databases,
+        write_brgi_db_to_file,
     )
 
 
@@ -347,56 +351,6 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_db, brgi_db_old):
-    # Check whether the correct number of rows was removed when de-duplicating rows
-
-    from collections import Counter
-
-    from bedrock_ge.gi.io_utils import convert_dtypes_object_to_string
-
-    new_df = brgi_db.InSituTests["WETH"]
-    print(new_df.columns, end="\n\n")
-    df = convert_dtypes_object_to_string(
-        brgi_db_old["InSitu_WETH"].copy().convert_dtypes()
-    )
-    print(df.columns, end="\n\n")
-    df = df.drop(
-        ["project_uid", "location_uid"],
-        axis=1,
-    )
-    df = df.drop_duplicates()
-
-    compare_cols = [
-        "depth_to_top",
-        "depth_to_base",
-        "HOLE_ID",
-        "WETH_TOP",
-        "WETH_BASE",
-        "WETH_GRAD",
-        "WETH_REM",
-        "WETH_LEG",
-    ]
-    if len(new_df) != len(df):
-        raise ValueError(
-            "The new and old Bedrock GI database tables don't have the same length."
-        )
-
-    for col in compare_cols:
-        has_same_vals = Counter(new_df[col]) == Counter(df[col])
-        if has_same_vals:
-            print(f"✅ {col} is the same in the new and old Bedrock GI databases.")
-        else:
-            print(f"❌ {col} is NOT the same after de-duplication.")
-            print("New:")
-            print(new_df[col])
-            print("Old:")
-            print(df[col])
-
-    new_df
-    return
-
-
-@app.cell
 def _(brgi_db, create_brgi_geospatial_database):
     brgi_geodb = create_brgi_geospatial_database(brgi_db)
     return (brgi_geodb,)
@@ -432,6 +386,20 @@ def _(mo):
 @app.cell
 def _(brgi_geodb_old):
     brgi_geodb_old["LonLatHeight"].explore()
+    return
+
+
+@app.cell
+def _(Point, brgi_geodb):
+    gdf = brgi_geodb.InSituTests["GEOL"]
+    gdf["geometry"] = gdf["geometry"].apply(lambda geom: Point(geom.coords[0]))
+    gdf.explore()
+    return (gdf,)
+
+
+@app.cell
+def _(gdf, geodf_to_df):
+    geodf_to_df(gdf)
     return
 
 
@@ -541,10 +509,17 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_geodb_old, mo, platform, write_gi_db_to_gpkg):
+def _(brgi_geodb, mo, platform, write_brgi_db_to_file):
     output = None
     if platform.system() != "Emscripten":
-        write_gi_db_to_gpkg(brgi_geodb_old, mo.notebook_dir() / "kaitak_gi.gpkg")
+        del brgi_geodb.InSituTests["LEGD"]
+        del brgi_geodb.Other["STCN"]
+        write_brgi_db_to_file(
+            brgi_geodb, mo.notebook_dir() / "kaitak_gi.gpkg", driver="GPKG"
+        )
+        # write_gi_db_to_gpkg(
+        #     brgi_geodb_old, mo.notebook_dir() / "kaitak_gi.gpkg"
+        # )
     else:
         output = mo.md(
             "Writing a GeoPackage from WebAssembly (marimo playground) causes geopandas to think that the GeoDataFrames in the `brgi_geodb` don't have a geometry column. You can [download the GeoPackage from GitHub](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/kaitak_gi.gpkg)"
