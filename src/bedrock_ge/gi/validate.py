@@ -4,138 +4,80 @@ import geopandas as gpd  # type: ignore
 import pandas as pd
 
 from bedrock_ge.gi.schemas import (
-    InSituTestSchema,
-    LocationSchema,
-    ProjectSchema,
-    SampleSchema,
+    BedrockGIDatabase,
+    BedrockGIGeospatialDatabase,
 )
 
 
-# TODO: rename to check_brgi_geodb
-# TODO: make this check actually work...
-def check_brgi_database(brgi_db: Dict[str, Union[pd.DataFrame, gpd.GeoDataFrame]]):
-    """Validates the structure and relationships of a 'Bedrock Ground Investigation' (BRGI) database (which is a dictionary of DataFrames).
+def check_brgi_geospatial_database(
+    brgi_geodb: BedrockGIGeospatialDatabase,
+):
+    """Validates the structure and relationships of a 'Bedrock Ground Investigation' (BrGI) geospatial database.
 
-    This function checks that all tables in the BRGI database conform to their respective schemas
+    This function checks that all tables in the BrGI geospatialdatabase conform to their respective schemas
     and that all foreign key relationships are properly maintained. It validates the following tables:
     - Project
     - Location
+    - LonLatHeight
+    - All In-Situ test tables
     - Sample
-    - InSitu_TESTX
-    - Lab_TESTY (not yet implemented)
+    - All Lab test tables
 
     Args:
-        brgi_db (Dict[str, Union[pd.DataFrame, gpd.GeoDataFrame]]): A dictionary
-            containing the BRGI database tables, where keys are table names and
-            values are the corresponding data tables (DataFrame or GeoDataFrame).
+        brgi_geodb (BedrockGIGeospatialDatabase): Bedrock GI geospatial database object.
 
     Returns:
         is_valid (bool): True if all tables are valid and relationships are properly maintained.
 
     Example:
         ```python
-        brgi_db = {
-            "Project": project_df,
-            "Location": location_gdf,
-            "Sample": sample_gdf,
-            "InSitu_ISPT": in_situ_ispt_gdf,
-        }
-        check_brgi_database(brgi_db)
+        brgi_geodb = BedrockGIGeospatialDatabase(
+            Project=project_df,
+            Location=location_geodf,
+            LonLatHeight=lon_lat_height_geodf,
+            InSituTests={"ISPT": ispt_geodf},
+            Sample=sample_geodf,
+            LabTests={"LLPL": llpl_df},
+        )
+        check_brgi_geospatial_database(brgi_db)
         ```
     """
-    for table_name, table in brgi_db.items():
-        if table_name == "Project":
-            ProjectSchema.validate(table)
-            print("'Project' table aligns with Bedrock's 'Project' table schema.")
-        elif table_name == "Location":
-            LocationSchema.validate(table)
-            check_foreign_key("project_uid", brgi_db["Project"], table)
-            print("'Location' table aligns with Bedrock's 'Location' table schema.")
-        elif table_name == "Sample":
-            SampleSchema.validate(table)
-            check_foreign_key("project_uid", brgi_db["Project"], table)
-            check_foreign_key("location_uid", brgi_db["Location"], table)
-            print("'Sample' table aligns with Bedrock's 'Sample' table schema.")
-        # ! JG is pretty sure that this doesn't work
-        # ! The line below should be:
-        # ! elif table_name.startswith("InSitu_"):
-        elif table_name == "InSitu":
-            InSituTestSchema.validate(table)
-            check_foreign_key("project_uid", brgi_db["Project"], table)
-            check_foreign_key("location_uid", brgi_db["Location"], table)
-            print(
-                f"'{table_name}' table aligns with Bedrock's table schema for In-Situ measurements."
-            )
-        elif table_name.startswith("Lab_"):
-            print(
-                "🚨 !NOT IMPLEMENTED! We haven't come across Lab data yet. !NOT IMPLEMENTED!"
-            )
-
+    # TODO: implement this
     return True
 
 
-# TODO: rename to check_brgi_db
-def check_no_gis_brgi_database(
-    brgi_db: Dict[str, Union[pd.DataFrame, gpd.GeoDataFrame]],
+def check_brgi_database(
+    brgi_db: BedrockGIDatabase,
 ):
-    """Validates the structure and relationships of a 'Bedrock Ground Investigation' (BGI) database without GIS geometry.
+    """Validates the structure and relationships of a 'Bedrock Ground Investigation' (BrGI) database.
 
-    This function performs the same validation as `check_brgi_database` but uses schemas
-    that don't require GIS geometry. It validates the following tables:
-    - Project (never has GIS geometry)
-    - Location (without GIS geometry)
-    - Sample (without GIS geometry)
-    - InSitu_TESTX (without GIS geometry)
-    - Lab_TESTY (not yet implemented)
+    This function performs the same validation as `check_brgi_geospatial_database`, but uses schemas
+    that don't require geospatial geometry. It validates the following tables:
+    - Project (never has geospatial geometry)
+    - Location (without geospatial geometry)
+    - All In-Situ test tables (without geospatial geometry)
+    - Sample (without geospatial geometry)
+    - All Lab test tables (never has geospatial geometry)
 
     Args:
-        brgi_db (Dict[str, Union[pd.DataFrame, gpd.GeoDataFrame]]): A dictionary
-            containing the Bedrock GI database tables, where keys are table names
-            and values are the corresponding data tables (DataFrame or GeoDataFrame).
+        brgi_db (BedrockGIDatabase): A Bedrock GI database object.
 
     Returns:
         bool: True if all tables are valid and relationships are properly maintained.
 
     Example:
         ```python
-        brgi_db = {
-            "Project": projects_df,
-            "Location": locations_df,
-            "Sample": samples_df,
-            "InSitu_measurements": insitu_df,
-        }
-        check_no_gis_brgi_database(brgi_db)
+        brgi_db = BedrockGIDatabase(
+            Project=project_df,
+            Location=location_df,
+            InSituTests={"ISPT": ispt_df},
+            Sample=sample_df,
+            LabTests={"LLPL": llpl_df},
+        )
+        check_brgi_database(brgi_db)
         ```
     """
-    for table_name, table in brgi_db.items():
-        if table_name == "Project":
-            ProjectSchema.validate(table)
-            print("'Project' table aligns with Bedrock's 'Project' table schema.")
-        elif table_name == "Location":
-            LocationSchema.validate(table)
-            check_foreign_key("project_uid", brgi_db["Project"], table)
-            print(
-                "'Location' table aligns with Bedrock's 'Location' table schema without GIS geometry."
-            )
-        elif table_name == "Sample":
-            SampleSchema.validate(table)
-            check_foreign_key("project_uid", brgi_db["Project"], table)
-            check_foreign_key("location_uid", brgi_db["Location"], table)
-            print(
-                "'Sample' table aligns with Bedrock's 'Sample' table schema without GIS geometry."
-            )
-        elif table_name.startswith("InSitu_"):
-            InSituTestSchema.validate(table)
-            check_foreign_key("project_uid", brgi_db["Project"], table)
-            check_foreign_key("location_uid", brgi_db["Location"], table)
-            print(
-                f"'{table_name}' table aligns with Bedrock's '{table_name}' table schema without GIS geometry."
-            )
-        elif table_name.startswith("Lab_"):
-            print(
-                "🚨 !NOT IMPLEMENTED! We haven't come across Lab data yet. !NOT IMPLEMENTED!"
-            )
-
+    # TODO: implement this
     return True
 
 
