@@ -122,16 +122,16 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
             },
         ]
         for table in important_tables:
-            gdf_output = gpd.read_file(gpkg_output_path, layer=table["table_name"])
-            assert len(gdf_output) == table["no_rows"], (
+            geodf_output = gpd.read_file(gpkg_output_path, layer=table["table_name"])
+            assert len(geodf_output) == table["no_rows"], (
                 f"The output GeoPackage {gpkg_output_path.name} table {table['table_name']} "
-                f"has {len(gdf_output)} rows instead of {table['no_rows']}."
+                f"has {len(geodf_output)} rows instead of {table['no_rows']}."
             )
-            gdf_original = gpd.read_file(
+            geodf_original = gpd.read_file(
                 temp_original_gpkg_path, layer=table["table_name"]
             )
             pd.testing.assert_frame_equal(
-                gdf_original, gdf_output, check_exact=False, rtol=1e-5
+                geodf_original, geodf_output, check_exact=False, rtol=1e-5
             )
             # It's also possible to assert that GIS geometries are not exactly equal.
             # However, when testing the equality of GeoDataFrames with pandas, the GIS
@@ -139,7 +139,7 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
             # WKT string and compared as strings. Therefore, if a less precise comparison
             # of GIS geometries is necessary, the assertion above needs changing too.
             # gpd.testing.assert_geoseries_equal(
-            #     gdf_original, gdf_output, check_less_precise=False
+            #     geodf_original, geodf_output, check_less_precise=False
             # )
 
         # Remove the newly generated kaitak_gi.gpkg

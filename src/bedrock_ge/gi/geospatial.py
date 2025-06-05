@@ -18,32 +18,32 @@ from bedrock_ge.gi.schemas import (
 def create_brgi_geospatial_database(
     brgi_db: BedrockGIDatabase,
 ) -> BedrockGIGeospatialDatabase:
-    location_gdf = create_location_gdf(brgi_db)
-    lon_lat_height_gdf = create_lon_lat_height_gdf(brgi_db)
-    insitu_test_gdfs = {}
+    location_geodf = create_location_geodf(brgi_db)
+    lon_lat_height_geodf = create_lon_lat_height_geodf(brgi_db)
+    insitu_test_geodfs = {}
     for insitu_test_name, insitu_test_data in brgi_db.InSituTests.items():
-        insitu_test_gdfs[insitu_test_name] = interpolate_gi_geometry(  # type: ignore
+        insitu_test_geodfs[insitu_test_name] = interpolate_gi_geometry(  # type: ignore
             insitu_test_data,  # type: ignore
-            location_gdf,  # type: ignore
+            location_geodf,  # type: ignore
         )  # type: ignore
 
     if brgi_db.Sample is not None:
-        sample_gdf = interpolate_gi_geometry(brgi_db.Sample, location_gdf)  # type: ignore
+        sample_geodf = interpolate_gi_geometry(brgi_db.Sample, location_geodf)  # type: ignore
     else:
-        sample_gdf = None
+        sample_geodf = None
 
     return BedrockGIGeospatialDatabase(
         Project=brgi_db.Project,
-        Location=location_gdf,
-        LonLatHeight=lon_lat_height_gdf,
-        InSituTests=insitu_test_gdfs,
-        Sample=sample_gdf,
+        Location=location_geodf,
+        LonLatHeight=lon_lat_height_geodf,
+        InSituTests=insitu_test_geodfs,
+        Sample=sample_geodf,
         LabTests=brgi_db.LabTests,
         Other=brgi_db.Other,
     )
 
 
-def create_location_gdf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
+def create_location_geodf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
     # TODO: Implement logic to handle multiple CRS'es in the input GI data:
     #       1. Create WKT geometry for each location in original CRS
     #       2. Convert to WGS84 + EGM2008 orthometric height EPSG:9518
@@ -84,7 +84,7 @@ def create_location_gdf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
     )
 
 
-def create_lon_lat_height_gdf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
+def create_lon_lat_height_geodf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
     wgs84_egm2008_crs = CRS("EPSG:9518")
     crs_lookup = brgi_db.Project.set_index("project_uid")
     dfs = []
@@ -128,23 +128,23 @@ def create_lon_lat_height_gdf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
 
 
 def interpolate_gi_geometry(
-    insitu_test_df: DataFrame[InSituTestSchema], location_gdf: gpd.GeoDataFrame
+    insitu_test_df: DataFrame[InSituTestSchema], location_geodf: gpd.GeoDataFrame
 ) -> gpd.GeoDataFrame:
     # TODO: implement a warning when interpolating GI geospatial geometry when
     # TODO: a single GI location has waaay too many rows in a certain In-Situ test.
 
-    gdf = location_gdf[["location_uid", "geometry"]].merge(
+    geodf = location_geodf[["location_uid", "geometry"]].merge(
         insitu_test_df,
         how="right",
         on="location_uid",
     )
     return gpd.GeoDataFrame(
         insitu_test_df.copy(),
-        geometry=gdf.apply(
+        geometry=geodf.apply(
             _interpolate_gi_geometry_row,
             axis=1,
         ),
-        crs=gdf.crs,
+        crs=geodf.crs,
     )
 
 

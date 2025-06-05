@@ -50,9 +50,6 @@ def _():
     from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
     from bedrock_ge.gi.io_utils import geodf_to_df
     from bedrock_ge.gi.mapper import map_to_brgi_db
-
-    # Old functions that need to be removed from the Bedrock codebase
-    from bedrock_ge.gi.validate import check_brgi_database, check_no_gis_brgi_database
     from bedrock_ge.gi.write import write_brgi_db_to_file
 
     print(platform.system())
@@ -274,7 +271,7 @@ def _(mo):
 
     After creating the Bedrock GI 3D  Database `brgi_geodb` - which is a dictionary of [`geopandas.GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame)s - you can explore the Kai Tak Ground Investigation data on an interactive map by applying the [`geopandas.GeoDataFrame.explore()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html#geopandas.GeoDataFrame.explore) method to the different tables in the `brgi_geodb`.
 
-    Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `InSitu_ISPT`. Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `InSitu_GEOL` or `InSitu_WETH`, display very small on the `gdf.explore()` `leaflet`-based interactive map, and don't show at all on the `matplotlib`-based `gdf.plot()`.
+    Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `InSitu_ISPT`. Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `InSitu_GEOL` or `InSitu_WETH`, display very small on the `geodf.explore()` `leaflet`-based interactive map, and don't show at all on the `matplotlib`-based `geodf.plot()`.
     """
     )
     return
@@ -282,15 +279,15 @@ def _(mo):
 
 @app.cell
 def _(Point, brgi_geodb):
-    gdf = brgi_geodb.InSituTests["GEOL"]
-    gdf["geometry"] = gdf["geometry"].apply(lambda geom: Point(geom.coords[0]))
-    gdf.explore()
-    return (gdf,)
+    geodf = brgi_geodb.InSituTests["GEOL"]
+    geodf["geometry"] = geodf["geometry"].apply(lambda geom: Point(geom.coords[0]))
+    geodf.explore()
+    return (geodf,)
 
 
 @app.cell
-def _(gdf, geodf_to_df):
-    geodf_to_df(gdf)
+def _(geodf, geodf_to_df):
+    geodf_to_df(geodf)
     return
 
 
@@ -335,11 +332,11 @@ def _(Point, filtered_table, gpd, mo):
                 "No interactive map with the data selected in the table above can be shown, because the you're exploring isn't linked to the `LonLatHeight` table with a `location_uid` column, i.e. doesn't have `location_uid` as a foreign key."
             ).callout("warn")
         else:
-            fltrd_gdf = gpd.GeoDataFrame(filtered_brgi_table.value.copy())
-            fltrd_gdf["geometry"] = fltrd_gdf["geometry"].apply(
+            fltrd_geodf = gpd.GeoDataFrame(filtered_brgi_table.value.copy())
+            fltrd_geodf["geometry"] = fltrd_geodf["geometry"].apply(
                 lambda geom: Point(geom.coords[0])
             )
-            output = fltrd_gdf.explore()
+            output = fltrd_geodf.explore()
         return output
 
     gi_exploration_map(filtered_table)
