@@ -9,8 +9,6 @@ from pyproj import Transformer
 from pyproj.crs import CRS
 from shapely.geometry import LineString, Point
 
-# TODO: change function type hints, such that pandera checks the dataframes against the Bedrock schemas
-
 
 def calculate_gis_geometry(
     no_gis_brgi_db: Dict[str, Union[pd.DataFrame, gpd.GeoDataFrame]],
@@ -52,13 +50,13 @@ def calculate_gis_geometry(
         print("Calculating GIS geometry for the Bedrock GI database tables...")
 
     # Check if all projects have the same CRS
-    if not brgi_db["Project"]["crs_wkt"].nunique() == 1:
+    if not brgi_db["Project"]["horizontal_crs_wkt"].nunique() == 1:
         raise ValueError(
             "All projects must have the same CRS (Coordinate Reference System).\n"
-            "Raise an issue on GitHub in case you need to be able to combine GI data that was acquired in multiple different CRS's."
+            "Raise an issue on GitHub in case you need to be able to combine GI data that was acquired in multiple different CRSes."
         )
 
-    crs = CRS.from_wkt(brgi_db["Project"]["crs_wkt"].iloc[0])
+    crs = CRS.from_wkt(brgi_db["Project"]["horizontal_crs_wkt"].iloc[0])
 
     # Calculate GIS geometry for the 'Location' table
     if verbose:
