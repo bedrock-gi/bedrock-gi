@@ -16,6 +16,19 @@ def write_brgi_db_to_file(
     path: str | Path,
     driver: str,
 ) -> None:
+    """Writes a Bedrock GI (geospatial) database to a file.
+
+    Writes a Bedrock GI (geospatial) database to a file. The file type is
+    determined by the `driver` argument. Possible values are "GPKG" and "EXCEL".
+
+    Args:
+        brgi_db (BedrockGIDatabase | BedrockGIGeospatialDatabase): The Bedrock GI (geospatial) database.
+        path (str | Path): The path of the output file.
+        driver (str): The type of the output file. Possible values are "GPKG" and "EXCEL".
+
+    Returns:
+        None
+    """
     dict_of_dfs = brgi_db_to_dfs(brgi_db)
     if driver.upper() == "GPKG":
         write_gi_db_to_gpkg(dict_of_dfs, path)
