@@ -277,28 +277,3 @@ def substring_3d(
         result_coords.append(end_point.coords[0])
 
     return LineString(result_coords)
-
-
-def interpolate_3d_series(geometry_series, distance_series):
-    """Apply interpolate_3d to a pandas Series of geometries and distances."""
-    return geometry_series.apply(distance_series, interpolate_3d)
-
-
-def substring_3d_series(geometry_series, start_series, end_series):
-    """Apply substring_3d to a pandas Series of geometries and distance pairs."""
-
-    def apply_substring(geom, start, end):
-        return substring_3d(geom, start, end)
-
-    return geometry_series.combine(
-        start_series,
-        lambda g, s: substring_3d(
-            g,
-            s,
-            end_series[
-                geometry_series.index.get_loc(
-                    geometry_series[geometry_series == g].index[0]
-                )
-            ],
-        ),
-    )
