@@ -169,7 +169,7 @@ def coerce_string(string: str) -> None | bool | float | str:
     """Converts a string to an appropriate Python data type.
 
     Args:
-        string: The input string to be converted.
+        string (str): The input string to be converted.
 
     Returns:
         None: If the string is 'none', 'null', or empty.
@@ -199,6 +199,16 @@ def coerce_string(string: str) -> None | bool | float | str:
 def brgi_db_to_dfs(
     brgi_db: BedrockGIDatabase | BedrockGIGeospatialDatabase,
 ) -> dict[str, pd.DataFrame | gpd.GeoDataFrame]:
+    """Converts a Bedrock GI (geospatial) database to a dictionary of DataFrames.
+
+    Args:
+        brgi_db (BedrockGIDatabase | BedrockGIGeospatialDatabase): The Bedrock GI (geospatial) database.
+
+    Returns:
+        dict[str, pd.DataFrame | gpd.GeoDataFrame]: A dictionary where the keys are
+            the Bedrock GI table names and the values are the DataFrames that contain
+            the data for each table.
+    """
     dict_of_dfs = {
         "Project": brgi_db.Project,
         "Location": brgi_db.Location,
