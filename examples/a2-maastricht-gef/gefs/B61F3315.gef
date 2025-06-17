@@ -1,0 +1,93 @@
+#GEFID = 1,1,0
+#COLUMNTEXT = 1, aan
+#COLUMNSEPARATOR = ;
+#RECORDSEPARATOR = !
+#FILEOWNER = DINO
+#COMPANYID = Onbekend
+#FILEDATE = 2025,4,30
+#PROJECTID = DINO-BOR
+#COLUMN = 9
+#COLUMNINFO = 1, m, Diepte bovenkant laag, 1
+#COLUMNINFO = 2, m, Diepte onderkant laag, 2
+#COLUMNINFO = 3, mm, Zandmediaan, 8
+#COLUMNINFO = 4, mm, Grindmediaan, 9
+#COLUMNINFO = 5, %, Lutum percentage, 3
+#COLUMNINFO = 6, %, Silt percentage, 4
+#COLUMNINFO = 7, %, Zand percentage, 5
+#COLUMNINFO = 8, %, Grind percentage, 6
+#COLUMNINFO = 9, %, Organische stof percentage, 7
+#COLUMNVOID = 1, -9999.99
+#COLUMNVOID = 2, -9999.99
+#COLUMNVOID = 3, -9999.99
+#COLUMNVOID = 4, -9999.99
+#COLUMNVOID = 5, -9999.99
+#COLUMNVOID = 6, -9999.99
+#COLUMNVOID = 7, -9999.99
+#COLUMNVOID = 8, -9999.99
+#COLUMNVOID = 9, -9999.99
+#LASTSCAN = 45
+#REPORTCODE = GEF-BORE-Report,1,0,0
+#MEASUREMENTCODE = Onbekend,-,-,-
+#TESTID = B61F3315
+#XYID = 31000,178223,316933
+#ZID = 31000,52.81
+#MEASUREMENTTEXT = 6, -, beschrijver lagen
+#MEASUREMENTTEXT = 13, Stölben GmbH  Zell/Mosel", boorbedrijf
+#MEASUREMENTTEXT = 16, 2010-04-16, datum boring
+#MEASUREMENTVAR = 31, 37.20, m, diepte onderkant boortraject
+#MEASUREMENTVAR = 32, 100, mm, boorbuisdiameter
+#MEASUREMENTTEXT = 31, Kernboring, boormethode
+#MEASUREMENTTEXT = 7, Rijksdriehoeksmeting, locaal coördinatensysteem
+#MEASUREMENTTEXT = 8, Normaal Amsterdams Peil, locaal referentiesysteem
+#MEASUREMENTVAR = 16, 37.20, m, einddiepte
+#MEASUREMENTTEXT = 23, -, naam boormeester
+#MEASUREMENTTEXT = 1, Avenue2 projectbureau, opdrachtgever
+#MEASUREMENTTEXT = 14, Nee, openbaar
+#MEASUREMENTTEXT = 18, Nee, peilbuis afwezig
+#MEASUREMENTVAR = 18, 8.00, m, grondwaterstand direct na boring
+#EOH = 
+0.00;0.05;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'NBE';'Graszode';!
+0.05;0.25;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lzg1';'plaatselijk grind';!
+0.25;0.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lzg1';'Plaatselijk grind';!
+0.50;3.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lzg1';'Plaatselijk grind';!
+3.20;6.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lz3g1';'plaatselijk grind';!
+6.50;6.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s';!
+6.60;6.70;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'AF';'As bouwpuin en baksteenresten';!
+6.70;7.75;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lg1';'TGR BR';'Plaatselijk grind weinig "o" verkleurd';!
+7.75;7.85;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lz1g3';'TGR BR';!
+7.85;8.40;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s';!
+8.40;9.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s';!
+9.00;9.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Lz1g3';'TGR BR';!
+9.20;10.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s';!
+10.00;10.80;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s';'CA2';!
+10.80;11.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz1';'CA2';!
+11.50;11.90;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2';'CA2';!
+11.90;12.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz1';'CA2';!
+12.20;13.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2';'CA2';!
+13.00;13.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz1';'CA2';!
+13.20;13.80;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2';'CA2';!
+13.80;15.40;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2';'CA2';!
+15.40;17.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s';'CA2';!
+17.00;17.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz2s';'CA2';!
+17.20;18.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'KAS';'sterk gespleten';!
+18.00;21.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones en plaatselijk vuursteen';!
+21.60;28.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI GR';'KAS';'sterk gespleten met harde zones en plaatselijk vuursteen gedeeltelijk grijsbruin';!
+28.60;29.15;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'VGHA';'KAS';'sterk gespleten';!
+29.15;29.84;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten met harde zones verweerd gedeeltelijk grijsbruin';!
+29.84;29.86;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten met harde zones verweerd gedeeltelijk grijsbruin  doorweekt';!
+29.86;30.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten met harde zones verweerd gedeeltelijk grijsbruin';!
+30.00;31.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GR';'KAS';'sterk gespleten';!
+31.00;32.40;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'TGR BR';'KAS';'sterk gespleten met harde zones verweerd grijs tot grijsbruin';!
+32.40;32.45;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones';!
+32.45;32.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones met vuursteen stukken';!
+32.60;32.90;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones';!
+32.90;33.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones met vuursteen stukken';!
+33.00;33.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones';!
+33.20;33.60;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones met vuursteen stukken';!
+33.60;34.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones';!
+34.00;34.15;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones met vuursteen stukken';!
+34.15;35.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones';!
+35.00;35.80;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones met vuursteen stukken';!
+35.80;36.10;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones';!
+36.10;36.70;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones met vuursteen stukken';!
+36.70;37.20;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI TGR BR';'KAS';'sterk gespleten met harde zones';!

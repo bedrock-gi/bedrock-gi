@@ -1,0 +1,57 @@
+#GEFID = 1,1,0
+#COLUMNTEXT = 1, aan
+#COLUMNSEPARATOR = ;
+#RECORDSEPARATOR = !
+#FILEOWNER = DINO
+#COMPANYID = Projectbureau A2
+#FILEDATE = 2025,4,30
+#PROJECTID = DINO-BOR
+#COLUMN = 9
+#COLUMNINFO = 1, m, Diepte bovenkant laag, 1
+#COLUMNINFO = 2, m, Diepte onderkant laag, 2
+#COLUMNINFO = 3, mm, Zandmediaan, 8
+#COLUMNINFO = 4, mm, Grindmediaan, 9
+#COLUMNINFO = 5, %, Lutum percentage, 3
+#COLUMNINFO = 6, %, Silt percentage, 4
+#COLUMNINFO = 7, %, Zand percentage, 5
+#COLUMNINFO = 8, %, Grind percentage, 6
+#COLUMNINFO = 9, %, Organische stof percentage, 7
+#COLUMNVOID = 1, -9999.99
+#COLUMNVOID = 2, -9999.99
+#COLUMNVOID = 3, -9999.99
+#COLUMNVOID = 4, -9999.99
+#COLUMNVOID = 5, -9999.99
+#COLUMNVOID = 6, -9999.99
+#COLUMNVOID = 7, -9999.99
+#COLUMNVOID = 8, -9999.99
+#COLUMNVOID = 9, -9999.99
+#LASTSCAN = 6
+#REPORTCODE = GEF-BORE-Report,1,0,0
+#MEASUREMENTCODE = Onbekend,-,-,-
+#TESTID = B61F1425
+#XYID = 31000,178151,317326
+#ZID = 31000,48.43
+#MEASUREMENTTEXT = 3, Maastricht, plaatsnaam
+#MEASUREMENTTEXT = 6, -, beschrijver lagen
+#MEASUREMENTTEXT = 13, Sonic Drilling Horst BV, boorbedrijf
+#MEASUREMENTTEXT = 16, 2005-05-15, datum boring
+#MEASUREMENTTEXT = 31, Trilboring, boormethode
+#MEASUREMENTTEXT = 11, MMET, maaiveldhoogtebepaling
+#MEASUREMENTTEXT = 12, LMET, plaatsbepalingmethode
+#MEASUREMENTTEXT = 7, Rijksdriehoeksmeting, locaal coördinatensysteem
+#MEASUREMENTTEXT = 8, Normaal Amsterdams Peil, locaal referentiesysteem
+#MEASUREMENTVAR = 16, 30.00, m, einddiepte
+#MEASUREMENTTEXT = 23, -, naam boormeester
+#MEASUREMENTTEXT = 14, Nee, openbaar
+#MEASUREMENTVAR = 13, 4.00, m, voorgegraven diepte
+#MEASUREMENTTEXT = 2, Verkenning tunneltrac A2, doel onderzoek
+#MEASUREMENTTEXT = 17, Onbekend, vochtigheidstoestand grond
+#MEASUREMENTTEXT = 18, Nee, peilbuis afwezig
+#MEASUREMENTVAR = 18, 4.00, m, grondwaterstand direct na boring
+#EOH = 
+4.00;5.70;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Kh1';'GR';!
+5.70;11.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'Gz1';'GR';'ZGC';'GZG';!
+11.50;12.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'GE';'KAS';'fijnkorrelig';!
+12.50;15.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI GR';'KAS';'fijnkorrelig';!
+15.00;28.50;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'LI GR';'KAS';'grijze vuursteen fijnkorrelig';!
+28.50;30.00;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;-9999.99;'NBE';'WI';'KAS';'zwarte vuursteen fijnkorrelig';!
