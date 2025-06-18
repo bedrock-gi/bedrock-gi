@@ -1,5 +1,3 @@
-from typing import Dict, Union
-
 import geopandas as gpd  # type: ignore
 import pandas as pd
 
@@ -83,8 +81,8 @@ def check_brgi_database(
 
 def check_foreign_key(
     foreign_key: str,
-    parent_table: Union[pd.DataFrame, gpd.GeoDataFrame],
-    table_with_foreign_key: Union[pd.DataFrame, gpd.GeoDataFrame],
+    parent_table: pd.DataFrame | gpd.GeoDataFrame,
+    table_with_foreign_key: pd.DataFrame | gpd.GeoDataFrame,
 ) -> bool:
     """Validates referential integrity between two tables by checking foreign key relationships.
 
@@ -93,8 +91,8 @@ def check_foreign_key(
 
     Args:
         foreign_key (str): The name of the column that serves as the foreign key.
-        parent_table (Union[pd.DataFrame, gpd.GeoDataFrame]): The parent table containing the primary keys.
-        table_with_foreign_key (Union[pd.DataFrame, gpd.GeoDataFrame]): The child table containing the foreign keys.
+        parent_table (pd.DataFrame| gpd.GeoDataFrame): The parent table containing the primary keys.
+        table_with_foreign_key (pd.DataFrame| gpd.GeoDataFrame): The child table containing the foreign keys.
 
     Returns:
         bool: True if all foreign keys exist in the parent table.

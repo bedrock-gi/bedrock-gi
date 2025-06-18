@@ -17,7 +17,7 @@ def ags4_to_dfs(
             object that represents and AGS4 file.
 
     Returns:
-        Dict[str, pd.DataFrame]: A dictionary of pandas DataFrames, where each key
+        dict[str, pd.DataFrame]: A dictionary of pandas DataFrames, where each key
             represents a group name from AGS 4 data, and the corresponding value is a
             pandas DataFrame containing the data for that group.
     """

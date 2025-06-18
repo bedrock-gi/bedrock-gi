@@ -98,7 +98,7 @@ def detect_encoding(source: str | Path | IO[str] | IO[bytes] | bytes) -> str:
                     return _detect_from_bytes(sample)
                 else:
                     return DEFAULT_ENCODING
-            
+
             # For seekable streams, preserve position
             original_position = source.tell()
             try:
@@ -119,7 +119,7 @@ def detect_encoding(source: str | Path | IO[str] | IO[bytes] | bytes) -> str:
 
 
 def open_text_data_source(
-    source: str | Path | IO[str] | IO[bytes] | bytes, encoding=None
+    source: str | Path | IO[str] | IO[bytes] | bytes, encoding: str | None = None
 ) -> ContextManager[io.TextIOBase]:
     """Opens or wraps a given source for reading AGS (text-based) data.
 

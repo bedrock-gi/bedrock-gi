@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Dict, Union
+from typing import Literal
 
 import geopandas as gpd
 import pandas as pd
@@ -14,7 +14,7 @@ from bedrock_ge.gi.schemas import BedrockGIDatabase, BedrockGIGeospatialDatabase
 def write_brgi_db_to_file(
     brgi_db: BedrockGIDatabase | BedrockGIGeospatialDatabase,
     path: str | Path,
-    driver: str,
+    driver: Literal["EXCEL", "GPKG"] = "GPKG",
 ) -> None:
     """Writes a Bedrock GI (geospatial) database to a file.
 
@@ -34,7 +34,8 @@ def write_brgi_db_to_file(
         write_gi_db_to_gpkg(dict_of_dfs, path)
     elif driver.upper() == "EXCEL":
         write_gi_db_to_excel(dict_of_dfs, path)
-
+    else:
+        raise ValueError(f"Invalid driver: {driver}")
 
 def write_gi_db_to_gpkg(
     dict_of_dfs: dict[str, pd.DataFrame | gpd.GeoDataFrame],

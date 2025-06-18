@@ -1,6 +1,6 @@
 """pandera schemas for Bedrock GI data. Base schemas refer to schemas that have no calculated GIS geometry or values."""
 
-from typing import Optional, Union
+from typing import Optional
 
 import geopandas as gpd
 import pandas as pd
@@ -176,7 +176,7 @@ class BedrockGIDatabase(BaseModel):
     Project: pd.DataFrame
     Location: pd.DataFrame
     InSituTests: dict[str, pd.DataFrame]
-    Sample: Union[pd.DataFrame, None] = None
+    Sample: pd.DataFrame | None = None
     LabTests: dict[str, pd.DataFrame] = {}
     Other: dict[str, pd.DataFrame] = {}
 
@@ -188,7 +188,7 @@ class BedrockGIGeospatialDatabase(BaseModel):
     Location: gpd.GeoDataFrame
     LonLatHeight: gpd.GeoDataFrame
     InSituTests: dict[str, gpd.GeoDataFrame]
-    Sample: Union[gpd.GeoDataFrame, None] = None
+    Sample: gpd.GeoDataFrame | None = None
     LabTests: dict[str, pd.DataFrame] = {}
     Other: dict[str, pd.DataFrame] = {}
 

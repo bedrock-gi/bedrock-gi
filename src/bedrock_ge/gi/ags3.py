@@ -33,7 +33,7 @@ def ags3_to_dfs(
         encoding (str):  Encoding of file or object.
 
     Returns:
-        Dict[str, pd.DataFrame]: A dictionary of pandas DataFrames, i.e. a database,
+        dict[str, pd.DataFrame]: A dictionary of pandas DataFrames, i.e. a database,
             where each key is an AGS 3 group, and the corresponding value is
             a pandas DataFrame containing the data for that group.
     """
