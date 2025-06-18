@@ -91,18 +91,27 @@ def detect_encoding(source: str | Path | IO[str] | IO[bytes] | bytes) -> str:
     # IO[bytes]
     if isinstance(source, io.BufferedIOBase):
         try:
+            if not source.seekable():
+                # For non-seekable streams, read what we can without seeking
+                sample = source.read(SAMPLE_SIZE)
+                if isinstance(sample, bytes):
+                    return _detect_from_bytes(sample)
+                else:
+                    return DEFAULT_ENCODING
+            
+            # For seekable streams, preserve position
             original_position = source.tell()
-            source.seek(0)
-            sample = source.read(SAMPLE_SIZE)
-            if isinstance(sample, bytes):
-                encoding = _detect_from_bytes(sample)
-            else:
-                # if not bytes, then its a custom string-like type that was not caught
-                encoding = DEFAULT_ENCODING
-            source.seek(original_position)
-            return encoding
-        except (AttributeError, IOError):
-            # use default if the stream does not have a `read()` or `seek()` attribute
+            try:
+                source.seek(0)
+                sample = source.read(SAMPLE_SIZE)
+                if isinstance(sample, bytes):
+                    encoding = _detect_from_bytes(sample)
+                else:
+                    encoding = DEFAULT_ENCODING
+                return encoding
+            finally:
+                source.seek(original_position)
+        except (AttributeError, IOError, OSError):
             return DEFAULT_ENCODING
 
     raise TypeError(f"Unsupported input type for encoding detection: {type(source)}")
@@ -147,12 +156,12 @@ def open_text_data_source(
         raise FileNotFoundError(f"Path does not exist or is not a file: {source}")
 
     elif isinstance(source, io.TextIOBase):
-        source.seek(0)
+        # Don't seek on passed streams - let caller manage position
         return nullcontext(source)
 
     elif isinstance(source, io.BufferedIOBase):
         text_stream = io.TextIOWrapper(source, encoding=encoding)
-        text_stream.seek(0)
+        # Don't seek on wrapped stream - let caller manage position
         return nullcontext(text_stream)
 
     elif isinstance(source, bytes):
@@ -228,6 +237,7 @@ def brgi_db_to_dfs(
 
 
 def convert_dtypes_object_to_string(dataframe: pd.DataFrame) -> pd.DataFrame:
+    dataframe = dataframe.copy()
     object_cols = dataframe.select_dtypes(include=["object"]).columns
     dataframe[object_cols] = dataframe[object_cols].astype("string")
     return dataframe
