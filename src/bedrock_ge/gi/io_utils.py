@@ -237,13 +237,15 @@ def brgi_db_to_dfs(
     return dict_of_dfs | insitu_dfs | lab_dfs | other_dfs
 
 
-def convert_dtypes_object_to_string(dataframe: pd.DataFrame) -> pd.DataFrame:
-    dataframe = dataframe.copy()
-    object_cols = dataframe.select_dtypes(include=["object"]).columns
-    dataframe[object_cols] = dataframe[object_cols].astype("string")
-    return dataframe
+def convert_dtypes_object_to_string(df: pd.DataFrame, in_place=True) -> pd.DataFrame:
+    if not in_place:
+        df = df.copy()
+    object_cols = df.select_dtypes(include=["object"]).columns
+    df[object_cols] = df[object_cols].astype("string")
+    return df
 
 
 def geodf_to_df(geodf: gpd.GeoDataFrame) -> pd.DataFrame:
+    """Convenience function to convert GeoDataFrames to DataFrames for nicer display in notebook environments like marimo."""
     df = pd.DataFrame(geodf.copy())
     return df.assign(geometry=df.geometry.astype("string"))
