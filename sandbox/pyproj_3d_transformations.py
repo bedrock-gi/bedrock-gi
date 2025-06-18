@@ -8,7 +8,7 @@ app = marimo.App(width="medium")
 def _():
     import marimo as mo
     from pyproj import CRS, Transformer
-    from pyproj.crs import CompoundCRS
+    from pyproj.crs.crs import CompoundCRS
     return CRS, CompoundCRS, Transformer
 
 

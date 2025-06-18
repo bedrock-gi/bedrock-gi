@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from pandera.typing import DataFrame
 from pyproj import CRS, Transformer
-from pyproj.crs import CompoundCRS
+from pyproj.crs.crs import CompoundCRS
 from shapely.geometry import LineString, Point
 
 from bedrock_ge.gi.schemas import (
@@ -182,8 +182,8 @@ def create_lon_lat_height_geodf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
 
 
 def interpolate_gi_geometry(
-    insitu_test_df: DataFrame[InSituTestSchema],
-    location_geodf: DataFrame[LocationSchema],
+    insitu_test_df: DataFrame[InSituTestSchema] | DataFrame[SampleSchema],
+    location_geodf: DataFrame[LocationSchema] | gpd.GeoDataFrame,
 ) -> gpd.GeoDataFrame:
     """Interpolates the geospatial geometry for a given In-Situ test DataFrame using its corresponding GI Location GeoDataFrame.
 
@@ -217,7 +217,7 @@ def interpolate_gi_geometry(
             _interpolate_gi_geometry_row,
             axis=1,
         ),
-        crs=geodf.crs,
+        crs=str(geodf.crs),
     )
 
 

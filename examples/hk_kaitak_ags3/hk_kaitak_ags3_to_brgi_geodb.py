@@ -42,7 +42,7 @@ def _():
     import pandas as pd
     import requests
     from pyproj import CRS, Transformer
-    from pyproj.crs import CompoundCRS
+    from pyproj.crs.crs import CompoundCRS
     from shapely import Point, wkt
 
     from bedrock_ge.gi.ags import ags_to_brgi_db_mapping
