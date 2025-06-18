@@ -107,6 +107,7 @@ def detect_encoding(source: str | Path | IO[str] | IO[bytes] | bytes) -> str:
                 if isinstance(sample, bytes):
                     encoding = _detect_from_bytes(sample)
                 else:
+                    # if not bytes, then its a custom string-like type that was not caught
                     encoding = DEFAULT_ENCODING
                 return encoding
             finally:
@@ -156,12 +157,12 @@ def open_text_data_source(
         raise FileNotFoundError(f"Path does not exist or is not a file: {source}")
 
     elif isinstance(source, io.TextIOBase):
-        # Don't seek on passed streams - let caller manage position
+        source.seek(0)
         return nullcontext(source)
 
     elif isinstance(source, io.BufferedIOBase):
         text_stream = io.TextIOWrapper(source, encoding=encoding)
-        # Don't seek on wrapped stream - let caller manage position
+        text_stream.seek(0)
         return nullcontext(text_stream)
 
     elif isinstance(source, bytes):
