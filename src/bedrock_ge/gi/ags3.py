@@ -242,27 +242,28 @@ def _get_depth_columns(group: str, headers: list[str]) -> tuple[str | None, str 
     top_depth: str | None = f"{group}_TOP"
     base_depth: str | None = f"{group}_BASE"
 
-    if group == "CDIA":
-        top_depth = "CDIA_CDEP"
-    elif group == "FLSH":
-        top_depth = "FLSH_FROM"
-        base_depth = "FLSH_TO"
-    elif group == "CORE":
-        base_depth = "CORE_BOT"
-    elif group == "HDIA":
-        top_depth = "HDIA_HDEP"
-    elif group == "PTIM":
-        top_depth = "PTIM_DEP"
-    elif group == "IVAN":
-        top_depth = "IVAN_DPTH"
-    elif group == "STCN":
-        top_depth = "STCN_DPTH"
-    elif group == "POBS" or group == "PREF":
-        top_depth = "PREF_TDEP"
-    elif group == "DREM":
-        top_depth = "DREM_DPTH"
-    elif group == "PRTD" or group == "PRTG" or group == "PRTL":
-        top_depth = "PRTD_DPTH"
+    match group:
+        case "CDIA":
+            top_depth = "CDIA_CDEP"
+        case "FLSH":
+            top_depth = "FLSH_FROM"
+            base_depth = "FLSH_TO"
+        case "CORE":
+            base_depth = "CORE_BOT"
+        case "HDIA":
+            top_depth = "HDIA_HDEP"
+        case "PTIM":
+            top_depth = "PTIM_DEP"
+        case "IVAN":
+            top_depth = "IVAN_DPTH"
+        case "STCN":
+            top_depth = "STCN_DPTH"
+        case "POBS" | "PREF":
+            top_depth = "PREF_TDEP"
+        case "DREM":
+            top_depth = "DREM_DPTH"
+        case "PRTD" | "PRTG" | "PRTL":
+            top_depth = "PRTD_DPTH"
 
     if top_depth not in headers:
         top_depth = None
