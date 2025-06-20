@@ -17,7 +17,7 @@
 
 import marimo
 
-__generated_with = "0.13.11"
+__generated_with = "0.13.15"
 app = marimo.App(
     app_title="Kai Tak, HK AGS 3 data to bedrock_ge.gi geodatabase",
 )
@@ -38,92 +38,39 @@ def _():
     import mapclassify
     import marimo as mo
     import matplotlib
+    import numpy as np
     import pandas as pd
     import requests
-    from pyproj import CRS
-    from shapely import wkt
+    from pyproj import CRS, Transformer
+    from pyproj.crs.crs import CompoundCRS
+    from shapely import Point, wkt
 
-    from bedrock_ge.gi.ags.read import ags_to_dfs
-    from bedrock_ge.gi.ags.transform import ags3_db_to_no_gis_brgi_db
-    from bedrock_ge.gi.concatenate import concatenate_databases
-    from bedrock_ge.gi.gis_geometry import calculate_gis_geometry
-    from bedrock_ge.gi.validate import check_brgi_database, check_no_gis_brgi_database
-    from bedrock_ge.gi.write import write_gi_db_to_gpkg
+    from bedrock_ge.gi.ags import ags_to_brgi_db_mapping
+    from bedrock_ge.gi.db_operations import merge_databases
+    from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
+    from bedrock_ge.gi.io_utils import geodf_to_df
+    from bedrock_ge.gi.mapper import map_to_brgi_db
+    from bedrock_ge.gi.write import write_brgi_db_to_file
 
     print(platform.system())
     print(sys.version)
     # print(sys.executable)
     return (
         CRS,
-        ags3_db_to_no_gis_brgi_db,
-        ags_to_dfs,
-        calculate_gis_geometry,
-        check_brgi_database,
-        check_no_gis_brgi_database,
-        concatenate_databases,
+        Point,
+        ags_to_brgi_db_mapping,
+        create_brgi_geospatial_database,
+        geodf_to_df,
         gpd,
         io,
+        map_to_brgi_db,
+        merge_databases,
         mo,
-        pd,
         platform,
         requests,
-        write_gi_db_to_gpkg,
+        write_brgi_db_to_file,
         zipfile,
     )
-
-
-@app.cell
-def _(
-    ags3_db_to_no_gis_brgi_db,
-    ags_to_dfs,
-    check_no_gis_brgi_database,
-    concatenate_databases,
-    zipfile,
-):
-    def zip_of_ags3s_to_bedrock_gi_database(zip, crs):
-        """Read AGS 3 files from a ZIP archive and convert them to a dictionary of pandas dataframes."""
-        brgi_db = {}
-        with zipfile.ZipFile(zip) as zip_ref:
-            # Iterate over files and directories in the .zip archive
-            for file_name in zip_ref.namelist():
-                # Only process files that have an .ags or .AGS extension
-                if file_name.lower().endswith(".ags"):
-                    print(f"\n🖥️ Processing {file_name} ...")
-                    with zip_ref.open(file_name) as ags3_file:
-                        # Convert content of a single AGS 3 file to a Dictionary of pandas dataframes (a database)
-                        ags3_db = ags_to_dfs(ags3_file)
-                    report_no = file_name.split("/")[0]
-                    ags3_db["PROJ"]["REPORT_NO"] = int(report_no)
-                    project_uid = f"{ags3_db['PROJ']['PROJ_ID'].iloc[0]}_{file_name}"
-                    ags3_db["PROJ"]["project_uid"] = project_uid
-                    # Remove (Static) CPT AGS 3 group 'STCN' from brgi_db, because CPT data processing needs to be reviewed.
-                    # Not efficient to create a GIS point for every point where a CPT measures a value.
-                    if "STCN" in ags3_db.keys():
-                        del ags3_db["STCN"]
-                    # Create GI data tables with bedrock-ge names and add columns (project_uid, location_uid, sample_uid),
-                    # such that data from multiple AGS files can be combined
-                    brgi_db_from_1_ags3_file = ags3_db_to_no_gis_brgi_db(ags3_db, crs)
-                    print(
-                        f"🧐 Validating the Bedrock GI database from AGS file {file_name}..."
-                    )
-                    check_no_gis_brgi_database(brgi_db_from_1_ags3_file)
-                    print(
-                        f"\n✅ Successfully converted {file_name} to Bedrock GI database and validated!\n"
-                    )
-                    print(
-                        f"🧵 Concatenating Bedrock GI database for {file_name} to existing Bedrock GI database...\n"
-                    )
-                    brgi_db = concatenate_databases(brgi_db, brgi_db_from_1_ags3_file)
-
-                    # Drop all rows that have completely duplicate rows in the Project table
-                    brgi_db["Project"] = brgi_db["Project"].drop_duplicates()
-                    # Then drop all that unfortunately still have a duplicate project_uid
-                    brgi_db["Project"] = brgi_db["Project"].drop_duplicates(
-                        subset="project_uid", keep="first"
-                    )
-        return brgi_db
-
-    return (zip_of_ags3s_to_bedrock_gi_database,)
 
 
 @app.cell(hide_code=True)
@@ -177,7 +124,7 @@ def _(mo):
 @app.cell
 def _(io, requests):
     # Read ZIP from disk after downloading manually
-    # zip = Path(r"C:\Users\joost\ReposWindows\bedrock-ge\examples\hk_kaitak_ags3\public\kaitak_ags3.zip")
+    # zip = Path.home() / "Downloads" / "kaitak_ags3.zip"
 
     # Request ZIP from GitHub
     raw_githubusercontent_url = "https://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/main/examples/hk_kaitak_ags3/kaitak_ags3.zip"
@@ -226,27 +173,44 @@ def _(mo):
 
 
 @app.cell
-def _(CRS, pd, zip, zip_of_ags3s_to_bedrock_gi_database):
-    brgi_db = zip_of_ags3s_to_bedrock_gi_database(zip, CRS("EPSG:2326"))
+def _(
+    CRS,
+    ags_to_brgi_db_mapping,
+    map_to_brgi_db,
+    merge_databases,
+    zip,
+    zipfile,
+):
+    projected_crs = CRS("EPSG:2326")
+    vertrical_crs = CRS("EPSG:5738")
 
-    # Some ISPT_NVAL (SPT count) are not numeric, e.g. "100/0.29"
-    # When converting to numeric, these non-numeric values are converted to NaN
-    brgi_db["InSitu_ISPT"]["ISPT_NVAL"] = pd.to_numeric(
-        brgi_db["InSitu_ISPT"]["ISPT_NVAL"], errors="coerce"
-    )
+    ags3_file_brgi_dbs = []
+    with zipfile.ZipFile(zip) as zip_ref:
+        # Iterate over files and directories in the .zip archive
+        for i, file_name in enumerate(zip_ref.namelist()):
+            # Only process files that have an .ags or .AGS extension
+            if file_name.lower().endswith(".ags"):
+                print(f"\n🖥️ Processing {file_name} ...")
+                with zip_ref.open(file_name) as ags3_file:
+                    # 1. Convert content of a single AGS 3 file to a Bedrock GI Mapping.
+                    # 2. Map the mapping object to a Bedrock GI Database.
+                    # 3. Append the Bedrock GI Database to the list of Bedrock GI
+                    #    Databases, that were created from single AGS 3 files.
+                    ags3_file_brgi_dbs.append(
+                        map_to_brgi_db(
+                            ags_to_brgi_db_mapping(
+                                ags3_file, projected_crs, vertrical_crs
+                            )
+                        )
+                    )
+
+    brgi_db = merge_databases(ags3_file_brgi_dbs)
     return (brgi_db,)
 
 
-@app.cell(hide_code=True)
-def _(brgi_db, mo):
-    sel_brgi_table = mo.ui.dropdown(brgi_db, value="Project")
-    mo.md(f"Select the Bedrock GI table you want to explore: {sel_brgi_table}")
-    return (sel_brgi_table,)
-
-
-@app.cell(hide_code=True)
-def _(sel_brgi_table):
-    sel_brgi_table.value
+@app.cell
+def _(brgi_db):
+    brgi_db.Project
     return
 
 
@@ -255,7 +219,7 @@ def _(mo):
     mo.md(
         r"""
     ## Relational database to 3D geospatial database
-    A geospatial database is a relational database that has been enhanced to store geospatial data. There are two broad categories of geospatial data:
+    A  database is a relational database that has been enhanced to store  data. There are two broad categories of  data:
 
     1. [Raster data](https://en.wikipedia.org/wiki/GIS_file_format#Raster_formats): geographic information as a grid of pixels (cells), where each pixel stores a value corresponding to a specific location and attribute, such as elevation, temperature, or land cover. So, a Digital Elevation Model (DEM) is an example of GIS raster data.
     2. [Vector data](https://en.wikipedia.org/wiki/GIS_file_format#Vector_formats): tables in which each row contains:
@@ -288,10 +252,15 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_db, calculate_gis_geometry, check_brgi_database):
-    brgi_geodb = calculate_gis_geometry(brgi_db)
-    check_brgi_database(brgi_geodb)
+def _(brgi_db, create_brgi_geospatial_database):
+    brgi_geodb = create_brgi_geospatial_database(brgi_db)
     return (brgi_geodb,)
+
+
+@app.cell
+def _(brgi_geodb):
+    brgi_geodb.LonLatHeight.explore()
+    return
 
 
 @app.cell(hide_code=True)
@@ -300,17 +269,25 @@ def _(mo):
         r"""
     ## Ground Investigation data exploration
 
-    After creating the Bedrock GI 3D Geospatial Database `brgi_geodb` - which is a dictionary of [`geopandas.GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame)s - you can explore the Kai Tak Ground Investigation data on an interactive map by applying the [`geopandas.GeoDataFrame.explore()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html#geopandas.GeoDataFrame.explore) method to the different tables in the `brgi_geodb`.
+    After creating the Bedrock GI 3D  Database `brgi_geodb` - which is a dictionary of [`geopandas.GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame)s - you can explore the Kai Tak Ground Investigation data on an interactive map by applying the [`geopandas.GeoDataFrame.explore()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html#geopandas.GeoDataFrame.explore) method to the different tables in the `brgi_geodb`.
 
-    Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `InSitu_ISPT`. Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `InSitu_GEOL` or `InSitu_WETH`, display very small on the `gdf.explore()` `leaflet`-based interactive map, and don't show at all on the `matplotlib`-based `gdf.plot()`.
+    Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `InSitu_ISPT`. Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `InSitu_GEOL` or `InSitu_WETH`, display very small on the `geodf.explore()` `leaflet`-based interactive map, and don't show at all on the `matplotlib`-based `geodf.plot()`.
     """
     )
     return
 
 
 @app.cell
-def _(brgi_geodb):
-    brgi_geodb["LonLatHeight"].explore()
+def _(Point, brgi_geodb):
+    geodf = brgi_geodb.InSituTests["GEOL"]
+    geodf["geometry"] = geodf["geometry"].apply(lambda geom: Point(geom.coords[0]))
+    geodf.explore()
+    return (geodf,)
+
+
+@app.cell
+def _(geodf, geodf_to_df):
+    geodf_to_df(geodf)
     return
 
 
@@ -326,9 +303,9 @@ def _(mo):
     return
 
 
-@app.cell(hide_code=True)
-def _(brgi_db, mo):
-    explore_brgi_table = mo.ui.dropdown(brgi_db, value="InSitu_ISPT")
+@app.cell
+def _(brgi_geodb, mo):
+    explore_brgi_table = mo.ui.dropdown(brgi_geodb.InSituTests, value="ISPT")
     mo.md(f"Select the GI table you want to explore: {explore_brgi_table}")
     return (explore_brgi_table,)
 
@@ -340,23 +317,26 @@ def _(explore_brgi_table, mo):
     return (filtered_table,)
 
 
+@app.cell
+def _(filtered_df, filtered_table):
+    print(f"filtered_table.value type: {type(filtered_table.value)}")
+    print(f"filtered_df.value type: {type(filtered_df.value)}")
+    return
+
+
 @app.cell(hide_code=True)
-def _(brgi_geodb, filtered_table, gpd, mo):
+def _(Point, filtered_table, gpd, mo):
     def gi_exploration_map(filtered_brgi_table):
         if "location_uid" not in filtered_brgi_table.value.columns:
             output = mo.md(
                 "No interactive map with the data selected in the table above can be shown, because the you're exploring isn't linked to the `LonLatHeight` table with a `location_uid` column, i.e. doesn't have `location_uid` as a foreign key."
             ).callout("warn")
         else:
-            filtered_df = filtered_brgi_table.value.merge(
-                brgi_geodb["LonLatHeight"], on="location_uid", how="inner"
+            fltrd_geodf = gpd.GeoDataFrame(filtered_brgi_table.value.copy())
+            fltrd_geodf["geometry"] = fltrd_geodf["geometry"].apply(
+                lambda geom: Point(geom.coords[0])
             )
-            filtered_gdf = gpd.GeoDataFrame(
-                filtered_df,
-                geometry=filtered_df["geometry"],
-                crs="EPSG:4326",  # 4326 is the WGS84 (lon, lat) EPSG code
-            )
-            output = filtered_gdf.explore()
+            output = fltrd_geodf.explore()
         return output
 
     gi_exploration_map(filtered_table)
@@ -383,8 +363,8 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(brgi_db, mo):
-    explore_brgi_df = mo.ui.dropdown(brgi_db, value="InSitu_WETH")
+def _(brgi_geodb, mo):
+    explore_brgi_df = mo.ui.dropdown(brgi_geodb.InSituTests, value="WETH")
     mo.md(f"Select the GI table you want to explore: {explore_brgi_df}")
     return (explore_brgi_df,)
 
@@ -406,9 +386,9 @@ def _(filtered_df, gi_exploration_map):
 def _(mo):
     mo.md(
         r"""
-    ## Saving the GI geospatial database as a GeoPackage (.gpkg)
+    ## Saving the GI  database as a GeoPackage (.gpkg)
 
-    Finally, lets write, i.e. persist `brgi_geodb` - a Python dictionary of `geopandas.GeoDataFrames` - to an actual geospatial database file, so we can share our GI data with others.
+    Finally, lets write, i.e. persist `brgi_geodb` - a Python dictionary of `geopandas.GeoDataFrames` - to an actual  database file, so we can share our GI data with others.
     For example, to reuse it in other notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
 
     A GeoPackage is an OGC-standardized extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, many (open-source) GIS software packages support GeoPackage!
@@ -420,10 +400,12 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_geodb, mo, platform, write_gi_db_to_gpkg):
+def _(brgi_geodb, mo, platform, write_brgi_db_to_file):
     output = None
     if platform.system() != "Emscripten":
-        write_gi_db_to_gpkg(brgi_geodb, mo.notebook_dir() / "kaitak_gi.gpkg")
+        write_brgi_db_to_file(
+            brgi_geodb, mo.notebook_dir() / "kaitak_gi.gpkg", driver="GPKG"
+        )
     else:
         output = mo.md(
             "Writing a GeoPackage from WebAssembly (marimo playground) causes geopandas to think that the GeoDataFrames in the `brgi_geodb` don't have a geometry column. You can [download the GeoPackage from GitHub](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/kaitak_gi.gpkg)"
@@ -460,7 +442,7 @@ def _(mo):
 
     Bluntly put, Shapefile is a bad format.
 
-    Among other problems, Shapefile isn't just a single file. One has to at least share three files [(*.shp, *.dbf, *.shx)](https://en.wikipedia.org/wiki/Shapefile#Mandatory_files), which doesn't include the definition of a CRS. In case that doesn't sound terrible enough to you yet, please have a look at the fantastic website [switchfromshapefile.org](http://switchfromshapefile.org/).
+    Among other problems, Shapefile isn't just a single file. One has to at least share three files [(\*.shp, \*.dbf, \*.shx)](https://en.wikipedia.org/wiki/Shapefile#Mandatory_files), which doesn't include the definition of a CRS. In case that doesn't sound terrible enough to you yet, please have a look at the fantastic website [switchfromshapefile.org](http://switchfromshapefile.org/).
 
     ### GeoJSON
 
