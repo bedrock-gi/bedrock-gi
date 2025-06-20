@@ -1,7 +1,5 @@
 """Utility functions for reading, parsing and writing data."""
 
-from __future__ import annotations
-
 import codecs
 import io
 from contextlib import contextmanager, nullcontext

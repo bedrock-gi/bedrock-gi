@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from pathlib import Path
 from typing import Literal
 
@@ -36,6 +34,7 @@ def write_brgi_db_to_file(
         write_gi_db_to_excel(dict_of_dfs, path)
     else:
         raise ValueError(f"Invalid driver: {driver}")
+
 
 def write_gi_db_to_gpkg(
     dict_of_dfs: dict[str, pd.DataFrame | gpd.GeoDataFrame],
