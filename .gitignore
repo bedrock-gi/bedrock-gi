@@ -6,6 +6,8 @@ __marimo__/
 **/log
 **/tmp
 **/temp
+examples/**/raw/
+examples/**/cleaned/
 
 # SQLite Databases
 *.sqlite

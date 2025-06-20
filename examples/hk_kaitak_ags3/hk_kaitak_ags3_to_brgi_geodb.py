@@ -17,10 +17,60 @@
 
 import marimo
 
-__generated_with = "0.13.2"
+__generated_with = "0.13.15"
 app = marimo.App(
     app_title="Kai Tak, HK AGS 3 data to bedrock_ge.gi geodatabase",
 )
+
+
+@app.cell
+def _():
+    # %pip install bedrock-ge geopandas folium mapclassify marimo --quiet
+
+    import io
+    import platform
+    import sys
+    import zipfile
+    from pathlib import Path
+
+    import folium
+    import geopandas as gpd
+    import mapclassify
+    import marimo as mo
+    import matplotlib
+    import numpy as np
+    import pandas as pd
+    import requests
+    from pyproj import CRS, Transformer
+    from pyproj.crs.crs import CompoundCRS
+    from shapely import Point, wkt
+
+    from bedrock_ge.gi.ags import ags_to_brgi_db_mapping
+    from bedrock_ge.gi.db_operations import merge_databases
+    from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
+    from bedrock_ge.gi.io_utils import geodf_to_df
+    from bedrock_ge.gi.mapper import map_to_brgi_db
+    from bedrock_ge.gi.write import write_brgi_db_to_file
+
+    print(platform.system())
+    print(sys.version)
+    # print(sys.executable)
+    return (
+        CRS,
+        Point,
+        ags_to_brgi_db_mapping,
+        create_brgi_geospatial_database,
+        geodf_to_df,
+        gpd,
+        io,
+        map_to_brgi_db,
+        merge_databases,
+        mo,
+        platform,
+        requests,
+        write_brgi_db_to_file,
+        zipfile,
+    )
 
 
 @app.cell(hide_code=True)
@@ -137,46 +187,46 @@ def _(
 def _(mo):
     mo.md(
         """
-        # AGS 3 Data in Kai Tak, Hong Kong
+    # AGS 3 Data in Kai Tak, Hong Kong
 
-        This notebook demonstrates how to:
+    This notebook demonstrates how to:
 
-        1. Use `bedrock-ge` to load Ground Investigation (GI) data from AGS 3 files (a common GI data format in Hong Kong)
-        2. Convert the AGS 3 data into a standardized GI database using `bedrock-ge`
-        3. Transform the GI data into 3D GIS features with proper coordinates and geometry ([OGC Simple Feature Access](https://en.wikipedia.org/wiki/Simple_Features))
-        4. Explore and analyze the GI data using:
-           - Interactive filtering with Pandas dataframes
-           - Visualization on interactive maps with GeoPandas
-        5. Export the processed GI database to a GeoPackage file for use in GIS software
+    1. Use `bedrock-ge` to load Ground Investigation (GI) data from AGS 3 files (a common GI data format in Hong Kong)
+    2. Convert the AGS 3 data into a standardized GI database using `bedrock-ge`
+    3. Transform the GI data into 3D GIS features with proper coordinates and geometry ([OGC Simple Feature Access](https://en.wikipedia.org/wiki/Simple_Features))
+    4. Explore and analyze the GI data using:
+       - Interactive filtering with Pandas dataframes
+       - Visualization on interactive maps with GeoPandas
+    5. Export the processed GI database to a GeoPackage file for use in GIS software
 
-        We'll work with real GI data from the Kai Tak neighborhood in Hong Kong.
+    We'll work with real GI data from the Kai Tak neighborhood in Hong Kong.
 
-        ## Context
+    ## Context
 
-        Kai Tak is a neighborhood in Kowloon, Hong Kong. One of the highlights of Kai Tak used to be its airport. It holds a special place in aviation history due to its unique and challenging approach, which involved pilots making a steep descent over a densely populated area while making a sharp turn at the same time and then landing on a single runway that jutted out into Victoria Harbor. [Landing at Kai Tak Airport | YouTube](https://www.youtube.com/watch?v=OtnL4KYVtDE)
+    Kai Tak is a neighborhood in Kowloon, Hong Kong. One of the highlights of Kai Tak used to be its airport. It holds a special place in aviation history due to its unique and challenging approach, which involved pilots making a steep descent over a densely populated area while making a sharp turn at the same time and then landing on a single runway that jutted out into Victoria Harbor. [Landing at Kai Tak Airport | YouTube](https://www.youtube.com/watch?v=OtnL4KYVtDE)
 
-        In 1998, the new Hong Kong International Airport opened, and operations at Kai Tak Airport were ceased. After the closure, the former Kai Tak Airport and surrounding neighborhood underwent a massive redevelopment project to transform it into a new residential and commercial district, which is still continuing today.
+    In 1998, the new Hong Kong International Airport opened, and operations at Kai Tak Airport were ceased. After the closure, the former Kai Tak Airport and surrounding neighborhood underwent a massive redevelopment project to transform it into a new residential and commercial district, which is still continuing today.
 
-        Have a look at the [Kai Tak Speckle Project](https://app.speckle.systems/projects/013aaf06e7/models/0e43d1f003,a739490298) to get an idea what Kai Tak looks like now. (Developments are going fast, so [Google Maps 3D](https://www.google.com/maps/@22.3065043,114.2020499,462a,35y,343.1h,75.5t/data=!3m1!1e3?entry=ttu) is a bit outdated.)
+    Have a look at the [Kai Tak Speckle Project](https://app.speckle.systems/projects/013aaf06e7/models/0e43d1f003,a739490298) to get an idea what Kai Tak looks like now. (Developments are going fast, so [Google Maps 3D](https://www.google.com/maps/@22.3065043,114.2020499,462a,35y,343.1h,75.5t/data=!3m1!1e3?entry=ttu) is a bit outdated.)
 
-        ## The Kai Tak AGS 3 ground investigation data
+    ## The Kai Tak AGS 3 ground investigation data
 
-        Ground Investigation Data for all of Hong Kong can be found here:  
-        [GEO Data for Public Use](https://www.ginfo.cedd.gov.hk/GEOOpenData/eng/Default.aspx) → [Ground Investigation (GI) and Laboratory Test (LT) Records](https://www.ginfo.cedd.gov.hk/GEOOpenData/eng/GI.aspx)
+    Ground Investigation Data for all of Hong Kong can be found here:  
+    [GEO Data for Public Use](https://www.ginfo.cedd.gov.hk/GEOOpenData/eng/Default.aspx) → [Ground Investigation (GI) and Laboratory Test (LT) Records](https://www.ginfo.cedd.gov.hk/GEOOpenData/eng/GI.aspx)
 
-        The Ground Investigation data specific to the Kai Tak neighborhood in Hong Kong can be found in the `bedrock-ge` GitHub repository:  
-        [`github.com/bedrock-engineer/bedrock-ge/examples/hk_kaitak_ags3/kaitak_ags3.zip`](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/kaitak_ags3.zip).  
-        This archive contains GI data from 88 AGS 3 files, with a total of 834 locations (boreholes and Cone Penetration Tests).
+    The Ground Investigation data specific to the Kai Tak neighborhood in Hong Kong can be found in the `bedrock-ge` GitHub repository:  
+    [`github.com/bedrock-engineer/bedrock-ge/examples/hk_kaitak_ags3/kaitak_ags3.zip`](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/kaitak_ags3.zip).  
+    This archive contains GI data from 88 AGS 3 files, with a total of 834 locations (boreholes and Cone Penetration Tests).
 
-        One of the AGS 3 files with GI data was left outside the ZIP archive, such that you can have a look at the structure of an AGS 3 file:  
-        [`github.com/bedrock-engineer/bedrock-ge/examples/hk_kaitak_ags3/ASD012162 AGS.ags`](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/64475_ASD012162%20AGS.ags)
+    One of the AGS 3 files with GI data was left outside the ZIP archive, such that you can have a look at the structure of an AGS 3 file:  
+    [`github.com/bedrock-engineer/bedrock-ge/examples/hk_kaitak_ags3/ASD012162 AGS.ags`](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/64475_ASD012162%20AGS.ags)
 
-        ### Getting the AGS 3 files
+    ### Getting the AGS 3 files
 
-        To make it easy to run this notebook on your computer (locally) in the browser (remotely) in [marimo.app](https://marimo.app/) or [Google Colab](https://colab.research.google.com/), the code below requests the ZIP archive from GitHub and directly processes it. However, you can also download the ZIP from GitHub (link above) or directly from this notebook [by clicking this raw.githubusercontent.com raw url [ ↓ ]](http://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/main/examples/hk_kaitak_ags3/kaitak_ags3.zip). 
+    To make it easy to run this notebook on your computer (locally) in the browser (remotely) in [marimo.app](https://marimo.app/) or [Google Colab](https://colab.research.google.com/), the code below requests the ZIP archive from GitHub and directly processes it. However, you can also download the ZIP from GitHub (link above) or directly from this notebook [by clicking this raw.githubusercontent.com raw url [ ↓ ]](http://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/main/examples/hk_kaitak_ags3/kaitak_ags3.zip). 
 
-        The cell below works as is, but has a commented line 2, to help you in case you have downloaded the ZIP, and want to use that downloaded ZIP in this notebook.
-        """
+    The cell below works as is, but has a commented line 2, to help you in case you have downloaded the ZIP, and want to use that downloaded ZIP in this notebook.
+    """
     )
     return
 
@@ -184,7 +234,7 @@ def _(mo):
 @app.cell
 def _(io, requests):
     # Read ZIP from disk after downloading manually
-    # zip = Path(r"C:\Users\joost\ReposWindows\bedrock-ge\examples\hk_kaitak_ags3\public\kaitak_ags3.zip")
+    # zip = Path.home() / "Downloads" / "kaitak_ags3.zip"
 
     # Request ZIP from GitHub
     raw_githubusercontent_url = "https://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/main/examples/hk_kaitak_ags3/kaitak_ags3.zip"
@@ -196,64 +246,81 @@ def _(io, requests):
 def _(mo):
     mo.md(
         """
-        ## Converting the AGS 3 files to a relational database
+    ## Converting the AGS 3 files to a relational database
 
-        A relational database is a database with multiple tables that are linked to each other with relations. This type of database is ideal for storing  GI data, given its hierarchical structure:
+    A relational database is a database with multiple tables that are linked to each other with relations. This type of database is ideal for storing  GI data, given its hierarchical structure:
 
-        ```
-        Project
-         └───Location
-              ├───InSitu_TEST
-              └───Sample
-                  └───Lab_TEST
-        ```
+    ```
+    Project
+     └───Location
+          ├───InSitu_TEST
+          └───Sample
+              └───Lab_TEST
+    ```
 
-        Where `Project`, `Location`, `InSitu_TEST`, `Sample` and `Lab_TEST` are all tables that are linked to each other with the hierarchical structure shown above, meaning that all relations are many-to-one:
+    Where `Project`, `Location`, `InSitu_TEST`, `Sample` and `Lab_TEST` are all tables that are linked to each other with the hierarchical structure shown above, meaning that all relations are many-to-one:
 
-        - Each GI location (many) is related to one project.
-        - Each sample or in-situ test (many) is related to one GI location.
-        - Each lab test is related to one sample.
+    - Each GI location (many) is related to one project.
+    - Each sample or in-situ test (many) is related to one GI location.
+    - Each lab test is related to one sample.
 
-        In Python it's convenient to represent a relational database as a dictionary of dataframe's.
+    In Python it's convenient to represent a relational database as a dictionary of dataframe's.
 
-        ### Converting AGS 3 files to a dictionary of dataframes
+    ### Converting AGS 3 files to a dictionary of dataframes
 
-        The AGS 3 files can be converted to a dictionary of dataframes using the function `list_of_ags3s_to_bedrock_gi_database(ags3_file_paths, CRS)`. The result is shown below. Have a look at the different tables and the data in those tables. Make sure to use the search and filter functionality to explore the data if you're using marimo to run this notebook!
+    The AGS 3 files can be converted to a dictionary of dataframes using the function `list_of_ags3s_to_bedrock_gi_database(ags3_file_paths, CRS)`. The result is shown below. Have a look at the different tables and the data in those tables. Make sure to use the search and filter functionality to explore the data if you're using marimo to run this notebook!
 
-        Notice the additional columns that were added to the tables by `bedrock-ge`:
+    Notice the additional columns that were added to the tables by `bedrock-ge`:
 
-        - To make sure that the primary keys of the GI data tables are unique when putting data from multiple AGS files together:  
-            `project_uid`, `location_uid`, `sample_uid`
-        - To make it possible to generate 3D GIS geometry for the `Location`, `Sample` and `InSitu_TEST` tables:  
-            In the `Location` table: `easting`, `northing`, `ground_level_elevation`, `depth_to_base`  
-          In the `Sample` and `InSitu_TEST` tables: `depth_to_top` and, in case the test or sample is taken over a depth interval, `depth_to_base`.
-        """
+    - To make sure that the primary keys of the GI data tables are unique when putting data from multiple AGS files together:  
+        `project_uid`, `location_uid`, `sample_uid`
+    - To make it possible to generate 3D GIS geometry for the `Location`, `Sample` and `InSitu_TEST` tables:  
+        In the `Location` table: `easting`, `northing`, `ground_level_elevation`, `depth_to_base`  
+      In the `Sample` and `InSitu_TEST` tables: `depth_to_top` and, in case the test or sample is taken over a depth interval, `depth_to_base`.
+    """
     )
     return
 
 
 @app.cell
-def _(CRS, pd, zip, zip_of_ags3s_to_bedrock_gi_database):
-    brgi_db = zip_of_ags3s_to_bedrock_gi_database(zip, CRS("EPSG:2326"))
+def _(
+    CRS,
+    ags_to_brgi_db_mapping,
+    map_to_brgi_db,
+    merge_databases,
+    zip,
+    zipfile,
+):
+    projected_crs = CRS("EPSG:2326")
+    vertrical_crs = CRS("EPSG:5738")
 
-    # Some ISPT_NVAL (SPT count) are not numeric, e.g. "100/0.29"
-    # When converting to numeric, these non-numeric values are converted to NaN
-    brgi_db["InSitu_ISPT"]["ISPT_NVAL"] = pd.to_numeric(
-        brgi_db["InSitu_ISPT"]["ISPT_NVAL"], errors="coerce"
-    )
+    ags3_file_brgi_dbs = []
+    with zipfile.ZipFile(zip) as zip_ref:
+        # Iterate over files and directories in the .zip archive
+        for i, file_name in enumerate(zip_ref.namelist()):
+            # Only process files that have an .ags or .AGS extension
+            if file_name.lower().endswith(".ags"):
+                print(f"\n🖥️ Processing {file_name} ...")
+                with zip_ref.open(file_name) as ags3_file:
+                    # 1. Convert content of a single AGS 3 file to a Bedrock GI Mapping.
+                    # 2. Map the mapping object to a Bedrock GI Database.
+                    # 3. Append the Bedrock GI Database to the list of Bedrock GI
+                    #    Databases, that were created from single AGS 3 files.
+                    ags3_file_brgi_dbs.append(
+                        map_to_brgi_db(
+                            ags_to_brgi_db_mapping(
+                                ags3_file, projected_crs, vertrical_crs
+                            )
+                        )
+                    )
+
+    brgi_db = merge_databases(ags3_file_brgi_dbs)
     return (brgi_db,)
 
 
-@app.cell(hide_code=True)
-def _(brgi_db, mo):
-    sel_brgi_table = mo.ui.dropdown(brgi_db, value="Project")
-    mo.md(f"Select the Bedrock GI table you want to explore: {sel_brgi_table}")
-    return (sel_brgi_table,)
-
-
-@app.cell(hide_code=True)
-def _(sel_brgi_table):
-    sel_brgi_table.value
+@app.cell
+def _(brgi_db):
+    brgi_db.Project
     return
 
 
@@ -261,63 +328,48 @@ def _(sel_brgi_table):
 def _(mo):
     mo.md(
         r"""
-        ## Relational database to 3D geospatial database
-        A geospatial database is a relational database that has been enhanced to store geospatial data. There are two broad categories of geospatial data:
+    ## Relational database to 3D geospatial database
+    A  database is a relational database that has been enhanced to store  data. There are two broad categories of  data:
 
-        1. [Raster data](https://en.wikipedia.org/wiki/GIS_file_format#Raster_formats): geographic information as a grid of pixels (cells), where each pixel stores a value corresponding to a specific location and attribute, such as elevation, temperature, or land cover. So, a Digital Elevation Model (DEM) is an example of GIS raster data.
-        2. [Vector data](https://en.wikipedia.org/wiki/GIS_file_format#Vector_formats): tables in which each row contains:
-            - [Simple feature GIS geometry](https://en.wikipedia.org/wiki/Simple_Features), represented as [Well-Known Text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry). For example in the `InSitu_GEOL` and `InSitu_ISPT` tables:  
-                `InSitu_GEOL`: a depth interval in a borehole where sand was found.  
-                `InSitu_ISPT`: a point in a borehole where an SPT test was performed.
-            - Attributes that describe the GIS geometry. For example in the `InSitu_GEOL` and `InSitu_ISPT` tables:  
-                `InSitu_GEOL`: the geology code (`GEOL_GEOL`), general description of stratum (`GEOL_DESC`), etc.  
-                `InSitu_ISPT`: the SPT N-value (`ISPT_NVAL`), energy ratio of the hammer (`ISPT_ERAT`), etc.
+    1. [Raster data](https://en.wikipedia.org/wiki/GIS_file_format#Raster_formats): geographic information as a grid of pixels (cells), where each pixel stores a value corresponding to a specific location and attribute, such as elevation, temperature, or land cover. So, a Digital Elevation Model (DEM) is an example of GIS raster data.
+    2. [Vector data](https://en.wikipedia.org/wiki/GIS_file_format#Vector_formats): tables in which each row contains:
+        - [Simple feature GIS geometry](https://en.wikipedia.org/wiki/Simple_Features), represented as [Well-Known Text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry). For example in the `InSitu_GEOL` and `InSitu_ISPT` tables:  
+            `InSitu_GEOL`: a depth interval in a borehole where sand was found.  
+            `InSitu_ISPT`: a point in a borehole where an SPT test was performed.
+        - Attributes that describe the GIS geometry. For example in the `InSitu_GEOL` and `InSitu_ISPT` tables:  
+            `InSitu_GEOL`: the geology code (`GEOL_GEOL`), general description of stratum (`GEOL_DESC`), etc.  
+            `InSitu_ISPT`: the SPT N-value (`ISPT_NVAL`), energy ratio of the hammer (`ISPT_ERAT`), etc.
 
-        So, when representing GI data as 3D GIS features, we are talking about GIS vector data.
+    So, when representing GI data as 3D GIS features, we are talking about GIS vector data.
 
-        ### From GI dataframe to `geopandas.GeoDataFrame` 
+    ### From GI dataframe to `geopandas.GeoDataFrame` 
 
-        In order to construct the 3D simple feature GIS geometry of the `Location`s, `Sample`s and `InSitu_TEST`s, a few more columns have to be calculated for each of these tables: `elevation_at_top` and `elevation_at_base` if the in-situ test or sample was taken over a depth interval.
+    In order to construct the 3D simple feature GIS geometry of the `Location`s, `Sample`s and `InSitu_TEST`s, a few more columns have to be calculated for each of these tables: `elevation_at_top` and `elevation_at_base` if the in-situ test or sample was taken over a depth interval.
 
-        The 3D simple feature GIS geometry as [WKT](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) for point tests and samples:  
-        `POINT (easting northing elevation_at_top)`
+    The 3D simple feature GIS geometry as [WKT](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) for point tests and samples:  
+    `POINT (easting northing elevation_at_top)`
 
-        The 3D simple feature GIS geometry as WKT for in-situ tests and samples taken over a depth interval:  
-        `LINESTRING (easting northing elevation_at_top, easting northing elevation_at_base)`
+    The 3D simple feature GIS geometry as WKT for in-situ tests and samples taken over a depth interval:  
+    `LINESTRING (easting northing elevation_at_top, easting northing elevation_at_base)`
 
-        Additionally, a `LonLatHeight` table is created which contains the GI locations at ground level in WGS84 - World Geodetic System 1984 - EPSG:4326 coordinates (Longitude, Latitude, Ellipsoidal Height), which in WKT looks like:  
-        `POINT (longitude latitude wgs84_ground_level_height)`
+    Additionally, a `LonLatHeight` table is created which contains the GI locations at ground level in WGS84 - World Geodetic System 1984 - EPSG:4326 coordinates (Longitude, Latitude, Ellipsoidal Height), which in WKT looks like:  
+    `POINT (longitude latitude wgs84_ground_level_height)`
 
-        The reason for creating the `LonLatHeight` table is that vertical lines in projected Coordinate Reference Systems (CRS) are often not rendered nicely by default in all web-mapping software. Vertical lines are often not visible when looking at a map from above, and not all web-mapping software is capable of handling geometry in non-WGS84, i.e. (Lon, Lat) coordinates.
-        """
+    The reason for creating the `LonLatHeight` table is that vertical lines in projected Coordinate Reference Systems (CRS) are often not rendered nicely by default in all web-mapping software. Vertical lines are often not visible when looking at a map from above, and not all web-mapping software is capable of handling geometry in non-WGS84, i.e. (Lon, Lat) coordinates.
+    """
     )
     return
 
 
 @app.cell
-def _(brgi_db, calculate_gis_geometry, check_brgi_database):
-    brgi_geodb = calculate_gis_geometry(brgi_db)
-    check_brgi_database(brgi_geodb)
+def _(brgi_db, create_brgi_geospatial_database):
+    brgi_geodb = create_brgi_geospatial_database(brgi_db)
     return (brgi_geodb,)
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(
-        r"""
-        ## Ground Investigation data exploration
-
-        After creating the Bedrock GI 3D Geospatial Database `brgi_geodb` - which is a dictionary of [`geopandas.GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame)s - you can explore the Kai Tak Ground Investigation data on an interactive map by applying the [`geopandas.GeoDataFrame.explore()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html#geopandas.GeoDataFrame.explore) method to the different tables in the `brgi_geodb`.
-
-        Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `InSitu_ISPT`. Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `InSitu_GEOL` or `InSitu_WETH`, display very small on the `gdf.explore()` `leaflet`-based interactive map, and don't show at all on the `matplotlib`-based `gdf.plot()`.
-        """
-    )
-    return
 
 
 @app.cell
 def _(brgi_geodb):
-    brgi_geodb["LonLatHeight"].explore()
+    brgi_geodb.LonLatHeight.explore()
     return
 
 
@@ -325,17 +377,45 @@ def _(brgi_geodb):
 def _(mo):
     mo.md(
         r"""
-        With marimo's built-in data exploration tables and dataframes, it's also really easy to filter and visualize the GI data.
+    ## Ground Investigation data exploration
 
-        For example, in the `InSitu_ISPT` table (SPT data) you could apply a filter to the `ISPT_NVAL` (SPT N-value) of e.g. 1 - 10. When you then select those rows and then scroll to the map below, you'll see all the locations where soft soils were encountered.
-        """
+    After creating the Bedrock GI 3D  Database `brgi_geodb` - which is a dictionary of [`geopandas.GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame)s - you can explore the Kai Tak Ground Investigation data on an interactive map by applying the [`geopandas.GeoDataFrame.explore()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html#geopandas.GeoDataFrame.explore) method to the different tables in the `brgi_geodb`.
+
+    Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `InSitu_ISPT`. Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `InSitu_GEOL` or `InSitu_WETH`, display very small on the `geodf.explore()` `leaflet`-based interactive map, and don't show at all on the `matplotlib`-based `geodf.plot()`.
+    """
     )
     return
 
 
+@app.cell
+def _(Point, brgi_geodb):
+    geodf = brgi_geodb.InSituTests["GEOL"]
+    geodf["geometry"] = geodf["geometry"].apply(lambda geom: Point(geom.coords[0]))
+    geodf.explore()
+    return (geodf,)
+
+
+@app.cell
+def _(geodf, geodf_to_df):
+    geodf_to_df(geodf)
+    return
+
+
 @app.cell(hide_code=True)
-def _(brgi_db, mo):
-    explore_brgi_table = mo.ui.dropdown(brgi_db, value="InSitu_ISPT")
+def _(mo):
+    mo.md(
+        r"""
+    With marimo's built-in data exploration tables and dataframes, it's also really easy to filter and visualize the GI data.
+
+    For example, in the `InSitu_ISPT` table (SPT data) you could apply a filter to the `ISPT_NVAL` (SPT N-value) of e.g. 1 - 10. When you then select those rows and then scroll to the map below, you'll see all the locations where soft soils were encountered.
+    """
+    )
+    return
+
+
+@app.cell
+def _(brgi_geodb, mo):
+    explore_brgi_table = mo.ui.dropdown(brgi_geodb.InSituTests, value="ISPT")
     mo.md(f"Select the GI table you want to explore: {explore_brgi_table}")
     return (explore_brgi_table,)
 
@@ -347,23 +427,26 @@ def _(explore_brgi_table, mo):
     return (filtered_table,)
 
 
+@app.cell
+def _(filtered_df, filtered_table):
+    print(f"filtered_table.value type: {type(filtered_table.value)}")
+    print(f"filtered_df.value type: {type(filtered_df.value)}")
+    return
+
+
 @app.cell(hide_code=True)
-def _(brgi_geodb, filtered_table, gpd, mo):
+def _(Point, filtered_table, gpd, mo):
     def gi_exploration_map(filtered_brgi_table):
         if "location_uid" not in filtered_brgi_table.value.columns:
             output = mo.md(
                 "No interactive map with the data selected in the table above can be shown, because the you're exploring isn't linked to the `LonLatHeight` table with a `location_uid` column, i.e. doesn't have `location_uid` as a foreign key."
             ).callout("warn")
         else:
-            filtered_df = filtered_brgi_table.value.merge(
-                brgi_geodb["LonLatHeight"], on="location_uid", how="inner"
+            fltrd_geodf = gpd.GeoDataFrame(filtered_brgi_table.value.copy())
+            fltrd_geodf["geometry"] = fltrd_geodf["geometry"].apply(
+                lambda geom: Point(geom.coords[0])
             )
-            filtered_gdf = gpd.GeoDataFrame(
-                filtered_df,
-                geometry=filtered_df["geometry"],
-                crs="EPSG:4326",  # 4326 is the WGS84 (lon, lat) EPSG code
-            )
-            output = filtered_gdf.explore()
+            output = fltrd_geodf.explore()
         return output
 
     gi_exploration_map(filtered_table)
@@ -374,24 +457,24 @@ def _(brgi_geodb, filtered_table, gpd, mo):
 def _(mo):
     mo.md(
         r"""
-        Something else you might be interested in, is where the weathering grade of the soil or rock is low. Weathering grades range from `I` (Fresh Rock) to `VI` (Residual Soil). All rock with a weathering grade of `III` (Moderately Decomposed) or better is still considered competent rock.
+    Something else you might be interested in, is where the weathering grade of the soil or rock is low. Weathering grades range from `I` (Fresh Rock) to `VI` (Residual Soil). All rock with a weathering grade of `III` (Moderately Decomposed) or better is still considered competent rock.
 
-        The weathering grades can be found in the `WETH_GRAD` column in the `InSitu_WETH` table (Weathering data). Therefore, to find all competent rock, we need to filter out all the rows that contain a `V`, which you can do in the widget below.
+    The weathering grades can be found in the `WETH_GRAD` column in the `InSitu_WETH` table (Weathering data). Therefore, to find all competent rock, we need to filter out all the rows that contain a `V`, which you can do in the widget below.
 
-        That widget also shows the Python code that creates the filter:
+    That widget also shows the Python code that creates the filter:
 
-        ```python
-        df_next = df
-        df_next = df_next[~((df_next["WETH_GRAD"].str.contains("V")))]
-        ```
-        """
+    ```python
+    df_next = df
+    df_next = df_next[~((df_next["WETH_GRAD"].str.contains("V")))]
+    ```
+    """
     )
     return
 
 
 @app.cell(hide_code=True)
-def _(brgi_db, mo):
-    explore_brgi_df = mo.ui.dropdown(brgi_db, value="InSitu_WETH")
+def _(brgi_geodb, mo):
+    explore_brgi_df = mo.ui.dropdown(brgi_geodb.InSituTests, value="WETH")
     mo.md(f"Select the GI table you want to explore: {explore_brgi_df}")
     return (explore_brgi_df,)
 
@@ -413,24 +496,26 @@ def _(filtered_df, gi_exploration_map):
 def _(mo):
     mo.md(
         r"""
-        ## Saving the GI geospatial database as a GeoPackage (.gpkg)
+    ## Saving the GI  database as a GeoPackage (.gpkg)
 
-        Finally, lets write, i.e. persist `brgi_geodb` - a Python dictionary of `geopandas.GeoDataFrames` - to an actual geospatial database file, so we can share our GI data with others.
-        For example, to reuse it in other notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
+    Finally, lets write, i.e. persist `brgi_geodb` - a Python dictionary of `geopandas.GeoDataFrames` - to an actual  database file, so we can share our GI data with others.
+    For example, to reuse it in other notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
 
-        A GeoPackage is an OGC-standardized extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, many (open-source) GIS software packages support GeoPackage!
+    A GeoPackage is an OGC-standardized extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, many (open-source) GIS software packages support GeoPackage!
 
-        > [What about Shapefile and GeoJSON?](#what-about-shapefile-and-geojson)
-        """
+    > [What about Shapefile and GeoJSON?](#what-about-shapefile-and-geojson)
+    """
     )
     return
 
 
 @app.cell
-def _(brgi_geodb, mo, platform, write_gi_db_to_gpkg):
+def _(brgi_geodb, mo, platform, write_brgi_db_to_file):
     output = None
     if platform.system() != "Emscripten":
-        write_gi_db_to_gpkg(brgi_geodb, mo.notebook_dir() / "kaitak_gi.gpkg")
+        write_brgi_db_to_file(
+            brgi_geodb, mo.notebook_dir() / "kaitak_gi.gpkg", driver="GPKG"
+        )
     else:
         output = mo.md(
             "Writing a GeoPackage from WebAssembly (marimo playground) causes geopandas to think that the GeoDataFrames in the `brgi_geodb` don't have a geometry column. You can [download the GeoPackage from GitHub](https://github.com/bedrock-engineer/bedrock-ge/blob/main/examples/hk_kaitak_ags3/kaitak_gi.gpkg)"
@@ -443,16 +528,16 @@ def _(brgi_geodb, mo, platform, write_gi_db_to_gpkg):
 def _(mo):
     mo.md(
         """
-        ## What's next?
+    ## What's next?
 
-        As mentioned above, the `kaitak_gi.gpkg` GeoPackage can be loaded into QGIS or ArcGIS. QGIS and ArcGIS have [connectors for the Speckle platform](https://www.speckle.systems/connectors), which allows you to publish GIS data to Speckle.
+    As mentioned above, the `kaitak_gi.gpkg` GeoPackage can be loaded into QGIS or ArcGIS. QGIS and ArcGIS have [connectors for the Speckle platform](https://www.speckle.systems/connectors), which allows you to publish GIS data to Speckle.
 
-        With the Speckle viewer you can visualize the GI data in context with data from other AEC software such as Civil3D (Click the balloon!):
+    With the Speckle viewer you can visualize the GI data in context with data from other AEC software such as Civil3D (Click the balloon!):
 
-        <iframe title="Speckle" src="https://app.speckle.systems/projects/013aaf06e7/models/1cbe68ed69,44c8d1ecae,9535541c2b,a739490298,ff81bfa02b#embed=%7B%22isEnabled%22%3Atrue%7D" width="100%" height="400" frameborder="0"></iframe>
+    <iframe title="Speckle" src="https://app.speckle.systems/projects/013aaf06e7/models/1cbe68ed69,44c8d1ecae,9535541c2b,a739490298,ff81bfa02b#embed=%7B%22isEnabled%22%3Atrue%7D" width="100%" height="400" frameborder="0"></iframe>
 
-        Additionally, you can load the GI data in other software that Speckle has a connector for, such as Rhino / Grasshopper to enable parametric geotechnical engineering workflows.
-        """
+    Additionally, you can load the GI data in other software that Speckle has a connector for, such as Rhino / Grasshopper to enable parametric geotechnical engineering workflows.
+    """
     )
     return
 
@@ -461,21 +546,21 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-        ## What about Shapefile and GeoJSON?
+    ## What about Shapefile and GeoJSON?
 
-        ### Shapefile
+    ### Shapefile
 
-        Bluntly put, Shapefile is a bad format.
+    Bluntly put, Shapefile is a bad format.
 
-        Among other problems, Shapefile isn't just a single file. One has to at least share three files [(*.shp, *.dbf, *.shx)](https://en.wikipedia.org/wiki/Shapefile#Mandatory_files), which doesn't include the definition of a CRS. In case that doesn't sound terrible enough to you yet, please have a look at the fantastic website [switchfromshapefile.org](http://switchfromshapefile.org/).
+    Among other problems, Shapefile isn't just a single file. One has to at least share three files [(\*.shp, \*.dbf, \*.shx)](https://en.wikipedia.org/wiki/Shapefile#Mandatory_files), which doesn't include the definition of a CRS. In case that doesn't sound terrible enough to you yet, please have a look at the fantastic website [switchfromshapefile.org](http://switchfromshapefile.org/).
 
-        ### GeoJSON
+    ### GeoJSON
 
-        GeoJSON is a nice, human readable file format for GIS vector data, which is especially useful for web services, but has a few drawbacks:
+    GeoJSON is a nice, human readable file format for GIS vector data, which is especially useful for web services, but has a few drawbacks:
 
-        - Although it is technically possible to use GeoJSON with more CRSs, the [specification states clearly](https://tools.ietf.org/html/rfc7946#section-4) that WGS84, with EPSG:4326 and coordinates (Lon, Lat, Height), is the only CRS that should be used in GeoJSON (see [switchfromshapefile.org](http://switchfromshapefile.org/#geojson)).
-        - GeoJSON support in ArcGIS isn't fantastic. You have to go through [Geoprocessing - JSON to Features conversion tool](https://pro.arcgis.com/en/pro-app/latest/tool-reference/conversion/json-to-features.htm) to add a GeoJSON to your ArcGIS project, which is a bit cumbersome.
-        """
+    - Although it is technically possible to use GeoJSON with more CRSs, the [specification states clearly](https://tools.ietf.org/html/rfc7946#section-4) that WGS84, with EPSG:4326 and coordinates (Lon, Lat, Height), is the only CRS that should be used in GeoJSON (see [switchfromshapefile.org](http://switchfromshapefile.org/#geojson)).
+    - GeoJSON support in ArcGIS isn't fantastic. You have to go through [Geoprocessing - JSON to Features conversion tool](https://pro.arcgis.com/en/pro-app/latest/tool-reference/conversion/json-to-features.htm) to add a GeoJSON to your ArcGIS project, which is a bit cumbersome.
+    """
     )
     return
 

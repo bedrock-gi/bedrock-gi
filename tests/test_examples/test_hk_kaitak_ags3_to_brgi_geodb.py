@@ -2,6 +2,7 @@ import os
 import shutil
 import sqlite3
 import subprocess
+import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -39,13 +40,16 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
         # TODO: implement logging
         # NOTE: The env (environment variables) and encoding are required for running
         # the notebook as a script from both Windows and Linux. Without => UnicodeDecodeError
-        # NOTE: `uvx uv run` runs the marimo notebook as a script in a temporary environment,
+        # NOTE: `(uvx) uv run` runs the marimo notebook as a script in a temporary environment,
         # with the Python version and dependencies specified in the PEP 723 inline script metadata.
+        # The issue with this approach is that it uses the latest version of bedrock-ge,
+        # rather than the current code in this repo.
         env = os.environ.copy()
         env["PYTHONIOENCODING"] = "utf-8"
         result = subprocess.run(
             # ["uvx", "uv", "run", "--no-project", "--no-cache", str(notebook_path)],
-            ["uv", "run", str(notebook_path)],
+            # ["uv", "run", str(notebook_path)],
+            [sys.executable, str(notebook_path)],
             check=False,
             capture_output=True,
             text=True,
@@ -55,7 +59,7 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
 
         # Check that the script ran successfully
         assert result.returncode == 0, (
-            f"📛 Running `uvx run marimo notebook.py` failed with code {result.returncode}\n"
+            f"📛 Running `python notebook.py` failed with code {result.returncode}\n"
             f"📄 STDOUT:\n{result.stdout}\n"
             f"⚠️ STDERR:\n{result.stderr}"
         )
@@ -70,59 +74,64 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
         conn_original = sqlite3.connect(temp_original_gpkg_path)
         conn_output = sqlite3.connect(gpkg_output_path)
 
-        tables_original = conn_original.execute(
-            "SELECT name FROM sqlite_master WHERE type='table';"
-        ).fetchall()
+        tables_original = set(
+            table[0]
+            for table in conn_original.execute(
+                "SELECT name FROM sqlite_master WHERE type='table';"
+            ).fetchall()
+        )
         conn_original.close()
-        tables_output = conn_output.execute(
-            "SELECT name FROM sqlite_master WHERE type='table';"
-        ).fetchall()
+        tables_output = set(
+            table[0]
+            for table in conn_output.execute(
+                "SELECT name FROM sqlite_master WHERE type='table';"
+            ).fetchall()
+        )
         conn_output.close()
 
         assert tables_original == tables_output, (
             f"The original GeoPackage {temp_original_gpkg_path.name} and the output "
             f"GeoPackage {gpkg_output_path.name} have different tables:\n"
-            f"Original: {tables_original}\n"
-            f"Output: {tables_output}"
+            f"set(Original GPKG tables).difference(Output GPKG tables): {tables_original.difference(tables_output)}"
         )
 
         important_tables = [
             {
                 "table_name": "Project",
-                "no_rows": 88,
+                "no_rows": 17,
             },
             {
                 "table_name": "Location",
-                "no_rows": 754,
+                "no_rows": 727,
             },
             {
                 "table_name": "Sample",
-                "no_rows": 17_774,
+                "no_rows": 15_873,
             },
             {
-                "table_name": "InSitu_GEOL",
-                "no_rows": 7_764,
+                "table_name": "GEOL",
+                "no_rows": 7_238,
             },
             {
-                "table_name": "InSitu_ISPT",
-                "no_rows": 3_986,
+                "table_name": "ISPT",
+                "no_rows": 3_544,
             },
             {
-                "table_name": "InSitu_WETH",
-                "no_rows": 3_928,
+                "table_name": "WETH",
+                "no_rows": 3_370,
             },
         ]
         for table in important_tables:
-            gdf_output = gpd.read_file(gpkg_output_path, layer=table["table_name"])
-            assert len(gdf_output) == table["no_rows"], (
+            geodf_output = gpd.read_file(gpkg_output_path, layer=table["table_name"])
+            assert len(geodf_output) == table["no_rows"], (
                 f"The output GeoPackage {gpkg_output_path.name} table {table['table_name']} "
-                f"has {len(gdf_output)} rows instead of {table['no_rows']}."
+                f"has {len(geodf_output)} rows instead of {table['no_rows']}."
             )
-            gdf_original = gpd.read_file(
+            geodf_original = gpd.read_file(
                 temp_original_gpkg_path, layer=table["table_name"]
             )
             pd.testing.assert_frame_equal(
-                gdf_original, gdf_output, check_exact=False, rtol=1e-5
+                geodf_original, geodf_output, check_exact=False, rtol=1e-5
             )
             # It's also possible to assert that GIS geometries are not exactly equal.
             # However, when testing the equality of GeoDataFrames with pandas, the GIS
@@ -130,7 +139,7 @@ def test_kaitak_ags3_notebook_runs_and_creates_gpkg(examples_dir):
             # WKT string and compared as strings. Therefore, if a less precise comparison
             # of GIS geometries is necessary, the assertion above needs changing too.
             # gpd.testing.assert_geoseries_equal(
-            #     gdf_original, gdf_output, check_less_precise=False
+            #     geodf_original, geodf_output, check_less_precise=False
             # )
 
         # Remove the newly generated kaitak_gi.gpkg

@@ -1,0 +1,7445 @@
+[
+  {
+    "group_name": "PROJ",
+    "group_description": "Project Information",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "PROJ_ID",
+        "unit": null,
+        "description": "Project identifier",
+        "example": "6421/A"
+      },
+      {
+        "status": null,
+        "heading": "PROJ_NAME",
+        "unit": null,
+        "description": "Project title",
+        "example": "Acme Gas Works"
+      },
+      {
+        "status": null,
+        "heading": "PROJ_LOC",
+        "unit": null,
+        "description": "Location of site",
+        "example": "London Road, Croydon"
+      },
+      {
+        "status": null,
+        "heading": "PROJ_CLNT",
+        "unit": null,
+        "description": "Client name",
+        "example": "Acme Enterprises"
+      },
+      {
+        "status": null,
+        "heading": "PROJ_CONT",
+        "unit": null,
+        "description": "Contractors name",
+        "example": "Acme Drilling Ltd"
+      },
+      {
+        "status": null,
+        "heading": "PROJ_ENG",
+        "unit": null,
+        "description": "Project Engineer",
+        "example": "Acme Consulting"
+      },
+      {
+        "status": null,
+        "heading": "PROJ_MEMO",
+        "unit": null,
+        "description": "General project comments",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "PROJ_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of production of data",
+        "example": "31/07/1999"
+      },
+      {
+        "status": null,
+        "heading": "?PROJ_CID",
+        "unit": null,
+        "description": "Monitoring Contractor Identifier",
+        "example": "KS123"
+      },
+      {
+        "status": null,
+        "heading": "?PROJ_PROD",
+        "unit": null,
+        "description": "Data file producer",
+        "example": "Acme Drilling Ltd"
+      },
+      {
+        "status": null,
+        "heading": "?PROJ_RECV",
+        "unit": null,
+        "description": "Data file recipient",
+        "example": "Acme Consulting"
+      },
+      {
+        "status": null,
+        "heading": "?PROJ_ISNO",
+        "unit": null,
+        "description": "Issue sequence number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "?PROJ_STAT",
+        "unit": null,
+        "description": "Status of data within submission",
+        "example": "Draft"
+      },
+      {
+        "status": null,
+        "heading": "PROJ_AGS",
+        "unit": null,
+        "description": "AGS Edition Number",
+        "example": "3.1"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS1"
+      }
+    ]
+  },
+  {
+    "group_name": "ABBR",
+    "group_description": "Abbreviation Definitions",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "ABBR_HDNG",
+        "unit": null,
+        "description": "Field Heading in Group",
+        "example": "HOLE_TYPE"
+      },
+      {
+        "status": "*",
+        "heading": "ABBR_CODE",
+        "unit": null,
+        "description": "Abbreviation used",
+        "example": "TP"
+      },
+      {
+        "status": null,
+        "heading": "ABBR_DESC",
+        "unit": null,
+        "description": "Description of Abbreviation",
+        "example": "Trial Pit"
+      }
+    ]
+  },
+  {
+    "group_name": "?BKFL",
+    "group_description": "Backfill Details",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "?HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6422/A"
+      },
+      {
+        "status": "*",
+        "heading": "?BKFL_TOP",
+        "unit": "m",
+        "description": "Depth to top of section",
+        "example": "1.4"
+      },
+      {
+        "status": null,
+        "heading": "?BKFL_BASE",
+        "unit": "m",
+        "description": "Depth to base of section",
+        "example": "11.4"
+      },
+      {
+        "status": null,
+        "heading": "?BKFL_LEG",
+        "unit": null,
+        "description": "Backfill legend code",
+        "example": "905 (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "?BKFL_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of backfill",
+        "example": "01/04/2004"
+      },
+      {
+        "status": null,
+        "heading": "?BKFL_REM",
+        "unit": null,
+        "description": "Backfill Remarks",
+        "example": "Arisings"
+      },
+      {
+        "status": null,
+        "heading": "?FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS20"
+      }
+    ]
+  },
+  {
+    "group_name": "CBRG",
+    "group_description": "CBR Test \u2013 General",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6491/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "22"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "LB (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.50"
+      },
+      {
+        "status": null,
+        "heading": "CBRG_COND",
+        "unit": null,
+        "description": "Sample condition",
+        "example": "Undisturbed, Remoulded etc"
+      },
+      {
+        "status": null,
+        "heading": "CBRG_METH",
+        "unit": null,
+        "description": "Method of remoulding",
+        "example": "Heavy compaction"
+      },
+      {
+        "status": null,
+        "heading": "CBRG_REM",
+        "unit": null,
+        "description": "Notes on CBR test",
+        "example": "Natural, soaked, duration of soaking, 10kN/m2 surcharge"
+      },
+      {
+        "status": null,
+        "heading": "CBRG_NMC",
+        "unit": "%",
+        "description": "Natural moisture content",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "?CBRG_IMC",
+        "unit": "%",
+        "description": "Initial moisture content",
+        "example": "21"
+      },
+      {
+        "status": null,
+        "heading": "CBRG_2\u00d8\u00d8",
+        "unit": "%",
+        "description": "Weight percent retained on 20mm sieve",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "CBRG_SWEL",
+        "unit": "mm",
+        "description": "Amount of total swell recorded",
+        "example": "3.0"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS16"
+      }
+    ]
+  },
+  {
+    "group_name": "CBRT",
+    "group_description": "CBR Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6491/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "22"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "LB (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "CBRT_TESN",
+        "unit": null,
+        "description": "CBR test number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "CBRT_TOP",
+        "unit": "%",
+        "description": "CBR at top",
+        "example": "6.4"
+      },
+      {
+        "status": null,
+        "heading": "CBRT_BOT",
+        "unit": "%",
+        "description": "CBR at bottom",
+        "example": "5.2"
+      },
+      {
+        "status": null,
+        "heading": "CBRT_MCT",
+        "unit": "%",
+        "description": "Moisture content at top",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "CBRT_MCBT",
+        "unit": "%",
+        "description": "Moisture content at bottom",
+        "example": "14"
+      },
+      {
+        "status": null,
+        "heading": "CBRT_BDEN",
+        "unit": "Mg/m3",
+        "description": "Bulk density",
+        "example": "1.84"
+      },
+      {
+        "status": null,
+        "heading": "CBRT_DDEN",
+        "unit": "Mg/m3",
+        "description": "Dry density",
+        "example": "1.60"
+      },
+      {
+        "status": null,
+        "heading": "?CBRT_SWEL",
+        "unit": "mm",
+        "description": "Amount of swell recorded",
+        "example": "3.0"
+      },
+      {
+        "status": null,
+        "heading": "?CBRT_REM",
+        "unit": null,
+        "description": "Test specific remarks",
+        "example": null
+      }
+    ]
+  },
+  {
+    "group_name": "CDIA",
+    "group_description": "Casing Diameter by Depth",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "CDIA_CDEP",
+        "unit": "m",
+        "description": "Depth achieved at CDIA_HOLE",
+        "example": "18.0"
+      },
+      {
+        "status": "*",
+        "heading": "CDIA_HOLE",
+        "unit": "mm",
+        "description": "Casing Diameter",
+        "example": "200"
+      },
+      {
+        "status": null,
+        "heading": "CDIA_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      }
+    ]
+  },
+  {
+    "group_name": "CHEM",
+    "group_description": "Chemical Tests N.B. Provision for reporting of this data is included in groups CNMT and ?ICCT. These groups should be used as appropriate in preference. Group CHEM will be deleted from future editions.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "1"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.60"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_TSUL",
+        "unit": "%",
+        "description": "Total soil or rock sulphate content",
+        "example": "0.06"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_ASUL",
+        "unit": "g/l",
+        "description": "Sulphate aqueous extract 2:1 soil/water",
+        "example": "0.17"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_WSUL",
+        "unit": "g/l",
+        "description": "Water sulphate content",
+        "example": "0.01"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_TSUD",
+        "unit": "%",
+        "description": "Total soil or rock sulphur content",
+        "example": "0.04"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_PH",
+        "unit": null,
+        "description": "Soil/water pH value",
+        "example": "7.2"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CHEM_ORGM",
+        "unit": null,
+        "description": "Method of organic test",
+        "example": "Dichromate"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_ORG",
+        "unit": "%",
+        "description": "Organic matter content",
+        "example": "12"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_020",
+        "unit": "%",
+        "description": "Percentage passing 2mm sieve",
+        "example": "80"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_LOI",
+        "unit": "%",
+        "description": "Mass loss on ignition",
+        "example": "26"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_CO2M",
+        "unit": null,
+        "description": "Method of carbonate test",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CHEM_CO2",
+        "unit": "%",
+        "description": "Carbonate content (as CO) 2",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_ACL",
+        "unit": "%",
+        "description": "Percentage of acid soluble chloride ions",
+        "example": "0.1"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_WCL",
+        "unit": "%",
+        "description": "Percentage of water soluble chloride ions",
+        "example": "0.05"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_DCL",
+        "unit": "mg/l",
+        "description": "Dissolved chloride ions",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_CLN",
+        "unit": null,
+        "description": "Notes on chloride test",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CHEM_TDSM",
+        "unit": null,
+        "description": "Total dissolved solids, test method and notes",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CHEM_TDS",
+        "unit": "%",
+        "description": "Total dissolved solids in water",
+        "example": "1.0"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_RESM",
+        "unit": null,
+        "description": "Resistivity test method",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CHEM_RES",
+        "unit": "ohm",
+        "description": "Resistivity of soil sample corrected to 20 degrees C",
+        "example": "2000"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_REMC",
+        "unit": "%",
+        "description": "Moisture content of sample for resistivity",
+        "example": "11.0"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_REBD",
+        "unit": "Mg/m3",
+        "description": "Bulk density of sample for resistivity",
+        "example": "2.10"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_RDXM",
+        "unit": null,
+        "description": "Redox test information",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CHEM_RDX",
+        "unit": null,
+        "description": "Redox potential",
+        "example": "400"
+      },
+      {
+        "status": null,
+        "heading": "CHEM_RDPH",
+        "unit": null,
+        "description": "pH of redox sample",
+        "example": "7.0"
+      }
+    ]
+  },
+  {
+    "group_name": "CHIS",
+    "group_description": "Chiselling Details",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "CHIS_FROM",
+        "unit": "m",
+        "description": "Depth at start of chiselling",
+        "example": "5.20"
+      },
+      {
+        "status": null,
+        "heading": "CHIS_TO",
+        "unit": "m",
+        "description": "Depth at end of chiselling",
+        "example": "5.35"
+      },
+      {
+        "status": null,
+        "heading": "CHIS_TIME",
+        "unit": "hhmm",
+        "description": "Time taken",
+        "example": "0030"
+      },
+      {
+        "status": null,
+        "heading": "CHIS_TOOL",
+        "unit": null,
+        "description": "Chiselling tool used",
+        "example": "Shell"
+      },
+      {
+        "status": null,
+        "heading": "CHIS_REM",
+        "unit": null,
+        "description": "Chiselling notes",
+        "example": "Chiselling sandstone boulder"
+      }
+    ]
+  },
+  {
+    "group_name": "CHLK",
+    "group_description": "Chalk Tests",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6131/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "2.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "10"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "LB (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "2.50"
+      },
+      {
+        "status": "*",
+        "heading": "CHLK_TESN",
+        "unit": null,
+        "description": "Chalk crushing test number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "CHLK_CCV",
+        "unit": null,
+        "description": "Chalk crushing value as BS 1377 Part 4 Cl 6",
+        "example": "3.5"
+      },
+      {
+        "status": null,
+        "heading": "CHLK_MC",
+        "unit": "%",
+        "description": "Chalk natural moisture content",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "CHLK_SMC",
+        "unit": "%",
+        "description": "Chalk saturated moisture content",
+        "example": "25"
+      },
+      {
+        "status": null,
+        "heading": "CHLK_\u00d81\u00d8",
+        "unit": "%",
+        "description": "Weight percent of material retained on 10mm sieve",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CHLK_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CHLK_CARB",
+        "unit": "%",
+        "description": "Chalk calcium carbonate content",
+        "example": "42"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS21"
+      }
+    ]
+  },
+  {
+    "group_name": "CLSS",
+    "group_description": "Classification Tests",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "1"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.60"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_NMC",
+        "unit": "%",
+        "description": "Natural moisture content",
+        "example": "57"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_LL",
+        "unit": "%",
+        "description": "Liquid limit",
+        "example": "62"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_PL",
+        "unit": "%",
+        "description": "Plastic limit",
+        "example": "38 or NP"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_BDEN",
+        "unit": "Mg/m3",
+        "description": "Bulk density",
+        "example": "1.66"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_DDEN",
+        "unit": "Mg/m3",
+        "description": "Dry density",
+        "example": "1.06"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_PD",
+        "unit": "Mg/m3",
+        "description": "Particle density",
+        "example": "2.65"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_425",
+        "unit": "%",
+        "description": "Percentage passing 425 \u03bcm sieve",
+        "example": "12"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_PREP",
+        "unit": null,
+        "description": "Method of preparation",
+        "example": "Wet sieve etc"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_SLIM",
+        "unit": "%",
+        "description": "Shrinkage limit",
+        "example": "17"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_LS",
+        "unit": "%",
+        "description": "Linear shrinkage",
+        "example": "11"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_HVP",
+        "unit": "kN/m2",
+        "description": "Hand vane undrained shear strength (peak)",
+        "example": "40"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_HVR",
+        "unit": "kN/m2",
+        "description": "Hand vane undrained shear strength (remoulded)",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_PPEN",
+        "unit": "kN/m2",
+        "description": "Pocket penetrometer undrained shear strength",
+        "example": "40"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_VNPK",
+        "unit": "kN/m2",
+        "description": "Laboratory vane undrained shear strength (peak)",
+        "example": "35"
+      },
+      {
+        "status": null,
+        "heading": "CLSS_VNRM",
+        "unit": "kN/m2",
+        "description": "Laboratory vane undrained shear strength (remoulded)",
+        "example": "25"
+      },
+      {
+        "status": null,
+        "heading": "?CLSS_REM",
+        "unit": null,
+        "description": "Notes on classification testing",
+        "example": "1 point liquid limit test"
+      },
+      {
+        "status": null,
+        "heading": "?FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS231"
+      }
+    ]
+  },
+  {
+    "group_name": "CMPG",
+    "group_description": "Compaction Tests - General",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "7.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "15"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "LB (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "7.50"
+      },
+      {
+        "status": null,
+        "heading": "CMPG_TYPE",
+        "unit": null,
+        "description": "Compaction test type",
+        "example": "2.5kg, 4.5kg or vibro"
+      },
+      {
+        "status": null,
+        "heading": "CMPG_MOLD",
+        "unit": null,
+        "description": "Compaction mould type",
+        "example": "Standard or CBR"
+      },
+      {
+        "status": null,
+        "heading": "CMPG_375",
+        "unit": "%",
+        "description": "Weight percent of material retained on 37.5mm sieve",
+        "example": "7"
+      },
+      {
+        "status": null,
+        "heading": "CMPG_2\u00d8\u00d8",
+        "unit": "%",
+        "description": "Weight percent of material retained on 20mm sieve",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "CMPG_PDEN",
+        "unit": "Mg/m3",
+        "description": "Particle density measured or assumed (#)",
+        "example": "#2.65"
+      },
+      {
+        "status": null,
+        "heading": "CMPG_MAXD",
+        "unit": "Mg/m3",
+        "description": "Maximum dry density",
+        "example": "2.06"
+      },
+      {
+        "status": null,
+        "heading": "CMPG_MCOP",
+        "unit": "%",
+        "description": "Moisture content at maximum dry density",
+        "example": "14"
+      },
+      {
+        "status": null,
+        "heading": "CMPG_REM",
+        "unit": null,
+        "description": "Notes on compaction test required under BS 1377: 1990",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS23"
+      }
+    ]
+  },
+  {
+    "group_name": "CMPT",
+    "group_description": "Compaction Tests",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "7.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "15"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "LB (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "7.50"
+      },
+      {
+        "status": "*",
+        "heading": "CMPT_TESN",
+        "unit": null,
+        "description": "Compaction point number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "CMPT_MC",
+        "unit": "%",
+        "description": "Moisture content",
+        "example": "7.8"
+      },
+      {
+        "status": null,
+        "heading": "CMPT_DDEN",
+        "unit": "Mg/m3",
+        "description": "Dry density at CMPT_MC moisture content",
+        "example": "1.85"
+      }
+    ]
+  },
+  {
+    "group_name": "CNMT",
+    "group_description": "Contaminant and Chemical Testing NB. in situ measurement and monitoring of contamination and chemicals shoud be recorded in Group ?ICCT",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "ES (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "4"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.90"
+      },
+      {
+        "status": "*",
+        "heading": "CNMT_TYPE",
+        "unit": null,
+        "description": "Determinand",
+        "example": "CL (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "CNMT_TTYP",
+        "unit": null,
+        "description": "Test type",
+        "example": "SOLID_WAT (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "CNMT_RESL",
+        "unit": null,
+        "description": "Test result",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CNMT_UNIT",
+        "unit": null,
+        "description": "Test result units",
+        "example": "(See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "CNMT_CAS",
+        "unit": null,
+        "description": "Chemical Abstract Service registry number (where appropriate)",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CNMT_METH",
+        "unit": null,
+        "description": "Test method",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CNMT_PREP",
+        "unit": null,
+        "description": "Sample preparation",
+        "example": "Air dried"
+      },
+      {
+        "status": null,
+        "heading": "CNMT_REM",
+        "unit": null,
+        "description": "Comments on test",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CNMT_LIM",
+        "unit": null,
+        "description": "Method lower detection limit",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?CNMT_ULIM",
+        "unit": null,
+        "description": "Method upper detection limit",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "CNMT_NAME",
+        "unit": null,
+        "description": "Client/laboratory preferred name of determinand",
+        "example": "Dry weight Chloride"
+      },
+      {
+        "status": null,
+        "heading": "CNMT_LAB",
+        "unit": null,
+        "description": "Name of testing laboratory/Organisation",
+        "example": "Chemical Test House"
+      },
+      {
+        "status": null,
+        "heading": "CNMT_CRED",
+        "unit": null,
+        "description": "Accrediting body (When appropriate)",
+        "example": "UKAS"
+      },
+      {
+        "status": null,
+        "heading": "?CNMT_LBID",
+        "unit": null,
+        "description": "Laboratory Internal Reference",
+        "example": "LB234675"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS22"
+      }
+    ]
+  },
+  {
+    "group_name": "CODE",
+    "group_description": "Chemical Testing Codes",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "CODE_CODE",
+        "unit": null,
+        "description": "Code",
+        "example": "CL"
+      },
+      {
+        "status": null,
+        "heading": "CODE_DESC",
+        "unit": null,
+        "description": "Code Description",
+        "example": "Chloride"
+      }
+    ]
+  },
+  {
+    "group_name": "CONG",
+    "group_description": "Consolidation Test - General",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "4"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.90"
+      },
+      {
+        "status": null,
+        "heading": "CONG_TYPE",
+        "unit": null,
+        "description": "Oedometer or Rowe, primary or secondary consolidation",
+        "example": "Oed, Rowe"
+      },
+      {
+        "status": null,
+        "heading": "CONG_COND",
+        "unit": null,
+        "description": "Sample condition",
+        "example": "Undisturbed, remoulded etc"
+      },
+      {
+        "status": null,
+        "heading": "CONG_REM",
+        "unit": null,
+        "description": "Test details including method statement",
+        "example": "Temperature 21 degrees C, sample from base of U100 sample, axis vertical"
+      },
+      {
+        "status": null,
+        "heading": "CONG_INCM",
+        "unit": "m2/MN",
+        "description": "Coefficient of volume compressibility over CONG_INCD",
+        "example": "0.36"
+      },
+      {
+        "status": null,
+        "heading": "CONG_INCD",
+        "unit": "kN/m2",
+        "description": "Defined stress range",
+        "example": "100 to 200"
+      },
+      {
+        "status": null,
+        "heading": "CONG_DIA",
+        "unit": "mm",
+        "description": "Test specimen diameter",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "CONG_HIGT",
+        "unit": "mm",
+        "description": "Test specimen height",
+        "example": "19"
+      },
+      {
+        "status": null,
+        "heading": "CONG_MCI",
+        "unit": "%",
+        "description": "Initial moisture content",
+        "example": "21"
+      },
+      {
+        "status": null,
+        "heading": "CONG_MCF",
+        "unit": "%",
+        "description": "Final moisture content",
+        "example": "18"
+      },
+      {
+        "status": null,
+        "heading": "CONG_BDEN",
+        "unit": "Mg/m3",
+        "description": "Initial bulk density",
+        "example": "2.12"
+      },
+      {
+        "status": null,
+        "heading": "CONG_DDEN",
+        "unit": "Mg/m3",
+        "description": "Initial dry density",
+        "example": "1.75"
+      },
+      {
+        "status": null,
+        "heading": "CONG_PDEN",
+        "unit": "Mg/m3",
+        "description": "Particle density (BS 1377) with # if assumed",
+        "example": "#2.65"
+      },
+      {
+        "status": null,
+        "heading": "CONG_SATR",
+        "unit": "%",
+        "description": "Initial degree of saturation",
+        "example": "98"
+      },
+      {
+        "status": null,
+        "heading": "CONG_SPRS",
+        "unit": "kN/m2",
+        "description": "Swelling pressure",
+        "example": "100"
+      },
+      {
+        "status": null,
+        "heading": "CONG_SATH",
+        "unit": "%",
+        "description": "Height change of specimen on saturation as percentage of original height",
+        "example": "+1.1"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS9"
+      },
+      {
+        "status": null,
+        "heading": "?CONG_IVR",
+        "unit": null,
+        "description": "Initial voids ratio",
+        "example": "0.80"
+      }
+    ]
+  },
+  {
+    "group_name": "CONS",
+    "group_description": "Consolidation Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "4"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.90"
+      },
+      {
+        "status": "*",
+        "heading": "CONS_INCN",
+        "unit": null,
+        "description": "Oedometer stress increment number",
+        "example": "3"
+      },
+      {
+        "status": null,
+        "heading": "CONS_IVR",
+        "unit": null,
+        "description": "Voids ratio at start of increment",
+        "example": "0.80"
+      },
+      {
+        "status": null,
+        "heading": "CONS_INCF",
+        "unit": "kN/m2",
+        "description": "Stress at end of stress increment/decrement",
+        "example": "400"
+      },
+      {
+        "status": null,
+        "heading": "CONS_INCE",
+        "unit": null,
+        "description": "Voids ratio at end of stress increment",
+        "example": "0.62"
+      },
+      {
+        "status": null,
+        "heading": "CONS_INMV",
+        "unit": "m2/MN",
+        "description": "Reported coefficient of volume compressibility over stress increment",
+        "example": "0.32"
+      },
+      {
+        "status": null,
+        "heading": "CONS_INCV",
+        "unit": "m2/yr",
+        "description": "Reported coefficient of consolidation over stress increment",
+        "example": "4.12"
+      },
+      {
+        "status": null,
+        "heading": "CONS_INSC",
+        "unit": null,
+        "description": "Coefficient of secondary compression over stress increment",
+        "example": "0.12"
+      },
+      {
+        "status": null,
+        "heading": "?CONS_CVRT",
+        "unit": "m2/yr",
+        "description": "Coefficient of consolidation determined by the root time method",
+        "example": "2.10"
+      },
+      {
+        "status": null,
+        "heading": "?CONS_CVLG",
+        "unit": "m2/yr",
+        "description": "Coefficient of consolidation determined by the log time method",
+        "example": "4.12"
+      },
+      {
+        "status": null,
+        "heading": "?CONS_REM",
+        "unit": null,
+        "description": "Remarks including method used to determine coefficients reported under CONS_INMV and selected CONS_INCV (from either of ?CONS_CVRT or ?CONS_CVLG)",
+        "example": "Log time method reported"
+      }
+    ]
+  },
+  {
+    "group_name": "CORE",
+    "group_description": "Rotary Core Information",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6423/A"
+      },
+      {
+        "status": "*",
+        "heading": "CORE_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of core run",
+        "example": "2.54"
+      },
+      {
+        "status": "*",
+        "heading": "CORE_BOT",
+        "unit": "m",
+        "description": "Depth to BOTTOM of core run",
+        "example": "3.54"
+      },
+      {
+        "status": null,
+        "heading": "CORE_PREC",
+        "unit": "%",
+        "description": "Percentage of core recovered in core run (TCR)",
+        "example": "32"
+      },
+      {
+        "status": null,
+        "heading": "CORE_SREC",
+        "unit": "%",
+        "description": "Percentage of solid core recovered in core run (SCR)",
+        "example": "23"
+      },
+      {
+        "status": null,
+        "heading": "CORE_RQD",
+        "unit": "%",
+        "description": "Rock Quality Designation for core run (RQD)",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "CORE_REM",
+        "unit": null,
+        "description": "Rotary remarks",
+        "example": "Rods dropped 200mm at 3.10m"
+      },
+      {
+        "status": null,
+        "heading": "CORE_DIAM",
+        "unit": "mm",
+        "description": "Core diameter",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS5"
+      }
+    ]
+  },
+  {
+    "group_name": "DETL",
+    "group_description": "Stratum Detail Descriptions",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "DETL_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of detail description",
+        "example": "3.46"
+      },
+      {
+        "status": "*",
+        "heading": "DETL_BASE",
+        "unit": "m",
+        "description": "Depth to BASE of detail description",
+        "example": "3.76"
+      },
+      {
+        "status": null,
+        "heading": "DETL_DESC",
+        "unit": null,
+        "description": "Detail description",
+        "example": "Claystone"
+      }
+    ]
+  },
+  {
+    "group_name": "DICT",
+    "group_description": "User Defined Groups and Headings",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "DICT_TYPE",
+        "unit": null,
+        "description": "Flag to indicate definition is a GROUP or HEADING (ie can be either of GROUP or HEADING)",
+        "example": "HEADING"
+      },
+      {
+        "status": "*",
+        "heading": "DICT_GRP",
+        "unit": null,
+        "description": "Group Name",
+        "example": "ISPT"
+      },
+      {
+        "status": "*",
+        "heading": "DICT_HDNG",
+        "unit": null,
+        "description": "Heading Name",
+        "example": "ISPT_CALN"
+      },
+      {
+        "status": null,
+        "heading": "DICT_STAT",
+        "unit": null,
+        "description": "Heading status KEY or COMMON (blank for Group)",
+        "example": "COMMON"
+      },
+      {
+        "status": null,
+        "heading": "DICT_DESC",
+        "unit": null,
+        "description": "Description",
+        "example": "Corrected N value"
+      },
+      {
+        "status": null,
+        "heading": "DICT_UNIT",
+        "unit": null,
+        "description": "Units",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "DICT_EXMP",
+        "unit": null,
+        "description": "Example",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "?DICT_PGRP",
+        "unit": null,
+        "description": "Parent group name",
+        "example": "HOLE"
+      }
+    ]
+  },
+  {
+    "group_name": "DISC",
+    "group_description": "Discontinuity Data",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "DISC_TOP",
+        "unit": "m",
+        "description": "Depth to top in hole, or distance to start on traverse, of discontinuity zone, or discontinuity",
+        "example": "10.26"
+      },
+      {
+        "status": "*",
+        "heading": "DISC_BASE",
+        "unit": "m",
+        "description": "Depth to base in hole, or distance to end on traverse, of discontinuity zone",
+        "example": "12.67"
+      },
+      {
+        "status": "*",
+        "heading": "FRAC_SET",
+        "unit": null,
+        "description": "Discontinuity set reference number",
+        "example": "J3"
+      },
+      {
+        "status": "*",
+        "heading": "DISC_NUMB",
+        "unit": null,
+        "description": "Discontinuity number",
+        "example": "57"
+      },
+      {
+        "status": null,
+        "heading": "DISC_TYPE",
+        "unit": null,
+        "description": "Type of discontinuity",
+        "example": "Joint"
+      },
+      {
+        "status": null,
+        "heading": "DISC_DIP",
+        "unit": "deg",
+        "description": "Dip of discontinuity",
+        "example": "08"
+      },
+      {
+        "status": null,
+        "heading": "DISC_DIR",
+        "unit": "deg",
+        "description": "Dip direction of discontinuity",
+        "example": "247"
+      },
+      {
+        "status": null,
+        "heading": "DISC_RGH",
+        "unit": null,
+        "description": "Small scale roughness (ISRM 1978)",
+        "example": "Smooth"
+      },
+      {
+        "status": null,
+        "heading": "DISC_PLAN",
+        "unit": null,
+        "description": "Intermediate scale planarity (ISRM 1978)",
+        "example": "Planar"
+      },
+      {
+        "status": null,
+        "heading": "DISC_WAVE",
+        "unit": "m",
+        "description": "Large scale waviness, wavelength (ISRM 1978)",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "DISC_AMP",
+        "unit": "m",
+        "description": "Large scale waviness, amplitude (ISRM 1978)",
+        "example": "0.5"
+      },
+      {
+        "status": null,
+        "heading": "DISC_JRC",
+        "unit": null,
+        "description": "Joint Roughness Coefficient",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "DISC_APP",
+        "unit": null,
+        "description": "Surface appearance",
+        "example": "Slightly polished"
+      },
+      {
+        "status": null,
+        "heading": "DISC_APT",
+        "unit": "mm",
+        "description": "Discontinuity aperture measurement",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "DISC_APOB",
+        "unit": null,
+        "description": "Discontinuity aperture observation",
+        "example": "Infilled"
+      },
+      {
+        "status": null,
+        "heading": "DISC_INFM",
+        "unit": null,
+        "description": "Infilling material",
+        "example": "Soft clay"
+      },
+      {
+        "status": null,
+        "heading": "DISC_TERM",
+        "unit": null,
+        "description": "Discontinuity termination (lower, upper) (ISRM 1978)",
+        "example": "XR (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "DISC_PERS",
+        "unit": "m",
+        "description": "Persistence measurement",
+        "example": "10.5"
+      },
+      {
+        "status": null,
+        "heading": "DISC_STR",
+        "unit": "MPa",
+        "description": "Discontinuity wall strength",
+        "example": "50"
+      },
+      {
+        "status": null,
+        "heading": "DISC_WETH",
+        "unit": null,
+        "description": "Discontinuity wall weathering",
+        "example": "Slightly weathered"
+      },
+      {
+        "status": null,
+        "heading": "DISC_SEEP",
+        "unit": null,
+        "description": "Seepage rating (ISRM 1978)",
+        "example": "VI"
+      },
+      {
+        "status": null,
+        "heading": "DISC_FLOW",
+        "unit": "l/min",
+        "description": "Water flow estimate",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "DISC_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated File Reference",
+        "example": "FS24"
+      }
+    ]
+  },
+  {
+    "group_name": "DPRB",
+    "group_description": "Dynamic Probe Test NB. The type of probe should be recorded in the Group DPRG",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6451/A"
+      },
+      {
+        "status": "*",
+        "heading": "DPRB_DPTH",
+        "unit": "m",
+        "description": "Depth to start of dynamic probe increment",
+        "example": "2.50"
+      },
+      {
+        "status": null,
+        "heading": "DPRB_TYPE",
+        "unit": null,
+        "description": "Dynamic probe type",
+        "example": "Macintosh"
+      },
+      {
+        "status": null,
+        "heading": "DPRB_BLOW",
+        "unit": null,
+        "description": "Dynamic probe blows for increment DPRB_INC",
+        "example": "7"
+      },
+      {
+        "status": null,
+        "heading": "DPRB_TORQ",
+        "unit": "Nm",
+        "description": "Maximum torque required to rotate rods",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "DPRB_DEL",
+        "unit": "hhmm",
+        "description": "Duration of delay before increment started",
+        "example": "0000"
+      },
+      {
+        "status": null,
+        "heading": "DPRB_INC",
+        "unit": "mm",
+        "description": "Dynamic probe increment",
+        "example": "100"
+      },
+      {
+        "status": null,
+        "heading": "DPRB_REM",
+        "unit": null,
+        "description": "Notes on events during increment",
+        "example": null
+      }
+    ]
+  },
+  {
+    "group_name": "DPRG",
+    "group_description": "Dynamic Probe Test - General",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6451/A"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_TYPE",
+        "unit": null,
+        "description": "Dynamic probe type",
+        "example": "DPH"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_TEST",
+        "unit": null,
+        "description": "Test method",
+        "example": "BS 1377 Part 9: 3.2"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_MASS",
+        "unit": "kg",
+        "description": "Hammer mass",
+        "example": "50"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_DROP",
+        "unit": "mm",
+        "description": "Standard drop",
+        "example": "500"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_CONE",
+        "unit": "mm",
+        "description": "Cone base diameter",
+        "example": "43"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_ROD",
+        "unit": "mm",
+        "description": "Rod diameter",
+        "example": "35"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_DAMP",
+        "unit": null,
+        "description": "Type of anvil damper",
+        "example": "None"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_TIP",
+        "unit": "m",
+        "description": "Depth of cone if left in ground",
+        "example": "8.00"
+      },
+      {
+        "status": null,
+        "heading": "DPRG_REM",
+        "unit": null,
+        "description": "General remarks",
+        "example": "Hole backfilled on completion"
+      },
+      {
+        "status": null,
+        "heading": "?DPRG_ANG",
+        "unit": "Deg",
+        "description": "Cone angle",
+        "example": "90"
+      },
+      {
+        "status": null,
+        "heading": "?DPRG_RMSS",
+        "unit": "kg/m",
+        "description": "Rod Mass",
+        "example": "9"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated File Reference",
+        "example": "FS25"
+      }
+    ]
+  },
+  {
+    "group_name": "DREM",
+    "group_description": "Depth Related Remarks",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "DREM_DPTH",
+        "unit": "m",
+        "description": "Depth of DREM_REM",
+        "example": "12.50"
+      },
+      {
+        "status": null,
+        "heading": "?DREM_BDEP",
+        "unit": "m",
+        "description": "Base depth",
+        "example": "13.80"
+      },
+      {
+        "status": null,
+        "heading": "DREM_REM",
+        "unit": null,
+        "description": "Depth related remark",
+        "example": "Driving boulder ahead of casing"
+      }
+    ]
+  },
+  {
+    "group_name": "FILE",
+    "group_description": "Associated Files",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "File set reference number",
+        "example": "FS128"
+      },
+      {
+        "status": "*",
+        "heading": "FILE_NAME",
+        "unit": null,
+        "description": "File name",
+        "example": "BH1COR08.JPG"
+      },
+      {
+        "status": null,
+        "heading": "FILE_DESC",
+        "unit": null,
+        "description": "Description of content",
+        "example": "BH1 Core photo box 8"
+      },
+      {
+        "status": null,
+        "heading": "FILE_TYPE",
+        "unit": null,
+        "description": "File type",
+        "example": "JPG"
+      },
+      {
+        "status": null,
+        "heading": "FILE_PROG",
+        "unit": null,
+        "description": "Parent program and version number",
+        "example": "Paintshop Pro v 5.0"
+      },
+      {
+        "status": null,
+        "heading": "?FILE_DOCT",
+        "unit": null,
+        "description": "Document type",
+        "example": "PH (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "FILE_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "File date",
+        "example": "31/07/1999"
+      }
+    ]
+  },
+  {
+    "group_name": "FLSH",
+    "group_description": "Rotary Core Flush Details",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "FLSH_FROM",
+        "unit": "m",
+        "description": "Depth to top of flush zone",
+        "example": "10.00"
+      },
+      {
+        "status": "*",
+        "heading": "FLSH_TO",
+        "unit": "m",
+        "description": "Depth to bottom of flush zone",
+        "example": "20.00"
+      },
+      {
+        "status": null,
+        "heading": "FLSH_TYPE",
+        "unit": null,
+        "description": "Type of flush",
+        "example": "Water"
+      },
+      {
+        "status": null,
+        "heading": "FLSH_RETN",
+        "unit": "%",
+        "description": "Flush return",
+        "example": "50"
+      },
+      {
+        "status": null,
+        "heading": "FLSH_COL",
+        "unit": null,
+        "description": "Colour of flush return",
+        "example": "White"
+      }
+    ]
+  },
+  {
+    "group_name": "FRAC",
+    "group_description": "Fracture Spacing",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6423/A"
+      },
+      {
+        "status": "*",
+        "heading": "FRAC_TOP",
+        "unit": "m",
+        "description": "Depth to top in hole, or distance to start on traverse, of the zone",
+        "example": "31.20"
+      },
+      {
+        "status": "*",
+        "heading": "FRAC_BASE",
+        "unit": "m",
+        "description": "Depth to base in hole, or distance to end on traverse, of the zone",
+        "example": "33.65"
+      },
+      {
+        "status": "*",
+        "heading": "FRAC_SET",
+        "unit": null,
+        "description": "Discontinuity set reference number",
+        "example": "J3"
+      },
+      {
+        "status": null,
+        "heading": "FRAC_FI",
+        "unit": null,
+        "description": "Fracture Index over zone (fractures per metre)",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "FRAC_IMAX",
+        "unit": "mm",
+        "description": "Maximum Fracture Spacing over zone",
+        "example": "350"
+      },
+      {
+        "status": null,
+        "heading": "FRAC_IAVE",
+        "unit": "mm",
+        "description": "Average Fracture Spacing over zone",
+        "example": "220"
+      },
+      {
+        "status": null,
+        "heading": "FRAC_IMIN",
+        "unit": "mm",
+        "description": "Minimum Fracture Spacing over zone",
+        "example": "NI"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS4"
+      }
+    ]
+  },
+  {
+    "group_name": "FRST",
+    "group_description": "Frost Susceptibility",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6341/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "11"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.50"
+      },
+      {
+        "status": null,
+        "heading": "FRST_COND",
+        "unit": null,
+        "description": "Sample condition",
+        "example": "Undisturbed"
+      },
+      {
+        "status": null,
+        "heading": "FRST_REM",
+        "unit": null,
+        "description": "Notes on frost susceptibility testing as per TRRL SR 829",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "FRST_DDEN",
+        "unit": "Mg/m3",
+        "description": "Dry density",
+        "example": "1.96"
+      },
+      {
+        "status": null,
+        "heading": "FRST_MC",
+        "unit": "%",
+        "description": "Moisture content",
+        "example": "24"
+      },
+      {
+        "status": null,
+        "heading": "FRST_HVE1",
+        "unit": "%",
+        "description": "Frost heave, first specimen",
+        "example": "3.0"
+      },
+      {
+        "status": null,
+        "heading": "FRST_HVE2",
+        "unit": "%",
+        "description": "Frost heave, second specimen",
+        "example": "4.5"
+      },
+      {
+        "status": null,
+        "heading": "FRST_HVE3",
+        "unit": "%",
+        "description": "Frost heave, third specimen",
+        "example": "3.5"
+      },
+      {
+        "status": null,
+        "heading": "FRST_HVE",
+        "unit": "%",
+        "description": "Mean heave of 3 specimens",
+        "example": "3.67"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS20"
+      }
+    ]
+  },
+  {
+    "group_name": "GAST",
+    "group_description": "Gas Constituents N.B. Provision for reporting of this data is included in groups CNMT and ?ICCT. These groups should be used as appropriate in preference. Group GAST will be deleted from future editions",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6151/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "6"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "G (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "ii)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "8.50"
+      },
+      {
+        "status": "*",
+        "heading": "GAST_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of sampling",
+        "example": "26/03/1991"
+      },
+      {
+        "status": "*",
+        "heading": "GAST_TIME",
+        "unit": "hhmmss",
+        "description": "Time of sampling",
+        "example": "092800"
+      },
+      {
+        "status": null,
+        "heading": "GAST_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "GAST_TEMP",
+        "unit": "DegC",
+        "description": "Temperature of gas at time of sampling",
+        "example": "8"
+      },
+      {
+        "status": null,
+        "heading": "GAST_OX",
+        "unit": "% vol",
+        "description": "Oxygen",
+        "example": "0.16"
+      },
+      {
+        "status": null,
+        "heading": "GAST_NIT",
+        "unit": "% vol",
+        "description": "Nitrogen",
+        "example": "2.4"
+      },
+      {
+        "status": null,
+        "heading": "GAST_CARD",
+        "unit": "% vol",
+        "description": "Carbon Dioxide",
+        "example": "33.6"
+      },
+      {
+        "status": null,
+        "heading": "GAST_METH",
+        "unit": "% vol",
+        "description": "Methane",
+        "example": "63.8"
+      },
+      {
+        "status": null,
+        "heading": "GAST_HYDS",
+        "unit": "% vol",
+        "description": "Hydrogen Sulphide",
+        "example": "0.00002"
+      },
+      {
+        "status": null,
+        "heading": "GAST_ETHA",
+        "unit": "% vol",
+        "description": "Ethane",
+        "example": "0.005"
+      },
+      {
+        "status": null,
+        "heading": "GAST_PROP",
+        "unit": "% vol",
+        "description": "Propane",
+        "example": "0.002"
+      },
+      {
+        "status": null,
+        "heading": "GAST_HYD",
+        "unit": "% vol",
+        "description": "Hydrogen",
+        "example": "0.05"
+      },
+      {
+        "status": null,
+        "heading": "GAST_HEL",
+        "unit": "% vol",
+        "description": "Helium",
+        "example": "0.0000005"
+      },
+      {
+        "status": null,
+        "heading": "GAST_HIGA",
+        "unit": "% vol",
+        "description": "Higher Alkanes",
+        "example": "0.1"
+      },
+      {
+        "status": null,
+        "heading": "GAST_CARM",
+        "unit": "% vol",
+        "description": "Carbon Monoxide",
+        "example": "0.001"
+      },
+      {
+        "status": null,
+        "heading": "GAST_ETHE",
+        "unit": "% vol",
+        "description": "Ethene",
+        "example": "0.018"
+      },
+      {
+        "status": null,
+        "heading": "GAST_ACET",
+        "unit": "% vol",
+        "description": "Acetaldehyde",
+        "example": "0.005"
+      },
+      {
+        "status": null,
+        "heading": "GAST_ISOB",
+        "unit": "% vol",
+        "description": "Isobutane",
+        "example": "0.002"
+      },
+      {
+        "status": null,
+        "heading": "GAST_NBUT",
+        "unit": "% vol",
+        "description": "n - butane",
+        "example": "0.001"
+      },
+      {
+        "status": null,
+        "heading": "GAST_SATH",
+        "unit": "% vol",
+        "description": "Saturated Hydrocarbons other than Methane, Ethane, Propane, Butane",
+        "example": "0.005"
+      },
+      {
+        "status": null,
+        "heading": "GAST_UNSH",
+        "unit": "% vol",
+        "description": "Unsaturated Hydrocarbons other than Ethene",
+        "example": "0.009"
+      },
+      {
+        "status": null,
+        "heading": "GAST_HALO",
+        "unit": "% vol",
+        "description": "Halogenated Compounds",
+        "example": "0.00002"
+      },
+      {
+        "status": null,
+        "heading": "GAST_ORGS",
+        "unit": "% vol",
+        "description": "Organosulphur Compounds",
+        "example": "0.00001"
+      },
+      {
+        "status": null,
+        "heading": "GAST_ALCO",
+        "unit": "% vol",
+        "description": "Alcohols",
+        "example": "0.00001"
+      },
+      {
+        "status": null,
+        "heading": "GAST_HYDC",
+        "unit": "% vol",
+        "description": "Hydrogen Cyanide",
+        "example": "0.00001"
+      },
+      {
+        "status": null,
+        "heading": "GAST_DIES",
+        "unit": "% vol",
+        "description": "Diethyl Sulphide",
+        "example": "0.0000005"
+      },
+      {
+        "status": null,
+        "heading": "GAST_RAD",
+        "unit": "Bq/m3",
+        "description": "Radon",
+        "example": "200"
+      },
+      {
+        "status": null,
+        "heading": "GAST_OTHR",
+        "unit": "% vol",
+        "description": "Other Types",
+        "example": "0.023"
+      },
+      {
+        "status": null,
+        "heading": "GAST_OTH",
+        "unit": null,
+        "description": "Definition of GAST_OTHR",
+        "example": null
+      }
+    ]
+  },
+  {
+    "group_name": "GEOL",
+    "group_description": "Stratum Descriptions",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "GEOL_TOP",
+        "unit": "m",
+        "description": "Depth to the TOP of stratum",
+        "example": "16.21"
+      },
+      {
+        "status": "*",
+        "heading": "GEOL_BASE",
+        "unit": "m",
+        "description": "Depth to the BASE of description",
+        "example": "17.25"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_DESC",
+        "unit": null,
+        "description": "General description of stratum",
+        "example": "Stiff grey silty CLAY"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_LEG",
+        "unit": null,
+        "description": "Legend code",
+        "example": "200 (See Rule 20 and Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_GEOL",
+        "unit": null,
+        "description": "Geology code",
+        "example": "LC (See Rule 20)"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_GEO2",
+        "unit": null,
+        "description": "Second Geology code",
+        "example": "SAND (See Rule 20)"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS4"
+      }
+    ]
+  },
+  {
+    "group_name": "GRAD",
+    "group_description": "Particle Size Distribution Analysis Data",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.60"
+      },
+      {
+        "status": "*",
+        "heading": "GRAD_SIZE",
+        "unit": "mm",
+        "description": "Sieve or particle size",
+        "example": "3.35"
+      },
+      {
+        "status": null,
+        "heading": "GRAD_PERP",
+        "unit": "%",
+        "description": "Percentage passing/finer",
+        "example": "25"
+      },
+      {
+        "status": null,
+        "heading": "GRAD_TYPE",
+        "unit": null,
+        "description": "Grading analysis test type",
+        "example": "WS (See Appendix 1)"
+      }
+    ]
+  },
+  {
+    "group_name": "HDIA",
+    "group_description": "Hole Diameter by Depth NB. Casing information should be recorded in the CDIA group",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "HDIA_HDEP",
+        "unit": "m",
+        "description": "Depth achieved at HDIA_HOLE",
+        "example": "18.0"
+      },
+      {
+        "status": null,
+        "heading": "HDIA_HOLE",
+        "unit": "mm",
+        "description": "Borehole diameter",
+        "example": "200"
+      },
+      {
+        "status": null,
+        "heading": "HDIA_CASG",
+        "unit": "mm",
+        "description": "Casing diameter (included for backward compatibility only)",
+        "example": "200"
+      },
+      {
+        "status": null,
+        "heading": "HDIA_CDEP",
+        "unit": "m",
+        "description": "Depth to which HDIA_CASG taken (included for backward compatibility only)",
+        "example": "18.0"
+      },
+      {
+        "status": null,
+        "heading": "?HDIA_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": "Cased to full depth"
+      }
+    ]
+  },
+  {
+    "group_name": "?HDPH",
+    "group_description": "Depth Related Hole Information",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "?HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6422/A"
+      },
+      {
+        "status": "*",
+        "heading": "?HDPH_TOP",
+        "unit": "m",
+        "description": "Depth to top of section",
+        "example": "1.4"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_BASE",
+        "unit": "m",
+        "description": "Depth to base of section",
+        "example": "3.4"
+      },
+      {
+        "status": null,
+        "heading": "?HOLE_TYPE",
+        "unit": null,
+        "description": "Type of exploratory Hole",
+        "example": "TP (see Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_STAR",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of start of section",
+        "example": "01/04/2004"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_STAT",
+        "unit": "hhmm",
+        "description": "Time of start of section",
+        "example": "0930"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_ENDD",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of end of section",
+        "example": "01/04/2004"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_ENDT",
+        "unit": "hhmm",
+        "description": "Time of end of section",
+        "example": "1030"
+      },
+      {
+        "status": null,
+        "heading": "?HDPT_CREW",
+        "unit": null,
+        "description": "Name of Crew",
+        "example": "Bill Mallard"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_LOG",
+        "unit": null,
+        "description": "The definitive person responsible for logging the section",
+        "example": "DPG"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_EXC",
+        "unit": null,
+        "description": "Plant Used",
+        "example": "JCB \u20133CX"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_SHOR",
+        "unit": null,
+        "description": "Shoring/support Used",
+        "example": "None"
+      },
+      {
+        "status": null,
+        "heading": "?HDPH_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": "Breaker required"
+      },
+      {
+        "status": null,
+        "heading": "?FILE_FSET",
+        "unit": null,
+        "description": "Associated reference",
+        "example": "FS21"
+      }
+    ]
+  },
+  {
+    "group_name": "HOLE",
+    "group_description": "Hole Or Location Equivalent",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "327/16A"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_TYPE",
+        "unit": null,
+        "description": "Type of exploratory hole",
+        "example": "CP (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_NATE",
+        "unit": "m",
+        "description": "National Grid Easting of hole or start of traverse",
+        "example": "523145"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_NATN",
+        "unit": "m",
+        "description": "National Grid Northing of hole or start of traverse",
+        "example": "178456"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_GL",
+        "unit": "m",
+        "description": "Ground level relative to Datum of hole or start of traverse",
+        "example": "16.23"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_FDEP",
+        "unit": "m",
+        "description": "Final depth of hole",
+        "example": "32.60"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_STAR",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of start of excavation",
+        "example": "18/03/1991"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_LOG",
+        "unit": null,
+        "description": "The definitive person responsible for logging the hole",
+        "example": "DPG"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_REM",
+        "unit": null,
+        "description": "General remarks on hole",
+        "example": "Abandoned on engineer's instruction"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_ETRV",
+        "unit": "m",
+        "description": "National Grid Easting of end of traverse",
+        "example": "523195"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_NTRV",
+        "unit": "m",
+        "description": "National Grid Northing of end of traverse",
+        "example": "178486"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_LTRV",
+        "unit": "m",
+        "description": "Ground level relative to datum of end of traverse",
+        "example": "9.67"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_LETT",
+        "unit": null,
+        "description": "Ordnance Survey letter grid reference",
+        "example": "TQ 231 784"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_LOCX",
+        "unit": "m",
+        "description": "Local grid x co-ordinate",
+        "example": "565"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_LOCY",
+        "unit": "m",
+        "description": "Local grid y co-ordinate",
+        "example": "421"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_LOCZ",
+        "unit": "m",
+        "description": "Level to local datum",
+        "example": "+106.6"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_ENDD",
+        "unit": "dd/mm/yyyy",
+        "description": "Hole end date",
+        "example": "22/03/1991"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_BACD",
+        "unit": "dd/mm/yyyy",
+        "description": "Hole backfill date",
+        "example": "22/03/1991"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_CREW",
+        "unit": null,
+        "description": "Name of driller",
+        "example": "A.B. Driller"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_ORNT",
+        "unit": "deg",
+        "description": "Orientation of hole or traverse (degrees from north)",
+        "example": "010"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_INCL",
+        "unit": "deg",
+        "description": "Inclination of hole or traverse (measured positively down from horizontal)",
+        "example": "65"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_EXC",
+        "unit": null,
+        "description": "Plant used",
+        "example": "JCB - 3CX"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_SHOR",
+        "unit": null,
+        "description": "Shoring/support used",
+        "example": "None"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_STAB",
+        "unit": null,
+        "description": "Stability",
+        "example": "Stable during excavation"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_DIML",
+        "unit": "m",
+        "description": "Trial pit or logged traverse length",
+        "example": "27.56"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_DIMW",
+        "unit": "m",
+        "description": "Trial pit or logged traverse width",
+        "example": "1.35"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_LOCM",
+        "unit": null,
+        "description": "Method of location",
+        "example": "dGPS"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_LOCA",
+        "unit": null,
+        "description": "Location sub division within project",
+        "example": "SubStation 1"
+      },
+      {
+        "status": null,
+        "heading": "HOLE_CLST",
+        "unit": null,
+        "description": "Hole cluster reference number",
+        "example": "CLST01"
+      },
+      {
+        "status": null,
+        "heading": "?HOLE_OFFS",
+        "unit": "See notes",
+        "description": "Offset",
+        "example": "10.35"
+      },
+      {
+        "status": null,
+        "heading": "?HOLE_CNGE",
+        "unit": "See notes",
+        "description": "Chainage",
+        "example": "23255.55"
+      },
+      {
+        "status": null,
+        "heading": "?HOLE_STAT",
+        "unit": null,
+        "description": "Status of Hole Information",
+        "example": "Preliminary"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS2"
+      }
+    ]
+  },
+  {
+    "group_name": "HPGI",
+    "group_description": "Horizontal Profile Gauge Installation Details N.B. Provision for reporting of this data is included in group ?MONP, group ?MONP should be used in preference. Group HPGI will be marked for deletion in the next edition.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6423/A"
+      },
+      {
+        "status": "*",
+        "heading": "HPGI_ID",
+        "unit": null,
+        "description": "Instrument reference number",
+        "example": "H2345"
+      },
+      {
+        "status": null,
+        "heading": "HPGI_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Installation date",
+        "example": "22/03/1994"
+      },
+      {
+        "status": null,
+        "heading": "HPGI_DLN",
+        "unit": "m",
+        "description": "Level of datum point relative to HOLE_GL or HOLE_LOCZ",
+        "example": "0.30"
+      },
+      {
+        "status": null,
+        "heading": "HPGI_FDIS",
+        "unit": "m",
+        "description": "Distance to furthest reference point from datum point",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "HPGI_NDS",
+        "unit": "m",
+        "description": "Distance to nearest reference point from datum point",
+        "example": "2.00"
+      },
+      {
+        "status": null,
+        "heading": "HPGI_DIRH",
+        "unit": "deg",
+        "description": "Direction of HPG from datum point (degrees from north)",
+        "example": "142"
+      },
+      {
+        "status": null,
+        "heading": "HPGI_REM",
+        "unit": null,
+        "description": "Remarks, details of instrument",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS14"
+      }
+    ]
+  },
+  {
+    "group_name": "HPGO",
+    "group_description": "Horizontal Profile Gauge Observations N.B. Provision for reporting of this data is included in group ?MONR, group ?MONR should be used in preference. Group HPGO will be marked for deletion in the next edition.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6423/A"
+      },
+      {
+        "status": "*",
+        "heading": "HPGI_ID",
+        "unit": null,
+        "description": "Instrument reference number",
+        "example": "H2345"
+      },
+      {
+        "status": "*",
+        "heading": "HPGO_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of reading",
+        "example": "26/03/1994"
+      },
+      {
+        "status": "*",
+        "heading": "HPGO_TIME",
+        "unit": "hhmmss",
+        "description": "Time of reading",
+        "example": "164000"
+      },
+      {
+        "status": "*",
+        "heading": "HPGO_DIS",
+        "unit": "m",
+        "description": "Distance from datum point to reading point",
+        "example": "15.05"
+      },
+      {
+        "status": null,
+        "heading": "HPGO_RLEV",
+        "unit": "m",
+        "description": "Level of reading point relative to datum point",
+        "example": "0.73"
+      },
+      {
+        "status": null,
+        "heading": "HPGO_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": "Embankment at 2.00m"
+      }
+    ]
+  },
+  {
+    "group_name": "ICBR",
+    "group_description": "In Situ CBR Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A or CBR 6"
+      },
+      {
+        "status": "*",
+        "heading": "ICBR_DPTH",
+        "unit": "m",
+        "description": "Depth to top of CBR test",
+        "example": "0.50"
+      },
+      {
+        "status": "*",
+        "heading": "?ICBR_TESN",
+        "unit": null,
+        "description": "Test number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "ICBR_REM",
+        "unit": null,
+        "description": "Details of apparatus and kentledge",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "ICBR_ICBR",
+        "unit": "%",
+        "description": "CBR value",
+        "example": "1.2"
+      },
+      {
+        "status": null,
+        "heading": "ICBR_MC",
+        "unit": "%",
+        "description": "Moisture content relating to test",
+        "example": "25"
+      },
+      {
+        "status": null,
+        "heading": "?ICBR_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Test date",
+        "example": "20/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "?ICBR_SEAT",
+        "unit": "N",
+        "description": "Seating force",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "?ICBR_SURC",
+        "unit": "kN/m2",
+        "description": "Surcharge pressure",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "?ICBR_TYPE",
+        "unit": null,
+        "description": "Type of CBR",
+        "example": "Mexecone"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      }
+    ]
+  },
+  {
+    "group_name": "?ICCT",
+    "group_description": "In Situ Contaminant and Chemical Testing",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "?HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6461/A"
+      },
+      {
+        "status": "*",
+        "heading": "?MONP_DIS",
+        "unit": null,
+        "description": "Distance from Reference Point",
+        "example": "2.30"
+      },
+      {
+        "status": "*",
+        "heading": "?MONP_ID",
+        "unit": null,
+        "description": "Monitoring Point ID (optional)",
+        "example": "ZT111"
+      },
+      {
+        "status": "*",
+        "heading": "?ICCT_DATE",
+        "unit": null,
+        "description": "Date of reading",
+        "example": "20/02/2003"
+      },
+      {
+        "status": "*",
+        "heading": "?ICCT_TIME",
+        "unit": null,
+        "description": "Time of reading",
+        "example": "134000"
+      },
+      {
+        "status": "*",
+        "heading": "?CNMT_TYPE",
+        "unit": null,
+        "description": "Determinand",
+        "example": "GMETH (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "?CNMT_TTYP",
+        "unit": null,
+        "description": "Test type",
+        "example": "GAS (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_RESL",
+        "unit": null,
+        "description": "Test result",
+        "example": "54.76"
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_UNIT",
+        "unit": null,
+        "description": "Test result units",
+        "example": "%vol (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_METH",
+        "unit": null,
+        "description": "Test method/instrument type",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_CAS",
+        "unit": null,
+        "description": "Chemical Abstract Service registry number (where appropriate)",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_PREP",
+        "unit": null,
+        "description": "Sample preparation",
+        "example": "Air dried"
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_REM",
+        "unit": null,
+        "description": "Comments on test",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_LIM",
+        "unit": null,
+        "description": "Method/instrumentation lower detection limit",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_ULIM",
+        "unit": null,
+        "description": "Method/instrumentation upper detection upper limit",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_NAME",
+        "unit": null,
+        "description": "Client/laboratory preferred name of determinand",
+        "example": "Methane Gas"
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_LAB",
+        "unit": null,
+        "description": "Name of testing laboratory/Organisation",
+        "example": "Testing House"
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_CRED",
+        "unit": null,
+        "description": "Accrediting body (when appropriate)",
+        "example": "UKAS"
+      },
+      {
+        "status": null,
+        "heading": "?ICCT_LBID",
+        "unit": null,
+        "description": "Laboratory Internal Reference",
+        "example": "LB234675"
+      },
+      {
+        "status": null,
+        "heading": "?FILE_SET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS22"
+      }
+    ]
+  },
+  {
+    "group_name": "IDEN",
+    "group_description": "In Situ Density Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6461/A or DEN 7"
+      },
+      {
+        "status": "*",
+        "heading": "IDEN_DPTH",
+        "unit": "m",
+        "description": "Depth of in situ density test",
+        "example": "1.25"
+      },
+      {
+        "status": "*",
+        "heading": "?IDEN_TESN",
+        "unit": null,
+        "description": "Test number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "?IDEN_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Test date",
+        "example": "20/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "IDEN_REM",
+        "unit": null,
+        "description": "Details of in situ density test",
+        "example": "Nuclear probe"
+      },
+      {
+        "status": null,
+        "heading": "IDEN_IDEN",
+        "unit": "Mg/m3",
+        "description": "In situ bulk density",
+        "example": "1.86"
+      },
+      {
+        "status": null,
+        "heading": "IDEN_MC",
+        "unit": "%",
+        "description": "Moisture content relating to in situ test",
+        "example": "18"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      }
+    ]
+  },
+  {
+    "group_name": "?IFID",
+    "group_description": "On Site Volatile Headspace Testing Using Flame Ionisation Detector",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "?HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "?IFID_DPTH",
+        "unit": "m",
+        "description": "Depth of headspace test sample",
+        "example": "1.0"
+      },
+      {
+        "status": "*",
+        "heading": "?IFID_TESN",
+        "unit": null,
+        "description": "Test number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "?IFID_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Test date",
+        "example": "20/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "?IFID_REM",
+        "unit": null,
+        "description": "Details of FID used and method description",
+        "example": "Flame ionisation detector"
+      },
+      {
+        "status": null,
+        "heading": "?IFID_RES",
+        "unit": "ppmv",
+        "description": "Result of FID analysis",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "?GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      }
+    ]
+  },
+  {
+    "group_name": "INST",
+    "group_description": "Single Point Instrument Installation Details N.B. Provision for reporting of this data is included in group ?MONP, group ?MONP should be used in preference. Group INST will be marked for deletion in the next edition.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "INST_TDEP",
+        "unit": "m",
+        "description": "Depth to reference level of instrument from HOLE_GL or HOLE_LOCZ",
+        "example": "7.25"
+      },
+      {
+        "status": "*",
+        "heading": "INST_ID",
+        "unit": null,
+        "description": "Instrument reference number",
+        "example": "A2345"
+      },
+      {
+        "status": null,
+        "heading": "INST_TYPE",
+        "unit": null,
+        "description": "Instrument type",
+        "example": "ESET (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "INST_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Instrument installation date",
+        "example": "22/03/1994"
+      },
+      {
+        "status": null,
+        "heading": "INST_TRPS",
+        "unit": "m",
+        "description": "Depth to top of response zone from HOLE_GL or HOLE_LOCZ",
+        "example": "6.50"
+      },
+      {
+        "status": null,
+        "heading": "INST_BRPS",
+        "unit": "m",
+        "description": "Depth to base of response zone from HOLE_GL or HOLE_LOCZ",
+        "example": "7.50"
+      },
+      {
+        "status": null,
+        "heading": "INST_DIP",
+        "unit": "deg",
+        "description": "Inclination of instrument (measured positively down from horizontal)",
+        "example": "90"
+      },
+      {
+        "status": null,
+        "heading": "INST_DIR",
+        "unit": "deg",
+        "description": "Direction of INST_DIP (degrees from north)",
+        "example": "270"
+      },
+      {
+        "status": null,
+        "heading": "INST_INTZ",
+        "unit": "kN/m2",
+        "description": "Pressure reading at zero applied pressure",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "INST_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS13"
+      }
+    ]
+  },
+  {
+    "group_name": "IOBS",
+    "group_description": "Single Point Instrument Readings N.B. Provision for reporting of this data is included in group ?MONR, group ?MONR should be used in preference. Group IOBS will be marked for deletion in the next edition.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "INST_TDEP",
+        "unit": "m",
+        "description": "Depth to reference level of instrument from HOLE_GL or HOLE_LOCZ",
+        "example": "7.25"
+      },
+      {
+        "status": "*",
+        "heading": "INST_ID",
+        "unit": null,
+        "description": "Instrument reference number",
+        "example": "A2345"
+      },
+      {
+        "status": "*",
+        "heading": "IOBS_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of reading",
+        "example": "26/03/1994"
+      },
+      {
+        "status": "*",
+        "heading": "IOBS_TIME",
+        "unit": "hhmmss",
+        "description": "Time of reading",
+        "example": "164000"
+      },
+      {
+        "status": null,
+        "heading": "IOBS_DEP",
+        "unit": "m",
+        "description": "Depth to water from HOLE_GL or HOLE_LOCZ",
+        "example": "2.25"
+      },
+      {
+        "status": null,
+        "heading": "IOBS_HEAD",
+        "unit": "m",
+        "description": "Head of water above INST_DEP",
+        "example": "5.00"
+      },
+      {
+        "status": null,
+        "heading": "IOBS_PRES",
+        "unit": "kN/m2",
+        "description": "Reading of pressure",
+        "example": "80"
+      },
+      {
+        "status": null,
+        "heading": "IOBS_LEVL",
+        "unit": "m",
+        "description": "Level of settlement point relative to datum",
+        "example": "11.56"
+      },
+      {
+        "status": null,
+        "heading": "IOBS_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": "Reading taken during heavy rain"
+      }
+    ]
+  },
+  {
+    "group_name": "?IPID",
+    "group_description": "On Site Volatile Headspace Testing by Photo Ionisation Detector",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "?HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "?IPID_DPTH",
+        "unit": "m",
+        "description": "Depth of headspace test sample",
+        "example": "1.0"
+      },
+      {
+        "status": "*",
+        "heading": "?IPID_TESN",
+        "unit": null,
+        "description": "Test number",
+        "example": "3"
+      },
+      {
+        "status": null,
+        "heading": "?IPID_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Test date",
+        "example": "20/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "?IPID_REM",
+        "unit": null,
+        "description": "Details of PID used and method description",
+        "example": "Carried out on temporary samples using photo ionisation detector fitted with 10.6 eV lamp"
+      },
+      {
+        "status": null,
+        "heading": "?IPID_RES",
+        "unit": "ppmv",
+        "description": "Result of PID analysis",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "?GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      }
+    ]
+  },
+  {
+    "group_name": "IPRM",
+    "group_description": "In Situ Permeability Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6471/A"
+      },
+      {
+        "status": "*",
+        "heading": "IPRM_TOP",
+        "unit": "m",
+        "description": "Depth to top of test zone",
+        "example": "12.20"
+      },
+      {
+        "status": "*",
+        "heading": "IPRM_BASE",
+        "unit": "m",
+        "description": "Depth to base of test zone",
+        "example": "12.95"
+      },
+      {
+        "status": "*",
+        "heading": "IPRM_STG",
+        "unit": null,
+        "description": "Stage number of multistage packer test",
+        "example": "1"
+      },
+      {
+        "status": "*",
+        "heading": "?IPRM_TESN",
+        "unit": null,
+        "description": "Test number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_TYPE",
+        "unit": null,
+        "description": "Type of test",
+        "example": "Rising, Falling, Constant Head"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_PRWL",
+        "unit": "m",
+        "description": "Depth to water in borehole or piezometer immediately prior to test",
+        "example": "10.60"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_SWAL",
+        "unit": "m",
+        "description": "Depth to water at start of test",
+        "example": "5.40"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_TDIA",
+        "unit": "m",
+        "description": "Diameter of test zone",
+        "example": "0.150"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_SDIA",
+        "unit": "m",
+        "description": "Diameter of standpipe or casing",
+        "example": "0.019"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_IPRM",
+        "unit": "m/s",
+        "description": "Permeability",
+        "example": "5E-9"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_REM",
+        "unit": null,
+        "description": "Test remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "IPRM_FLOW",
+        "unit": "l/s",
+        "description": "Average flow during packer test stage",
+        "example": "2.3"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_AWL",
+        "unit": "m",
+        "description": "Depth to assumed standing water level",
+        "example": "10.0"
+      },
+      {
+        "status": null,
+        "heading": "IPRM_HEAD",
+        "unit": "m",
+        "description": "Applied total head of water during test stage at centre of packer test zone",
+        "example": "20.5"
+      },
+      {
+        "status": null,
+        "heading": "?IPRM_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Test date",
+        "example": "20/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated File Reference",
+        "example": "FS26"
+      }
+    ]
+  },
+  {
+    "group_name": "IRDX",
+    "group_description": "In Situ Redox Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A or RDX 2"
+      },
+      {
+        "status": "*",
+        "heading": "IRDX_DPTH",
+        "unit": "m",
+        "description": "Depth of redox test",
+        "example": "1.0"
+      },
+      {
+        "status": "*",
+        "heading": "?IRDX_TESN",
+        "unit": null,
+        "description": "Test number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "?IRDX_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Test date",
+        "example": "20/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "IRDX_REM",
+        "unit": null,
+        "description": "Details of redox test and probe type",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "IRDX_PH",
+        "unit": null,
+        "description": "pH",
+        "example": "7.0"
+      },
+      {
+        "status": null,
+        "heading": "IRDX_IRDX",
+        "unit": "mV",
+        "description": "Redox potential",
+        "example": "400"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      }
+    ]
+  },
+  {
+    "group_name": "IRES",
+    "group_description": "In Situ Resistivity Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A or RES/12"
+      },
+      {
+        "status": "*",
+        "heading": "IRES_DPTH",
+        "unit": "m",
+        "description": "Depth range to which in situ resistivity test relates",
+        "example": "0 to 10"
+      },
+      {
+        "status": "*",
+        "heading": "?IRES_TESN",
+        "unit": null,
+        "description": "Test number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "IRES_TYPE",
+        "unit": null,
+        "description": "Type of resistivity test",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?IRES_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Test date",
+        "example": "20/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "IRES_IRES",
+        "unit": "ohm cm",
+        "description": "Result",
+        "example": "2000"
+      },
+      {
+        "status": null,
+        "heading": "IRES_REM",
+        "unit": null,
+        "description": "Details of test eg. electrode spacing and configuration",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      }
+    ]
+  },
+  {
+    "group_name": "ISPT",
+    "group_description": "Standard Penetration Test Results",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "ISPT_TOP",
+        "unit": "m",
+        "description": "Depth to top of test",
+        "example": "13.50"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_SEAT",
+        "unit": null,
+        "description": "Number of blows for seating drive",
+        "example": "14"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_MAIN",
+        "unit": null,
+        "description": "Number of blows for main test drive",
+        "example": "35"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_NPEN",
+        "unit": "mm",
+        "description": "Total penetration for seating drive and test drive",
+        "example": "450"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_NVAL",
+        "unit": null,
+        "description": "SPT 'N' value",
+        "example": "35"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_REP",
+        "unit": null,
+        "description": "SPT reported result",
+        "example": "6,8/8,9,9,9 N=35"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_CAS",
+        "unit": "m",
+        "description": "Casing depth at time of test",
+        "example": "12.00"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_WAT",
+        "unit": "m",
+        "description": "Depth to water at time of test",
+        "example": "2.50"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_TYPE",
+        "unit": null,
+        "description": "Type of SPT test",
+        "example": "S (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "?ISPT_SWP",
+        "unit": "mm",
+        "description": "Self-weight penetration",
+        "example": "25"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_REM",
+        "unit": null,
+        "description": "Remarks relating to the test",
+        "example": "Borehole topped up with water prior to test"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_INC1",
+        "unit": null,
+        "description": "Number of blows for 1st Increment (Seating)",
+        "example": "6"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_INC2",
+        "unit": null,
+        "description": "Number of blows for 2nd Increment (Seating)",
+        "example": "8"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_INC3",
+        "unit": null,
+        "description": "Number of blows for 1st Increment (Test)",
+        "example": "8"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_INC4",
+        "unit": null,
+        "description": "Number of blows for 2nd Increment (Test)",
+        "example": "9"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_INC5",
+        "unit": null,
+        "description": "Number of blows for 3rd Increment (Test)",
+        "example": "9"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_INC6",
+        "unit": null,
+        "description": "Number of blows for 4th Increment (Test)",
+        "example": "9"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_PEN1",
+        "unit": "mm",
+        "description": "Penetration for 1st Increment (Seating Drive)",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_PEN2",
+        "unit": "mm",
+        "description": "Penetration for 2nd Increment (Seating Drive)",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_PEN3",
+        "unit": "mm",
+        "description": "Penetration for 1st Increment (Test)",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_PEN4",
+        "unit": "mm",
+        "description": "Penetration for 2nd Increment (Test)",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_PEN5",
+        "unit": "mm",
+        "description": "Penetration for 3rd Increment (Test)",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "ISPT_PEN6",
+        "unit": "mm",
+        "description": "Penetration for 4th Increment (Test)",
+        "example": "75"
+      }
+    ]
+  },
+  {
+    "group_name": "IVAN",
+    "group_description": "In Situ Vane Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A or VAN 15"
+      },
+      {
+        "status": "*",
+        "heading": "IVAN_DPTH",
+        "unit": "m",
+        "description": "Depth of vane test",
+        "example": "13.50"
+      },
+      {
+        "status": "*",
+        "heading": "IVAN_TESN",
+        "unit": null,
+        "description": "Vane test number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "IVAN_REM",
+        "unit": null,
+        "description": "Details of vane test, vane size, vane type",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "IVAN_IVAN",
+        "unit": "kN/m2",
+        "description": "Vane test result",
+        "example": "60"
+      },
+      {
+        "status": null,
+        "heading": "IVAN_IVAR",
+        "unit": "kN/m2",
+        "description": "Vane test remoulded result",
+        "example": "45"
+      },
+      {
+        "status": null,
+        "heading": "IVAN_IPEN",
+        "unit": "kN/m2",
+        "description": "Hand penetrometer result",
+        "example": "23"
+      },
+      {
+        "status": null,
+        "heading": "?IVAN_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Test Date",
+        "example": "20/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      }
+    ]
+  },
+  {
+    "group_name": "MCVG",
+    "group_description": "MCV Test - General",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6481/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "18"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "LB (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.50"
+      },
+      {
+        "status": null,
+        "heading": "MCVG_REM",
+        "unit": null,
+        "description": "Notes on MCV test as BS 1377 Part 4 Cl. 5.4, and 5.5. Test report items a) and c)",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "MCVG_2\u00d8\u00d8",
+        "unit": "%",
+        "description": "Weight percent of material retained on 20mm sieve",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "MCVG_NMC",
+        "unit": "%",
+        "description": "Natural moisture content",
+        "example": "21"
+      },
+      {
+        "status": null,
+        "heading": "MCVG_PRCL",
+        "unit": null,
+        "description": "MCV precalibrated value as BS 1377 Part 4 and whether higher or lower.",
+        "example": ">10"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS15"
+      }
+    ]
+  },
+  {
+    "group_name": "MCVT",
+    "group_description": "MCV Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6481/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "18"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "LB (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "MCVT_TESN",
+        "unit": null,
+        "description": "MCV test number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "MCVT_MC",
+        "unit": "%",
+        "description": "Moisture content",
+        "example": "17"
+      },
+      {
+        "status": null,
+        "heading": "MCVT_RELK",
+        "unit": null,
+        "description": "MCV value at MCVT_MC moisture content",
+        "example": "12.3"
+      },
+      {
+        "status": null,
+        "heading": "MCVT_BDEN",
+        "unit": "Mg/m3",
+        "description": "Bulk density related to the MCVT_RELK MCV",
+        "example": "2.0"
+      }
+    ]
+  },
+  {
+    "group_name": "?MONP",
+    "group_description": "Monitor Point",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "?HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6422/A"
+      },
+      {
+        "status": "*",
+        "heading": "?MONP_DIS",
+        "unit": "m",
+        "description": "Distance of monitoring point from HOLE_ID",
+        "example": "2.30"
+      },
+      {
+        "status": "*",
+        "heading": "?MONP_ID",
+        "unit": null,
+        "description": "Monitoring Point Identifier",
+        "example": "ZT102"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Installation date",
+        "example": "01/02/2003"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_TYPE",
+        "unit": null,
+        "description": "Instrument type",
+        "example": "TS (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_TRZ",
+        "unit": "m",
+        "description": "Distance to start of response zone from HOLE_ID datum",
+        "example": "5.50"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_BRZ",
+        "unit": "m",
+        "description": "Distance to end of response zone from HOLE_ID datum",
+        "example": "7.50"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_BRGA",
+        "unit": "deg",
+        "description": "Bearing of monitoring axis A (compass bearing)",
+        "example": "090"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_BRGB",
+        "unit": "deg",
+        "description": "Bearing of monitoring axis B (compass bearing)",
+        "example": "180"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_BRGC",
+        "unit": "deg",
+        "description": "Bearing of monitoring axis C (compass bearing)",
+        "example": "NA"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_INCA",
+        "unit": "deg",
+        "description": "Inclination of instrument axis A (measured positively down from horizontal)",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?MONP_INCB",
+        "unit": "deg",
+        "description": "Inclination of instrument axis B (measured positively down from horizontal)",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?MONP_INCC",
+        "unit": "deg",
+        "description": "Inclination of instrument axis C (measured positively down from horizontal)",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?MONP_RSCA",
+        "unit": null,
+        "description": "Reading sign convention in direction A",
+        "example": "Displacement to East +ve"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_RSCB",
+        "unit": null,
+        "description": "Reading sign convention in direction B",
+        "example": "Displacement to South +ve"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_RSCC",
+        "unit": null,
+        "description": "Reading sign convention in direction C",
+        "example": "Displacement up +ve"
+      },
+      {
+        "status": null,
+        "heading": "?MONP_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": "Behind wall"
+      },
+      {
+        "status": null,
+        "heading": "?FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS27"
+      }
+    ]
+  },
+  {
+    "group_name": "?MONR",
+    "group_description": "Monitor Point Reading",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "?HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6422/A"
+      },
+      {
+        "status": "*",
+        "heading": "?MONP_DIS",
+        "unit": "m",
+        "description": "Distance of monitoring point from HOLE_ID",
+        "example": "2.30"
+      },
+      {
+        "status": "*",
+        "heading": "?MONP_ID",
+        "unit": null,
+        "description": "Monitoring Point Identifier",
+        "example": "ZT102"
+      },
+      {
+        "status": "*",
+        "heading": "?MONR_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of reading",
+        "example": "20/02/2003"
+      },
+      {
+        "status": "*",
+        "heading": "?MONR_TIME",
+        "unit": "hhmmss",
+        "description": "Time of reading",
+        "example": "134000"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_DSTA",
+        "unit": "m",
+        "description": "Distance A from HOLE_ID (slip indicator top rod)",
+        "example": "2.73"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_DSTB",
+        "unit": "m",
+        "description": "Distance B from HOLE_ID (slip indicator top rod)",
+        "example": "11.56"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_DSPA",
+        "unit": "mm",
+        "description": "Displacement in direction A",
+        "example": "24"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_DSPB",
+        "unit": "mm",
+        "description": "Displacement in direction B",
+        "example": "12.7"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_DSPC",
+        "unit": "mm",
+        "description": "Displacement in direction C",
+        "example": "-10.842"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_PRES",
+        "unit": "kN/m2",
+        "description": "Pressure",
+        "example": "20.64"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_ANGA",
+        "unit": "deg",
+        "description": "Rotation/Tilt in direction A",
+        "example": "0.023"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_ANGB",
+        "unit": "deg",
+        "description": "Rotation/Tilt in direction B",
+        "example": "-0.284"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_ANGC",
+        "unit": "deg",
+        "description": "Rotation in direction C",
+        "example": "2.42"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_STRA",
+        "unit": "%",
+        "description": "Strain in direction A",
+        "example": "-1.87"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_STRB",
+        "unit": "%",
+        "description": "Strain in direction B",
+        "example": "1.09"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_STRC",
+        "unit": "%",
+        "description": "Strain in direction C",
+        "example": "1.23"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_FORC",
+        "unit": "kN",
+        "description": "Force",
+        "example": "62.8"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_TEMP",
+        "unit": "DegC",
+        "description": "Temperature",
+        "example": "21.2"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_WDEP",
+        "unit": "m",
+        "description": "Depth to water from HOLE_ID datum",
+        "example": "6.42"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_EAST",
+        "unit": "m",
+        "description": "Absolute position (Easting)",
+        "example": "523145"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_NRTH",
+        "unit": "m",
+        "description": "Absolute position (Northing)",
+        "example": "178963"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_LEV",
+        "unit": "m",
+        "description": "Absolute position (Level)",
+        "example": "10.2"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_WHD",
+        "unit": "m",
+        "description": "Head of water above tip",
+        "example": "2.1"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_GAUG",
+        "unit": "m",
+        "description": "Gauge length",
+        "example": "0.50"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_FLOW",
+        "unit": "l/s",
+        "description": "Flow",
+        "example": "20.1"
+      },
+      {
+        "status": null,
+        "heading": "?MONR_REM",
+        "unit": null,
+        "description": "Details for instrument reference, probe logger, serial numbers",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "?FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS28"
+      }
+    ]
+  },
+  {
+    "group_name": "POBS",
+    "group_description": "Piezometer Readings N.B. Provision for reporting of this data is included in group ?MONR, group ?MONR should be used in preference. Group POBS will be marked for deletion in the next edition.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "PREF_TDEP",
+        "unit": "m",
+        "description": "Depth to reference level of piezometer tip",
+        "example": "7.25"
+      },
+      {
+        "status": "*",
+        "heading": "POBS_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of piezometer reading",
+        "example": "26/03/1991"
+      },
+      {
+        "status": "*",
+        "heading": "POBS_TIME",
+        "unit": "hhmmss",
+        "description": "Time of piezometer reading",
+        "example": "164000"
+      },
+      {
+        "status": null,
+        "heading": "POBS_DEP",
+        "unit": "m",
+        "description": "Depth to water below ground surface",
+        "example": "6.40"
+      },
+      {
+        "status": null,
+        "heading": "POBS_HEAD",
+        "unit": "m",
+        "description": "Head of water above piezometer tip",
+        "example": "0.85"
+      },
+      {
+        "status": null,
+        "heading": "POBS_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": "Reading taken during heavy rain"
+      }
+    ]
+  },
+  {
+    "group_name": "PREF",
+    "group_description": "Piezometer Installation Details N.B. Provision for reporting of this data is included in group ?MONP, group ?MONP should be used in preference. Group PREF will be marked for deletion in the next edition.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "PREF_TDEP",
+        "unit": "m",
+        "description": "Depth to reference level of piezometer tip",
+        "example": "7.25"
+      },
+      {
+        "status": null,
+        "heading": "PREF_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Piezometer installation date",
+        "example": "22/03/1991"
+      },
+      {
+        "status": null,
+        "heading": "PREF_TYPE",
+        "unit": null,
+        "description": "Piezometer type",
+        "example": "PPIE (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "PREF_TRPS",
+        "unit": "m",
+        "description": "Depth to top of response zone",
+        "example": "6.50"
+      },
+      {
+        "status": null,
+        "heading": "PREF_BRPS",
+        "unit": "m",
+        "description": "Depth to base of response zone",
+        "example": "7.50"
+      },
+      {
+        "status": null,
+        "heading": "PREF_REM",
+        "unit": null,
+        "description": "Details of type and depths of grouting and readout arrangements/locations",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS6"
+      }
+    ]
+  },
+  {
+    "group_name": "PROB",
+    "group_description": "Profiling Instrument Readings N.B. Provision for reporting of this data is included in group ?MONR, group ?MONR should be used in preference. Group PROB will be marked for deletion in the next edition.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6422/A"
+      },
+      {
+        "status": "*",
+        "heading": "PROF_ID",
+        "unit": null,
+        "description": "Instrument reference number",
+        "example": "B2345"
+      },
+      {
+        "status": "*",
+        "heading": "PROB_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of reading",
+        "example": "26/03/1994"
+      },
+      {
+        "status": "*",
+        "heading": "PROB_TIME",
+        "unit": "hhmmss",
+        "description": "Time of reading",
+        "example": "164000"
+      },
+      {
+        "status": "*",
+        "heading": "PROB_DEP",
+        "unit": "m",
+        "description": "Depth of reading from HOLE_GL or HOLE_LOCZ",
+        "example": "6.50"
+      },
+      {
+        "status": null,
+        "heading": "PROB_GAUG",
+        "unit": null,
+        "description": "Rod or inclinometer gauge length",
+        "example": "0.50"
+      },
+      {
+        "status": null,
+        "heading": "PROB_TDEP",
+        "unit": "m",
+        "description": "Depth to top of slip obstruction from HOLE_GL or HOLE_LOCZ for slip indicator",
+        "example": "3.20"
+      },
+      {
+        "status": null,
+        "heading": "PROB_BDEP",
+        "unit": "m",
+        "description": "Depth to base of slip obstruction from HOLE_GL or HOLE_LOCZ for slip indicator",
+        "example": "4.00"
+      },
+      {
+        "status": null,
+        "heading": "PROB_A",
+        "unit": "mm",
+        "description": "Primary keyway displacement direction A",
+        "example": "3"
+      },
+      {
+        "status": null,
+        "heading": "PROB_B",
+        "unit": "mm",
+        "description": "Displacement direction B",
+        "example": "-3"
+      },
+      {
+        "status": null,
+        "heading": "PROB_C",
+        "unit": "mm",
+        "description": "Displacement direction C",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "PROB_D",
+        "unit": "mm",
+        "description": "Displacement direction D",
+        "example": "-2"
+      },
+      {
+        "status": null,
+        "heading": "PROB_REM",
+        "unit": null,
+        "description": "Details for instrument reference, probe logger, serial numbers",
+        "example": null
+      }
+    ]
+  },
+  {
+    "group_name": "PROF",
+    "group_description": "Profiling Instrument Installation Details N.B. Provision for reporting of this data is included in group ?MONP, group ?MONP should be used in preference. Group PROF will be marked for deletion in the next edition.",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6422/A"
+      },
+      {
+        "status": "*",
+        "heading": "PROF_ID",
+        "unit": null,
+        "description": "Instrument reference number",
+        "example": "B2345"
+      },
+      {
+        "status": null,
+        "heading": "PROF_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Installation date",
+        "example": "22/03/1994"
+      },
+      {
+        "status": null,
+        "heading": "PROF_TYPE",
+        "unit": null,
+        "description": "Profiling instrument type",
+        "example": "INCL (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "PROF_TRPS",
+        "unit": "m",
+        "description": "Depth to top of response zone from HOLE_GL or HOLE_LOCZ",
+        "example": "0.00"
+      },
+      {
+        "status": null,
+        "heading": "PROF_BRPS",
+        "unit": "m",
+        "description": "Depth to base of response zone from HOLE_GL or HOLE_LOCZ",
+        "example": "7.50"
+      },
+      {
+        "status": null,
+        "heading": "PROF_DIRA",
+        "unit": "deg",
+        "description": "Orientation of primary keyway (degrees from north)",
+        "example": "120"
+      },
+      {
+        "status": null,
+        "heading": "PROF_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": "Primary keyway (A) orientated downslope, secondary direction (C) across slope to left looking down"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated File Reference",
+        "example": "FS27"
+      }
+    ]
+  },
+  {
+    "group_name": "PRTD",
+    "group_description": "Pressuremeter Test Data",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "PRTD_TREF",
+        "unit": null,
+        "description": "Reference number of test",
+        "example": "1"
+      },
+      {
+        "status": "*",
+        "heading": "PRTD_DPTH",
+        "unit": "m",
+        "description": "Depth of test",
+        "example": "2.70"
+      },
+      {
+        "status": "*",
+        "heading": "PRTD_SEQ",
+        "unit": null,
+        "description": "Sequence number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of test",
+        "example": "22/12/1993"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_TYPE",
+        "unit": null,
+        "description": "Pressuremeter type",
+        "example": "SBP (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_DIA",
+        "unit": "mm",
+        "description": "Uninflated diameter of pressuremeter",
+        "example": "82.9"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_ARM1",
+        "unit": "mm",
+        "description": "Arm (pair) 1 displacement",
+        "example": "1.0"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_ARM2",
+        "unit": "mm",
+        "description": "Arm (pair) 2 displacement",
+        "example": "1.0"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_ARM3",
+        "unit": "mm",
+        "description": "Arm (pair) 3 displacement",
+        "example": "1.0"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_TPC1",
+        "unit": "kN/m2",
+        "description": "Total pressure/arm (pair) 1",
+        "example": "54.40"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_TPC2",
+        "unit": "kN/m2",
+        "description": "Total pressure/arm (pair) 2",
+        "example": "54.40"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_TPC3",
+        "unit": "kN/m2",
+        "description": "Total pressure/arm (pair) 3",
+        "example": "54.40"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_PPA",
+        "unit": "kN/m2",
+        "description": "Pore pressure cell A",
+        "example": "2.90"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_PPB",
+        "unit": "kN/m2",
+        "description": "Pore pressure cell B",
+        "example": "2.90"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "PRTD_PRES",
+        "unit": "kN/m2",
+        "description": "Total pressure in test cell",
+        "example": "60.1"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_VOL",
+        "unit": "cm3",
+        "description": "Volume change in test cell",
+        "example": "2.6"
+      }
+    ]
+  },
+  {
+    "group_name": "PRTG",
+    "group_description": "Pressuremeter Test Results, General",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "PRTD_TREF",
+        "unit": null,
+        "description": "Reference number of test",
+        "example": "1"
+      },
+      {
+        "status": "*",
+        "heading": "PRTD_DPTH",
+        "unit": "m",
+        "description": "Depth of test",
+        "example": "2.70"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of test",
+        "example": "22/12/1993"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_TYPE",
+        "unit": null,
+        "description": "Pressuremeter type",
+        "example": "SBP (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_DIA",
+        "unit": "mm",
+        "description": "Uninflated diameter of pressuremeter",
+        "example": "82.9"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_HA1",
+        "unit": "kN/m2",
+        "description": "Estimated horizontal stress, arm (pair) 1",
+        "example": "700"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_HA2",
+        "unit": "kN/m2",
+        "description": "Estimated horizontal stress, arm (pair) 2",
+        "example": "700"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_HA3",
+        "unit": "kN/m2",
+        "description": "Estimated horizontal stress, arm (pair) 3",
+        "example": "700"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_HAA",
+        "unit": "kN/m2",
+        "description": "Estimated horizontal stress, average",
+        "example": "700"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_GIA1",
+        "unit": "MN/m2",
+        "description": "Initial shear modulus, arm (pair) 1",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_GIA2",
+        "unit": "MN/m2",
+        "description": "Initial shear modulus, arm (pair) 2",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_GIA3",
+        "unit": "MN/m2",
+        "description": "Initial shear modulus, arm (pair) 3",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_GIAA",
+        "unit": "MN/m2",
+        "description": "Initial shear modulus, average",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_CUA1",
+        "unit": "kN/m2",
+        "description": "Undrained shear strength, arm (pair) 1",
+        "example": "420"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_CUA2",
+        "unit": "kN/m2",
+        "description": "Undrained shear strength, arm (pair) 2",
+        "example": "420"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_CUA3",
+        "unit": "kN/m2",
+        "description": "Undrained shear strength, arm (pair) 3",
+        "example": "420"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_CUAA",
+        "unit": "kN/m2",
+        "description": "Undrained shear strength, average",
+        "example": "420"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_PLA1",
+        "unit": "kN/m2",
+        "description": "Limit pressure, arm (pair) 1",
+        "example": "3400"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_PLA2",
+        "unit": "kN/m2",
+        "description": "Limit pressure, arm (pair) 2",
+        "example": "3400"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_PLA3",
+        "unit": "kN/m2",
+        "description": "Limit pressure, arm (pair) 3",
+        "example": "3400"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_PLAA",
+        "unit": "kN/m2",
+        "description": "Limit pressure, average",
+        "example": "3400"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_AFA1",
+        "unit": "deg",
+        "description": "Angle of friction, arm (pair) 1",
+        "example": "39"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_AFA2",
+        "unit": "deg",
+        "description": "Angle of friction, arm (pair) 2",
+        "example": "39"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_AFA3",
+        "unit": "deg",
+        "description": "Angle of friction, arm (pair) 3",
+        "example": "39"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_AFAA",
+        "unit": "deg",
+        "description": "Angle of friction, average",
+        "example": "39"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_ADA1",
+        "unit": "deg",
+        "description": "Angle of dilation, arm (pair) 1",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_ADA2",
+        "unit": "deg",
+        "description": "Angle of dilation, arm (pair) 2",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_ADA3",
+        "unit": "deg",
+        "description": "Angle of dilation, arm (pair) 3",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_ADAA",
+        "unit": "deg",
+        "description": "Angle of dilation, average",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_AFCV",
+        "unit": "deg",
+        "description": "Angle of friction at constant volume (\u03c6 ) used cv",
+        "example": "35"
+      },
+      {
+        "status": null,
+        "heading": "PRTG_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS11"
+      }
+    ]
+  },
+  {
+    "group_name": "PRTL",
+    "group_description": "Pressuremeter Test Results, Individual Loops",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "PRTD_TREF",
+        "unit": null,
+        "description": "Reference number of test",
+        "example": "1"
+      },
+      {
+        "status": "*",
+        "heading": "PRTD_DPTH",
+        "unit": "m",
+        "description": "Depth of test",
+        "example": "2.70"
+      },
+      {
+        "status": "*",
+        "heading": "PRTL_LNO",
+        "unit": null,
+        "description": "Unload/Reload loop number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of test",
+        "example": "22/12/1993"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_TYPE",
+        "unit": null,
+        "description": "Pressuremeter type",
+        "example": "SBP (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "PRTD_DIA",
+        "unit": "mm",
+        "description": "Uninflated diameter of pressuremeter",
+        "example": "82.9"
+      },
+      {
+        "status": null,
+        "heading": "PRTL_GA1",
+        "unit": "MN/m2",
+        "description": "Unload/reload shear modulus, arm (pair) 1",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "PRTL_GA2",
+        "unit": "MN/m2",
+        "description": "Unload/reload shear modulus, arm (pair) 2",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "PRTL_GA3",
+        "unit": "MN/m2",
+        "description": "Unload/reload shear modulus, arm (pair) 3",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "PRTL_GAA",
+        "unit": "MN/m2",
+        "description": "Unload/reload shear modulus, average",
+        "example": "70"
+      }
+    ]
+  },
+  {
+    "group_name": "PTIM",
+    "group_description": "Hole Progress by Time",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "PTIM_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of progress reading",
+        "example": "20/03/1991"
+      },
+      {
+        "status": "*",
+        "heading": "PTIM_TIME",
+        "unit": "hhmm",
+        "description": "Time of progress reading",
+        "example": "1435"
+      },
+      {
+        "status": null,
+        "heading": "PTIM_DEP",
+        "unit": "m",
+        "description": "Hole depth at PTIM_TIME",
+        "example": "22.13"
+      },
+      {
+        "status": null,
+        "heading": "PTIM_CAS",
+        "unit": "m",
+        "description": "Depth of casing at PTIM_TIME",
+        "example": "20.50"
+      },
+      {
+        "status": null,
+        "heading": "PTIM_WAT",
+        "unit": "m",
+        "description": "Depth to water at PTIM_TIME",
+        "example": "16.56"
+      },
+      {
+        "status": null,
+        "heading": "PTIM_REM",
+        "unit": null,
+        "description": "Remarks at PTIM_TIME",
+        "example": "Stopped drilling on client's instruction"
+      }
+    ]
+  },
+  {
+    "group_name": "PTST",
+    "group_description": "Laboratory Permeability Tests",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6411/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "PTST_TESN",
+        "unit": null,
+        "description": "Permeability test number",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "PTST_REM",
+        "unit": null,
+        "description": "Permeability test method",
+        "example": "Constant head permeability test"
+      },
+      {
+        "status": null,
+        "heading": "PTST_COND",
+        "unit": null,
+        "description": "Sample condition",
+        "example": "Undisturbed"
+      },
+      {
+        "status": null,
+        "heading": "PTST_SZUN",
+        "unit": "mm",
+        "description": "Size cut off of material too coarse for testing",
+        "example": "5"
+      },
+      {
+        "status": null,
+        "heading": "PTST_UNS",
+        "unit": "%",
+        "description": "Proportion of material too coarse for testing - BS 1377 Part 5 cl 5.7",
+        "example": "36"
+      },
+      {
+        "status": null,
+        "heading": "PTST_DIA",
+        "unit": "mm",
+        "description": "Diameter of test sample",
+        "example": "102"
+      },
+      {
+        "status": null,
+        "heading": "PTST_LEN",
+        "unit": "mm",
+        "description": "Length of test sample",
+        "example": "200"
+      },
+      {
+        "status": null,
+        "heading": "PTST_MC",
+        "unit": "%",
+        "description": "Initial moisture content of test sample",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "PTST_BDEN",
+        "unit": "Mg/m3",
+        "description": "Initial bulk density of test sample",
+        "example": "2.24"
+      },
+      {
+        "status": null,
+        "heading": "PTST_DDEN",
+        "unit": "Mg/m3",
+        "description": "Dry density of test sample",
+        "example": "1.87"
+      },
+      {
+        "status": null,
+        "heading": "PTST_VOID",
+        "unit": null,
+        "description": "Voids ratio of test sample",
+        "example": "0.37"
+      },
+      {
+        "status": null,
+        "heading": "PTST_K",
+        "unit": "m/s",
+        "description": "Coefficient of permeability",
+        "example": "4E-6"
+      },
+      {
+        "status": null,
+        "heading": "PTST_TSTR",
+        "unit": "kN/m2",
+        "description": "Mean effective stress at which permeability measured (when measured in triaxial cell).",
+        "example": "112"
+      },
+      {
+        "status": null,
+        "heading": "PTST_ISAT",
+        "unit": "%",
+        "description": "Initial degree of saturation",
+        "example": "72"
+      },
+      {
+        "status": null,
+        "heading": "PTST_FSAT",
+        "unit": "%",
+        "description": "Final degree of saturation",
+        "example": "98"
+      },
+      {
+        "status": null,
+        "heading": "PTST_PDEN",
+        "unit": "Mg/m3",
+        "description": "Particle density, measured or (#) assumed",
+        "example": "2.65"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated File Reference",
+        "example": "FS28"
+      }
+    ]
+  },
+  {
+    "group_name": "PUMP",
+    "group_description": "Pumping Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "PUMP_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of reading",
+        "example": "16/03/1991"
+      },
+      {
+        "status": "*",
+        "heading": "PUMP_TIME",
+        "unit": "hhmmss",
+        "description": "Time of reading",
+        "example": "143500"
+      },
+      {
+        "status": null,
+        "heading": "PUMP_DPTH",
+        "unit": "m",
+        "description": "Depth to water below ground",
+        "example": "12.5"
+      },
+      {
+        "status": null,
+        "heading": "PUMP_QUAT",
+        "unit": "l/s",
+        "description": "Pumping rate from hole",
+        "example": "0.8"
+      },
+      {
+        "status": null,
+        "heading": "PUMP_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": "Double packer"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated File Reference",
+        "example": "FS29"
+      }
+    ]
+  },
+  {
+    "group_name": "RELD",
+    "group_description": "Relative Density Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "8.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "16"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "LB (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "8.50"
+      },
+      {
+        "status": null,
+        "heading": "RELD_REM",
+        "unit": null,
+        "description": "Method of test",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "RELD_DMAX",
+        "unit": "Mg/m3",
+        "description": "Maximum dry density as BS 1377 part 4 cl 4",
+        "example": "2.15"
+      },
+      {
+        "status": null,
+        "heading": "RELD_375",
+        "unit": "%",
+        "description": "Weight percent of sample retained on 37.5mm sieve",
+        "example": "7.0"
+      },
+      {
+        "status": null,
+        "heading": "RELD_\u00d863",
+        "unit": "%",
+        "description": "Weight percent of sample retained on 6.3mm sieve",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "RELD_\u00d82\u00d8",
+        "unit": "%",
+        "description": "Weight percent of sample retained on 2mm sieve",
+        "example": "5.0"
+      },
+      {
+        "status": null,
+        "heading": "RELD_DMIN",
+        "unit": "Mg/m3",
+        "description": "Minimum dry density as BS 1377 part 4 cl 4",
+        "example": "1.65"
+      }
+    ]
+  },
+  {
+    "group_name": "ROCK",
+    "group_description": "Rock Testing",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6423/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "2.54"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "C (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "2.54"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PLS",
+        "unit": "MN/m2",
+        "description": "Uncorrected point load (I) s",
+        "example": "2.3"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PLSI",
+        "unit": "MN/m2",
+        "description": "Size corrected point load index (I 50) s",
+        "example": "2.5"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PLTF",
+        "unit": null,
+        "description": "Point load test type (A, D, L or P)",
+        "example": "A+L (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_UCS",
+        "unit": "MN/m2",
+        "description": "Uniaxial compressive strength (size corrected)",
+        "example": "16.8"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_REM",
+        "unit": null,
+        "description": "Remarks",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PREM",
+        "unit": null,
+        "description": "Details additional to ROCK_PLTF",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "ROCK_UREM",
+        "unit": null,
+        "description": "Notes on uniaxial compressive strength test, including sample dimensions",
+        "example": "ISRM 76mm diameter 205mm high"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_E",
+        "unit": "MN/m2",
+        "description": "Elastic modulus",
+        "example": "220"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_MU",
+        "unit": null,
+        "description": "Poisson's ratio",
+        "example": "0.3"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_BRAZ",
+        "unit": "MN/m2",
+        "description": "Tensile strength by the Brazilian method",
+        "example": "50"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_BREM",
+        "unit": null,
+        "description": "Notes on Brazilian tensile strength test including sample dimensions",
+        "example": "ISRM 76mm diameter 32mm thick"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PORO",
+        "unit": "%",
+        "description": "Rock porosity",
+        "example": "17"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PORE",
+        "unit": null,
+        "description": "Notes on type of porosity test",
+        "example": "ISRM Calliper method"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_MC",
+        "unit": "%",
+        "description": "Natural moisture content",
+        "example": "18"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_BDEN",
+        "unit": "Mg/m3",
+        "description": "Rock bulk density",
+        "example": "2.22"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_DDEN",
+        "unit": "Mg/m3",
+        "description": "Rock dry density",
+        "example": "1.88"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PDEN",
+        "unit": "Mg/m3",
+        "description": "Aggregate particle density",
+        "example": "2.53"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_DREM",
+        "unit": null,
+        "description": "Aggregate particle density test method and notes",
+        "example": "BS812 Gas jar method. Saturated, surface dried10mm aggregate"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_WTAB",
+        "unit": "%",
+        "description": "Aggregate water absorption",
+        "example": "2.6"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_WREM",
+        "unit": null,
+        "description": "Aggregate water absorption test method and notes",
+        "example": "BS812 Gas jar method 10mm aggregate"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_SDI",
+        "unit": "%",
+        "description": "Slake durability Index",
+        "example": "23.2"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_SREM",
+        "unit": null,
+        "description": "Slake durability test method and notes",
+        "example": "ISRM 2nd cycle Tap water at 20 deg C"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_SOUN",
+        "unit": "%",
+        "description": "Aggregate Soundness Test",
+        "example": "95"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_MREM",
+        "unit": null,
+        "description": "Aggregate soundness test method and notes",
+        "example": "BS 812 Magnesium sulphate 10-14mm aggregate 5 cycles % retained"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_ACV",
+        "unit": "%",
+        "description": "Aggregate Crushing Value",
+        "example": "16.5"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_CREM",
+        "unit": null,
+        "description": "Aggregate Crushing Value test method and notes",
+        "example": "BS812 10-14mm aggregate"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_AIV",
+        "unit": "%",
+        "description": "Aggregate Impact Value",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_IREM",
+        "unit": null,
+        "description": "Aggregate Impact Value test method and notes",
+        "example": "BS812 10-14mm aggregate, saturated 15 blows"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_LOSA",
+        "unit": "%",
+        "description": "Aggregate Los Angeles abrasion",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_LREM",
+        "unit": null,
+        "description": "Aggregate Los Angeles abrasion test method and notes",
+        "example": "ASTM C131 9.5-19mm aggregate 500 revolutions"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_AAV",
+        "unit": null,
+        "description": "Aggregate Abrasion Value",
+        "example": "8.32"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PSV",
+        "unit": null,
+        "description": "Aggregate Polished Stone Value",
+        "example": "67"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_FI",
+        "unit": "%",
+        "description": "Aggregate Flakiness Index",
+        "example": "9"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_EI",
+        "unit": "%",
+        "description": "Aggregate Elongation Index",
+        "example": "12"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_DESC",
+        "unit": null,
+        "description": "Specimen description",
+        "example": "Mudstone"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_SHOR",
+        "unit": null,
+        "description": "Shore hardness",
+        "example": "29.7"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_PWAV",
+        "unit": "m/s",
+        "description": "P-wave velocity",
+        "example": "3000"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_SWAV",
+        "unit": "m/s",
+        "description": "S-wave velocity",
+        "example": "1800"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_EMOD",
+        "unit": "GPa",
+        "description": "Dynamic Elastic Modulus",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_SG",
+        "unit": "GPa",
+        "description": "Shear modulus derived from ROCK_SWAV",
+        "example": "8"
+      },
+      {
+        "status": null,
+        "heading": "ROCK_SWEL",
+        "unit": "kN/m2",
+        "description": "Rock swelling index",
+        "example": "50"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS10"
+      }
+    ]
+  },
+  {
+    "group_name": "SAMP",
+    "group_description": "Sample Reference Information",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of sample",
+        "example": "24.55"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "24"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_DIA",
+        "unit": "mm",
+        "description": "Sample diameter",
+        "example": "100"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_BASE",
+        "unit": "m",
+        "description": "Depth to BASE of sample",
+        "example": "25.00"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_DESC",
+        "unit": null,
+        "description": "Sample description",
+        "example": "Stiff brown very silty CLAY"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_UBLO",
+        "unit": null,
+        "description": "Number of blows required to drive sampler",
+        "example": "35"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_REM",
+        "unit": null,
+        "description": "Sample remarks",
+        "example": "60% recovery"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date sample taken",
+        "example": "26/03/1991"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_TIME",
+        "unit": "hhmmss",
+        "description": "Time sample taken",
+        "example": "092800"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_BAR",
+        "unit": "kPa",
+        "description": "Barometric Pressure at time of sampling",
+        "example": "99.1"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_WDEP",
+        "unit": "m",
+        "description": "Depth to water below ground surface at time of sampling",
+        "example": "4.50"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_TEMP",
+        "unit": "DegC",
+        "description": "Sample temperature at time of sampling",
+        "example": "8"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_PRES",
+        "unit": "kPa",
+        "description": "Gas pressure (above barometric)",
+        "example": "0.2"
+      },
+      {
+        "status": null,
+        "heading": "SAMP_FLOW",
+        "unit": "l/min",
+        "description": "Gas flow",
+        "example": "0.2"
+      },
+      {
+        "status": null,
+        "heading": "?SAMP_PREP",
+        "unit": null,
+        "description": "Details of sample preparation",
+        "example": "Preservative added"
+      },
+      {
+        "status": null,
+        "heading": "GEOL_STAT",
+        "unit": null,
+        "description": "Stratum reference shown on trial pit or traverse sketch",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS3"
+      }
+    ]
+  },
+  {
+    "group_name": "SHBG",
+    "group_description": "Shear Box Testing - General",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6331/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.50"
+      },
+      {
+        "status": null,
+        "heading": "SHBG_TYPE",
+        "unit": null,
+        "description": "Test type e.g. small shear box, large shear box, ring shear",
+        "example": "Small shear box"
+      },
+      {
+        "status": null,
+        "heading": "SHBG_REM",
+        "unit": null,
+        "description": "Test notes e.g. undisturbed, pre-existing shear, recompacted, rock joint, cut plane",
+        "example": "Undisturbed"
+      },
+      {
+        "status": null,
+        "heading": "SHBG_PCOH",
+        "unit": "kN/m2",
+        "description": "Peak cohesion intercept",
+        "example": "5"
+      },
+      {
+        "status": null,
+        "heading": "SHBG_PHI",
+        "unit": "deg",
+        "description": "Peak angle of friction",
+        "example": "26.5"
+      },
+      {
+        "status": null,
+        "heading": "SHBG_RCOH",
+        "unit": "kN/m2",
+        "description": "Residual cohesion intercept",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "SHBG_RPHI",
+        "unit": "deg",
+        "description": "Residual angle of friction",
+        "example": "13.0"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS18"
+      }
+    ]
+  },
+  {
+    "group_name": "SHBT",
+    "group_description": "Shear Box Testing",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6331/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SHBT_TESN",
+        "unit": null,
+        "description": "Shear box stage number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_MC",
+        "unit": "%",
+        "description": "Specimen initial moisture content",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_BDEN",
+        "unit": "Mg/m3",
+        "description": "Bulk density",
+        "example": "1.96"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_DDEN",
+        "unit": "Mg/m3",
+        "description": "Dry density",
+        "example": "1.63"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_NORM",
+        "unit": "kN/m2",
+        "description": "Shear box normal stress",
+        "example": "100"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_DISP",
+        "unit": "mm/min",
+        "description": "Displacement rate",
+        "example": "0.1"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_PEAK",
+        "unit": "kN/m2",
+        "description": "Shear box peak shear stress",
+        "example": "65.5"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_RES",
+        "unit": "kN/m2",
+        "description": "Shear box residual shear stress",
+        "example": "47.2"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_PDIS",
+        "unit": "mm",
+        "description": "Displacement at peak shear strength",
+        "example": "2.35"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_RDIS",
+        "unit": "mm",
+        "description": "Displacement at residual shear strength",
+        "example": "12.41"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_PDEN",
+        "unit": "Mg/m3",
+        "description": "Particle density. measured or, (#) assumed",
+        "example": "2.65"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_IVR",
+        "unit": null,
+        "description": "Initial voids ratio",
+        "example": "0.5"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_MCI",
+        "unit": "%",
+        "description": "Initial moisture content",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "SHBT_MCF",
+        "unit": "%",
+        "description": "Final moisture content",
+        "example": "18"
+      },
+      {
+        "status": null,
+        "heading": "?SHBT_REM",
+        "unit": null,
+        "description": "Remarks on test stage",
+        "example": "Reached end of travel"
+      }
+    ]
+  },
+  {
+    "group_name": "STCN",
+    "group_description": "Static Cone Penetration Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "STCN_DPTH",
+        "unit": "m",
+        "description": "Depth of result for static cone test",
+        "example": "12.10"
+      },
+      {
+        "status": null,
+        "heading": "STCN_TYP",
+        "unit": null,
+        "description": "Cone test type",
+        "example": "PC (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "STCN_REF",
+        "unit": null,
+        "description": "Cone identification reference",
+        "example": "PQ47"
+      },
+      {
+        "status": null,
+        "heading": "STCN_FORC",
+        "unit": "kN",
+        "description": "Axial force (Qc)",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "STCN_FRIC",
+        "unit": "kN",
+        "description": "Frictional force on sleeve (Qs)",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "STCN_RES",
+        "unit": "MN/m2",
+        "description": "Cone resistance",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "STCN_FRES",
+        "unit": "kN/m2",
+        "description": "Local unit side friction resistance",
+        "example": "1000"
+      },
+      {
+        "status": null,
+        "heading": "STCN_PWP1",
+        "unit": "kN/m2",
+        "description": "Porewater pressure",
+        "example": "15.0"
+      },
+      {
+        "status": null,
+        "heading": "STCN_PWP2",
+        "unit": "kN/m2",
+        "description": "Second porewater pressure",
+        "example": "15.0"
+      },
+      {
+        "status": null,
+        "heading": "STCN_PWP3",
+        "unit": "kN/m2",
+        "description": "Third porewater pressure",
+        "example": "15.0"
+      },
+      {
+        "status": null,
+        "heading": "STCN_CON",
+        "unit": "uS/cm",
+        "description": "Conductivity",
+        "example": "0.01"
+      },
+      {
+        "status": null,
+        "heading": "STCN_TEMP",
+        "unit": "DegC",
+        "description": "Temperature",
+        "example": "10"
+      },
+      {
+        "status": null,
+        "heading": "STCN_PH",
+        "unit": null,
+        "description": "pH reading",
+        "example": "7.2"
+      },
+      {
+        "status": null,
+        "heading": "STCN_SLP1",
+        "unit": "deg",
+        "description": "Slope Indicator no. 1",
+        "example": "4.1"
+      },
+      {
+        "status": null,
+        "heading": "STCN_SLP2",
+        "unit": "deg",
+        "description": "Slope Indicator no. 2",
+        "example": "6.3"
+      },
+      {
+        "status": null,
+        "heading": "STCN_REDX",
+        "unit": "mV",
+        "description": "Redox potential reading",
+        "example": "13.3"
+      },
+      {
+        "status": null,
+        "heading": "STCN_FFD",
+        "unit": "%",
+        "description": "Fluorescence intensity",
+        "example": "96.3"
+      },
+      {
+        "status": null,
+        "heading": "STCN_PMT",
+        "unit": "counts/s",
+        "description": "Photo-multiplier tube reading",
+        "example": "26"
+      },
+      {
+        "status": null,
+        "heading": "STCN_PID",
+        "unit": "uV",
+        "description": "Photo ionization detector reading",
+        "example": "3650"
+      },
+      {
+        "status": null,
+        "heading": "STCN_FID",
+        "unit": "uV",
+        "description": "Flame ionization detector reading",
+        "example": "151260"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS12"
+      }
+    ]
+  },
+  {
+    "group_name": "SUCT",
+    "group_description": "Suction Tests",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "1"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.60"
+      },
+      {
+        "status": null,
+        "heading": "SUCT_METH",
+        "unit": null,
+        "description": "Test method",
+        "example": "Chandler"
+      },
+      {
+        "status": null,
+        "heading": "SUCT_VAL",
+        "unit": "kN/m2",
+        "description": "Suction value",
+        "example": "50"
+      }
+    ]
+  },
+  {
+    "group_name": "TNPC",
+    "group_description": "Ten Per Cent Fines",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6321/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "25"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "B (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "2"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen Depth",
+        "example": "6.50"
+      },
+      {
+        "status": null,
+        "heading": "TNPC_TESN",
+        "unit": null,
+        "description": "Ten per cent fines test number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "TNPC_REM",
+        "unit": null,
+        "description": "Notes on testing as per BS 812",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "TNPC_DRY",
+        "unit": "kN",
+        "description": "10% fines values on dry aggregate",
+        "example": "70"
+      },
+      {
+        "status": null,
+        "heading": "TNPC_WET",
+        "unit": "kN",
+        "description": "10% fines value on wet aggregate",
+        "example": "60"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS19"
+      }
+    ]
+  },
+  {
+    "group_name": "?TREM",
+    "group_description": "Time Related Remarks",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "?HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "G12"
+      },
+      {
+        "status": "*",
+        "heading": "?TREM_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of remark",
+        "example": "16/05/2001"
+      },
+      {
+        "status": "*",
+        "heading": "?TREM_TIME",
+        "unit": "hhmmss",
+        "description": "Time of remark",
+        "example": "120000"
+      },
+      {
+        "status": null,
+        "heading": "?TREM_REM",
+        "unit": null,
+        "description": "Time related remark",
+        "example": "Completion of concrete pour for slab G12"
+      },
+      {
+        "status": null,
+        "heading": "?FILE_FSET",
+        "unit": null,
+        "description": "Associated File Reference",
+        "example": "FS28"
+      }
+    ]
+  },
+  {
+    "group_name": "TRIG",
+    "group_description": "Triaxial Test - General",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "3"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.80"
+      },
+      {
+        "status": null,
+        "heading": "TRIG_TYPE",
+        "unit": null,
+        "description": "Test type",
+        "example": "UU (See Appendix 1)"
+      },
+      {
+        "status": null,
+        "heading": "TRIG_COND",
+        "unit": null,
+        "description": "Sample condition",
+        "example": "Undisturbed"
+      },
+      {
+        "status": null,
+        "heading": "TRIG_REM",
+        "unit": null,
+        "description": "Test method, additional information, failure criteria.",
+        "example": null
+      },
+      {
+        "status": null,
+        "heading": "TRIG_CU",
+        "unit": "kN/m2",
+        "description": "Value of undrained shear strength",
+        "example": "75"
+      },
+      {
+        "status": null,
+        "heading": "TRIG_COH",
+        "unit": "kN/m2",
+        "description": "Cohesion intercept associated with TRIG_PHI",
+        "example": "2"
+      },
+      {
+        "status": null,
+        "heading": "TRIG_PHI",
+        "unit": "deg",
+        "description": "Angle of friction for effective shear strength triaxial test",
+        "example": "32"
+      },
+      {
+        "status": null,
+        "heading": "FILE_FSET",
+        "unit": null,
+        "description": "Associated file reference",
+        "example": "FS7"
+      }
+    ]
+  },
+  {
+    "group_name": "TRIX",
+    "group_description": "Triaxial Test",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6431/A"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of test sample",
+        "example": "6.50"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_REF",
+        "unit": null,
+        "description": "Sample reference number",
+        "example": "12"
+      },
+      {
+        "status": "*",
+        "heading": "SAMP_TYPE",
+        "unit": null,
+        "description": "Sample type",
+        "example": "U (See Appendix 1)"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_REF",
+        "unit": null,
+        "description": "Specimen reference number",
+        "example": "3"
+      },
+      {
+        "status": "*",
+        "heading": "SPEC_DPTH",
+        "unit": "m",
+        "description": "Specimen depth",
+        "example": "6.80"
+      },
+      {
+        "status": "*",
+        "heading": "TRIX_TESN",
+        "unit": null,
+        "description": "Triaxial test/stage number",
+        "example": "1"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_SDIA",
+        "unit": "mm",
+        "description": "Specimen diameter",
+        "example": "38"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_MC",
+        "unit": "%",
+        "description": "Specimen initial moisture content",
+        "example": "15"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_CELL",
+        "unit": "kN/m2",
+        "description": "Total cell pressure",
+        "example": "100"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_DEVF",
+        "unit": "kN/m2",
+        "description": "Deviator stress at failure",
+        "example": "360"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_SLEN",
+        "unit": "mm",
+        "description": "Sample length",
+        "example": "76"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_BDEN",
+        "unit": "Mg/m3",
+        "description": "Initial bulk density",
+        "example": "2.12"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_DDEN",
+        "unit": "Mg/m3",
+        "description": "Initial dry density",
+        "example": "1.84"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_PWPF",
+        "unit": "kN/m2",
+        "description": "Porewater pressure at failure",
+        "example": "60"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_PWPI",
+        "unit": "kN/m2",
+        "description": "Porewater pressure at start of shear stage",
+        "example": "50"
+      },
+      {
+        "status": null,
+        "heading": "?TRIX_CU",
+        "unit": "kN/m2",
+        "description": "Value of Undrained Shear Strength",
+        "example": "180"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_STRN",
+        "unit": "%",
+        "description": "Strain at failure",
+        "example": "9"
+      },
+      {
+        "status": null,
+        "heading": "TRIX_MODE",
+        "unit": null,
+        "description": "Mode of failure",
+        "example": "Brittle, plastic"
+      }
+    ]
+  },
+  {
+    "group_name": "UNIT",
+    "group_description": "Definition of <UNITS> and CNMT_UNIT",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "UNIT_UNIT",
+        "unit": null,
+        "description": "Unit Used",
+        "example": "ohmcm"
+      },
+      {
+        "status": null,
+        "heading": "UNIT_DESC",
+        "unit": null,
+        "description": "Description",
+        "example": "Ohm centimetres"
+      }
+    ]
+  },
+  {
+    "group_name": "WETH",
+    "group_description": "Weathering Grades",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "WETH_TOP",
+        "unit": "m",
+        "description": "Depth to TOP of weathering subdivision",
+        "example": "3.50"
+      },
+      {
+        "status": "*",
+        "heading": "WETH_BASE",
+        "unit": "m",
+        "description": "Depth to BASE of weathering subdivision",
+        "example": "3.95"
+      },
+      {
+        "status": null,
+        "heading": "WETH_GRAD",
+        "unit": null,
+        "description": "Material weathering grade",
+        "example": "IV"
+      },
+      {
+        "status": null,
+        "heading": "WETH_REM",
+        "unit": null,
+        "description": "Remarks, weathering system used",
+        "example": "Geoguide 3"
+      }
+    ]
+  },
+  {
+    "group_name": "WSTK",
+    "group_description": "Water Strike Details",
+    "headings": [
+      {
+        "status": "*",
+        "heading": "HOLE_ID",
+        "unit": null,
+        "description": "Exploratory hole or location equivalent",
+        "example": "6421/A"
+      },
+      {
+        "status": "*",
+        "heading": "WSTK_DEP",
+        "unit": "m",
+        "description": "Depth to water strike",
+        "example": "17.20"
+      },
+      {
+        "status": "*",
+        "heading": "WSTK_NMIN",
+        "unit": "min",
+        "description": "Minutes after strike",
+        "example": "20"
+      },
+      {
+        "status": null,
+        "heading": "WSTK_CAS",
+        "unit": "m",
+        "description": "Casing depth at time of water strike",
+        "example": "15.70"
+      },
+      {
+        "status": null,
+        "heading": "WSTK_DATE",
+        "unit": "dd/mm/yyyy",
+        "description": "Date of water strike",
+        "example": "19/03/1991"
+      },
+      {
+        "status": null,
+        "heading": "WSTK_TIME",
+        "unit": "hhmm",
+        "description": "Time of water strike",
+        "example": "1640"
+      },
+      {
+        "status": null,
+        "heading": "WSTK_POST",
+        "unit": "m",
+        "description": "Depth to water after WSTK_NMIN minutes",
+        "example": "10.23"
+      },
+      {
+        "status": null,
+        "heading": "WSTK_FLOW",
+        "unit": null,
+        "description": "Flow rate remarks",
+        "example": "Steady flow of water into hole"
+      },
+      {
+        "status": null,
+        "heading": "WSTK_SEAL",
+        "unit": "m",
+        "description": "Depth at which water strike sealed by casing",
+        "example": "19.10"
+      }
+    ]
+  }
+]

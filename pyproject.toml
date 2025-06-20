@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "Apache Software License (Apache 2.0)"}
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "geopandas~=1.0",
     "openpyxl~=3.0",
@@ -72,20 +72,16 @@ Tracker = "https://github.com/bedrock-engineer/bedrock-ge/issues"
 
 [dependency-groups]
 dev = [
-    "duckdb>=1.2.2",
     "frictionless[excel]>=4.40.8",
-    "jupyter>=1.1.1",
-    "marimo>=0.12.5",
+    "marimo[recommended]>=0.13.11",
     "mypy>=1.11.2",
-    "nbconvert>=7.16.6",
     "pandas-stubs>=2.2.2.240807",
-    "ruff>=0.6.7",
-    "sqlglot>=26.12.1",
 ]
 
 tests = [
     "folium>=0.17.0",
     "mapclassify>=2.8.1",
+    "marimo>=0.13.11",
     "matplotlib>=3.9.2",
     "pytest>=8.3.3",
 ]
