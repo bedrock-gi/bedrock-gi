@@ -32,7 +32,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         BedrockGIDatabase: The transformed Bedrock GI database containing validated
             DataFrames for each table type.
     """
-    # Create a base64 hash from the project data, such that project a project Unique ID
+    # Create a base64 hash from the project data, such that a project Unique ID
     # can be created from the project_id and the hash of the project data.
     project_data_jsons = json.dumps(brgi_db_mapping.Project.data, sort_keys=True)
     project_data_bytes_hash = hashlib.blake2b(

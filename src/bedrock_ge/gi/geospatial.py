@@ -13,6 +13,7 @@ from bedrock_ge.gi.schemas import (
     BedrockGIGeospatialDatabase,
     InSituTestSchema,
     LocationSchema,
+    SampleSchema,
 )
 
 
@@ -183,22 +184,20 @@ def create_lon_lat_height_geodf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
 
 def interpolate_gi_geometry(
     insitu_test_df: DataFrame[InSituTestSchema] | DataFrame[SampleSchema],
-    location_geodf: DataFrame[LocationSchema] | gpd.GeoDataFrame,
+    location_geodf: gpd.GeoDataFrame,
 ) -> gpd.GeoDataFrame:
-    """Interpolates the geospatial geometry for a given In-Situ test DataFrame using its corresponding GI Location GeoDataFrame.
+    """Interpolates the geospatial geometry for a given In-Situ test DataFrame using the corresponding GI Location GeoDataFrame.
 
-    This function takes an In-Situ test DataFrame and a GI Location GeoDataFrame and
-    returns a GeoDataFrame with its geometry interpolated from the location GeoDataFrame.
+    This function takes an In-Situ test or Sample DataFrame and a GI Location GeoDataFrame and
+    returns a GeoDataFrame with its geometry interpolated from the Location GeoDataFrame.
     The In-Situ test geometry is always a LineString or Point, depending on whether the
     In-Situ test is performed at a specific depth or over a depth interval inside a borehole.
-    The geometry is calculated by linearly interpolating the depth values for each
-    In-Situ test row between the top and bottom of the corresponding location's LineString geometry.
+    The geometry is calculated by linearly interpolating the depth values for each row
+    in a In-Situ test DataFrame along the corresponding location's LineString geometry.
 
     Args:
-        insitu_test_df (DataFrame[InSituTestSchema]): The In-Situ test DataFrame
-            containing the depth values to be interpolated.
-        location_geodf (DataFrame[LocationSchema]): The location GeoDataFrame containing the
-            location geometry to be used for interpolation.
+        insitu_test_df: The In-Situ test or Sample DataFrame containing the depth values to be interpolated.
+        location_geodf: The location GeoDataFrame containing the location LineStrings to be used for interpolation.
 
     Returns:
         gpd.GeoDataFrame: A GeoDataFrame containing the interpolated geospatial geometry
